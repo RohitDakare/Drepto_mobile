@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Video Consultation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-overlay {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .recording-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- Main Full-Screen Video Background -->
+<div class="relative h-screen w-full bg-black overflow-hidden flex items-center justify-center">
+<!-- Mock Video Feed for Doctor -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="Professional female doctor in a clinical setting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAFIcx62VtA9Hn0vaQOKZBPhlqSGYcKUiDLkOgglAVH6-fuUr_ok-PwWe1ofOxcCQ_ss7-UbzpjrT60rZn2MP63lF5JjGWyxLVfuQC6WNOH63_F0hl4dig-72ogEG8DTrTcTFYhdq55hNVkoxtc68EByeVp56iDBG6rbkBdir65VjoqiJhohB6ymRpSdXBTr-dfg1RUckrmibwc_xLaymciJ0q7Lxgrc8fUsz-1AGK7PHCgz9qfSqpp7FcdhIAJgRD99Casmn9bDg");'>
+</div>
+<!-- Safe Area Top Overlay -->
+<div class="absolute top-0 w-full pt-12 pb-20 px-6 bg-gradient-to-b from-black/60 to-transparent flex items-start justify-between z-10">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="flex h-2 w-2 rounded-full bg-red-500 recording-dot"></span>
+<span class="text-white text-xs font-bold tracking-widest uppercase">Recording</span>
+</div>
+<h1 class="text-white text-xl font-semibold">Dr. Sarah Mitchell</h1>
+<p class="text-white/70 text-sm">Cardiologist</p>
+</div>
+<div class="glass-overlay rounded-full px-4 py-1.5 flex items-center gap-2 border border-white/20">
+<span class="text-white text-sm font-medium">12:45</span>
+</div>
+</div>
+<!-- Picture-in-Picture Patient View -->
+<div class="absolute top-32 right-6 w-32 aspect-[3/4] bg-neutral-800 rounded-xl overflow-hidden shadow-2xl border border-white/20 z-20">
+<div class="w-full h-full bg-cover bg-center" data-alt="Young patient smiling at camera" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBf7_dEqmrow21FZMBqoyZ6SlslwISDT8CePcbQr6QDq8mkqv1GX53cnDReYE2QA5X_kfaI2KuIMXBWnMdBuzYRAwkn7oenPOdbh8qS7gg3Y7F-kS1182X9lINh77T_i6zILP4B18V04t2FNFGP99Qg7YPUhO9xfzHY4qDX9-fRru73Bipc2y2R_Mv2wGhMHip0nuwQ7e0msTLXbBkvuq6-rHSOxjFs7KG29u8nD3EeVPPSGkKy0w_Sxn_lOysV9k4RxnMd3uFzOA");'>
+</div>
+</div>
+<!-- Floating Controls Bar -->
+<div class="absolute bottom-12 left-0 w-full flex justify-center px-6 z-30">
+<div class="glass-overlay p-4 rounded-3xl flex items-center gap-6 border border-white/10 shadow-2xl">
+<!-- Mute Button -->
+<button class="flex flex-col items-center gap-1 group">
+<div class="size-14 rounded-full bg-white/10 flex items-center justify-center text-white group-active:bg-white/20 transition-colors">
+<span class="material-symbols-outlined !text-[28px]">mic</span>
+</div>
+</button>
+<!-- Flip Camera -->
+<button class="flex flex-col items-center gap-1 group">
+<div class="size-14 rounded-full bg-white/10 flex items-center justify-center text-white group-active:bg-white/20 transition-colors">
+<span class="material-symbols-outlined !text-[28px]">cameraswitch</span>
+</div>
+</button>
+<!-- End Call Button (Red) -->
+<button class="flex flex-col items-center gap-1 group">
+<div class="size-16 rounded-full bg-red-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined !text-[36px] fill-[1]">call_end</span>
+</div>
+</button>
+<!-- Chat Button -->
+<button class="relative flex flex-col items-center gap-1 group">
+<div class="size-14 rounded-full bg-white/10 flex items-center justify-center text-white group-active:bg-white/20 transition-colors">
+<span class="material-symbols-outlined !text-[28px]">chat_bubble</span>
+</div>
+<!-- Notification Dot -->
+<span class="absolute top-0 right-0 size-4 bg-primary rounded-full border-2 border-[#102122] flex items-center justify-center text-[10px] font-bold text-background-dark">
+                        2
+                    </span>
+</button>
+<!-- More Button -->
+<button class="flex flex-col items-center gap-1 group">
+<div class="size-14 rounded-full bg-white/10 flex items-center justify-center text-white group-active:bg-white/20 transition-colors">
+<span class="material-symbols-outlined !text-[28px]">more_horiz</span>
+</div>
+</button>
+</div>
+</div>
+<!-- iOS Home Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-white/30 rounded-full z-30"></div>
+</div>
+<!-- Background Elements for Dark/Light Mode Support Outside Video (Optional) -->
+<div class="hidden bg-background-light dark:bg-background-dark"></div>
+</body></html>

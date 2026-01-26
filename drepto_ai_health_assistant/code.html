@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Drepto AI Health Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11cbd4",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .message-shadow {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex justify-center">
+<!-- Mobile Container (iPhone Factor) -->
+<div class="relative flex h-screen w-full max-w-[430px] flex-col bg-white dark:bg-background-dark overflow-hidden border-x border-gray-100 dark:border-gray-800">
+<!-- TopAppBar -->
+<div class="sticky top-0 z-10 flex items-center bg-white dark:bg-background-dark p-4 pb-3 justify-between border-b border-gray-100 dark:border-gray-800">
+<div class="text-[#111818] dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<h2 class="text-[#111818] dark:text-white text-base font-bold leading-tight tracking-tight">Drepto Assistant</h2>
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<p class="text-[#618789] dark:text-primary/70 text-xs font-medium uppercase tracking-wider">Online</p>
+</div>
+</div>
+<div class="flex w-10 items-center justify-end">
+<span class="material-symbols-outlined text-[#111818] dark:text-white">info</span>
+</div>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto p-4 space-y-2 pb-32">
+<div class="text-center my-4">
+<span class="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Today</span>
+</div>
+<!-- AI Message -->
+<div class="flex items-end gap-3 p-1">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-9 shrink-0 border border-primary/20" data-alt="Avatar of a friendly medical AI assistant" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6CVwsd3ITXACP97KfGQxMTgony7vI_EqtqBI_9EMMl4CxBJPItepYlabBHML6eqDYS2K7Xey6TB4YOiE-TKJ-lKiJ11M7ALvlL_IGPNdmOjb8LtKSMWNtmvHeicJVNnW4V96mVbzA6GzYtD3HnJ4Me4uWu1Ye-wfzhWm4-v_KKLFXpRtH87Z5ojPEMrlTAWiOf7cMH-cqqeFT-LEodlFYSIJ4DFnQKTbtl4DaCeJWGXRCenKpY7xP9SxpYeOZdAmROZoOmi8weQ");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<p class="text-[#618789] dark:text-gray-400 text-[11px] font-medium ml-1">Drepto Assistant</p>
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-2xl rounded-bl-none px-4 py-3 bg-[#f0f4f4] dark:bg-gray-800 text-[#111818] dark:text-gray-200 message-shadow">
+                        Hello! I'm Drepto, your health assistant. How can I help you today?
+                    </div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-end gap-3 p-1 justify-end">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<p class="text-[#618789] dark:text-gray-400 text-[11px] font-medium mr-1 text-right">You</p>
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-2xl rounded-br-none px-4 py-3 bg-primary text-white message-shadow">
+                        I need help with my prescription delivery.
+                    </div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-9 shrink-0 border border-gray-200" data-alt="User profile picture placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjah-SnpRmoCHd4xOvIQuYoMBPmvBRF9crQBEoG9a--KqpxKTH901YyrfbA5_MVA9YPj1aDW5D_IezR3i8cLmVfgrNhh0MPW3nXJMvNFIki16KY9DwiWT_-KnrheR8NrgSemA5AkuKzU2dxoY7LRusqsKOloBIWZsOb2I9TIc4u50Yl_aX4p-RELjqFiJtujVUCeNJ5SwSEtuadESdvHmVyZdmXeyo64KTEZnM5ylLjjFgQXrgw5SoS1L64mmX_NC0izBcQJmEkg");'></div>
+</div>
+<!-- AI Message -->
+<div class="flex items-end gap-3 p-1">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-9 shrink-0 border border-primary/20" data-alt="Avatar of a friendly medical AI assistant" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChgyHxJskBietWUx0IFeciHU0tBgDsh_2cMIXltc4MKUR2k3BE04ffB2sRSgim5qrQn9iLP0uF6qVj45QZEWIf4bEs2rpFb3bmH92-YprU1Lcz0JOeb1qPsi6XzOCZpo5vkQQugKc6rW3EB3S6n4RM-eGl8fq7yd6iUzn5YwlEwZd6aqtQWcOShAIwzDmsK_JSVcZTPkUIyxqzSdVZxNJhMYx_ZXNKz81EQ5WxY-He0besJKIK83CjFOOwwsaMo2ENqS8cR78kvA");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<p class="text-[#618789] dark:text-gray-400 text-[11px] font-medium ml-1">Drepto Assistant</p>
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-2xl rounded-bl-none px-4 py-3 bg-[#f0f4f4] dark:bg-gray-800 text-[#111818] dark:text-gray-200 message-shadow">
+                        I can help with that. Would you like to track your order, check a refund, or speak with a live representative?
+                    </div>
+</div>
+</div>
+<!-- Typing Indicator (Subtle) -->
+<div class="flex items-center gap-2 p-4 pt-0">
+<div class="flex gap-1">
+<span class="size-1.5 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+<span class="size-1.5 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+<span class="size-1.5 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+</div>
+</div>
+</div>
+<!-- Footer Area -->
+<div class="absolute bottom-0 left-0 w-full bg-white dark:bg-background-dark border-t border-gray-100 dark:border-gray-800 pb-8 px-4 pt-4">
+<!-- Chips (Quick Replies) -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-4 -mx-1 px-1">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f4f4] dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-4 cursor-pointer hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-sm text-primary">local_shipping</span>
+<p class="text-[#111818] dark:text-gray-200 text-xs font-semibold">Track my order</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f4f4] dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-4 cursor-pointer hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-sm text-primary">support_agent</span>
+<p class="text-[#111818] dark:text-gray-200 text-xs font-semibold">Talk to an agent</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f4f4] dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-4 cursor-pointer hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-sm text-primary">payments</span>
+<p class="text-[#111818] dark:text-gray-200 text-xs font-semibold">Refund status</p>
+</div>
+</div>
+<!-- Input Bar -->
+<div class="flex items-center gap-3 bg-[#f0f4f4] dark:bg-gray-800 rounded-full px-4 py-2">
+<button class="text-[#618789] dark:text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-2 text-[#111818] dark:text-gray-200 placeholder-gray-500" placeholder="Message Drepto Assistant..." type="text"/>
+<div class="flex items-center gap-2">
+<button class="text-[#618789] dark:text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="size-8 rounded-full bg-primary flex items-center justify-center text-white shadow-sm">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

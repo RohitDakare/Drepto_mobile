@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Drepto Biodevices - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007e85",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2223",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex justify-center items-center">
+<!-- Phone Container Simulator -->
+<div class="relative w-full max-w-[430px] h-full min-h-screen md:min-h-[844px] bg-white dark:bg-[#121212] overflow-hidden flex flex-col shadow-2xl md:rounded-[3rem] md:border-[8px] md:border-gray-800">
+<!-- TopAppBar Component -->
+<div class="flex items-center bg-transparent p-6 pb-2 justify-end">
+<button class="flex items-center justify-end">
+<p class="text-primary text-base font-bold leading-normal tracking-[0.015em] shrink-0">Skip</p>
+</button>
+</div>
+<!-- Illustration Area (HeaderImage Component) -->
+<div class="flex-grow flex flex-col justify-center">
+<div class="@container">
+<div class="px-6 py-4">
+<div class="w-full bg-center bg-no-repeat bg-contain flex flex-col justify-end overflow-hidden min-h-[320px]" data-alt="Modern 3D medical illustration of a digital heart and health sensors" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUNfFl7qiRF3w9Im4aC9XI-gP45577GisiwjfMEMOdUttEsi73xCw2hnGb-o5Z0IAkN7yt-SG-On46yXh4TzSIa67b9QxwqQJaeaMVeONVGwawfDuAaK6ZeVt2Zx3WSbOLFHQpd6FDVt8oLwWnc3WwcmvyL_RAHcrssFxoZKr3_oYkYLyX17C4jinGCpQx1k5_qkITf6r3OQjvMuT4iLjFKrbr3K9tBtQPg8PAt88JHo6JCNpL4IYxGC6B1GLePFdqT_Z1j9DkBA");'>
+</div>
+</div>
+</div>
+<!-- Content Section -->
+<div class="px-8 flex flex-col items-center">
+<!-- HeadlineText Component -->
+<h1 class="text-[#101818] dark:text-white tracking-tight text-[32px] font-bold leading-tight text-center pb-3 pt-6 font-display">
+                    Your Health, Our Priority
+                </h1>
+<!-- BodyText Component -->
+<p class="text-[#4a5568] dark:text-gray-400 text-lg font-normal leading-relaxed pb-6 pt-1 text-center font-display">
+                    Experience 24/7 expert care and advanced biodevice monitoring at your fingertips.
+                </p>
+<!-- PageIndicators Component -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-6">
+<div class="h-2.5 w-6 rounded-full bg-primary"></div>
+<div class="h-2.5 w-2.5 rounded-full bg-[#dae6e7] dark:bg-gray-700"></div>
+<div class="h-2.5 w-2.5 rounded-full bg-[#dae6e7] dark:bg-gray-700"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Action Area -->
+<div class="p-8 pb-12">
+<button class="w-full bg-primary hover:bg-opacity-90 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all">
+<span class="text-lg">Next</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Safe area indicator for iOS simulator look -->
+<div class="hidden md:block w-32 h-1.5 bg-gray-300 dark:bg-gray-700 mx-auto mt-8 rounded-full"></div>
+</div>
+</div>
+</body></html>

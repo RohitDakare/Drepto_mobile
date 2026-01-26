@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Report Viewer &amp; Actions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111818] dark:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-20 flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between border-b border-[#f0f4f4] dark:border-white/10">
+<div class="flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined text-[#111818] dark:text-white">arrow_back_ios</span>
+</div>
+<div class="flex-1 text-center">
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Full Body Checkup</h2>
+<p class="text-xs text-[#60777a] dark:text-gray-400">Oct 24, 2023 • LabCorp</p>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full bg-transparent text-[#111818] dark:text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area (PDF Preview) -->
+<main class="flex-1 p-4 pb-48">
+<div class="bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-[#dbe5e6] dark:border-white/5 min-h-[600px] p-6 max-w-2xl mx-auto">
+<!-- Report Header -->
+<div class="flex justify-between items-start mb-8 border-b border-gray-100 dark:border-white/5 pb-6">
+<div>
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+</div>
+<h1 class="text-xl font-bold uppercase tracking-wider">Diagnostic Report</h1>
+<p class="text-sm text-gray-500">Patient: John Doe (32Y/M)</p>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">Finalized</span>
+<p class="mt-2 text-xs text-gray-400">Ref: #H-29401</p>
+</div>
+</div>
+<!-- Test Results Mockup -->
+<div class="space-y-6">
+<div class="space-y-3">
+<h4 class="text-sm font-bold text-gray-400 uppercase tracking-widest">Hematology</h4>
+<div class="flex justify-between items-center py-2 border-b border-gray-50 dark:border-white/5">
+<div>
+<p class="font-semibold">Hemoglobin</p>
+<p class="text-xs text-gray-500">Range: 13.5 - 17.5 g/dL</p>
+</div>
+<div class="text-right">
+<p class="font-bold">14.2</p>
+<p class="text-[10px] text-green-500 font-bold">NORMAL</p>
+</div>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-gray-50 dark:border-white/5">
+<div>
+<p class="font-semibold">WBC Count</p>
+<p class="text-xs text-gray-500">Range: 4.5 - 11.0 10^3/uL</p>
+</div>
+<div class="text-right">
+<p class="font-bold">7.8</p>
+<p class="text-[10px] text-green-500 font-bold">NORMAL</p>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<h4 class="text-sm font-bold text-gray-400 uppercase tracking-widest">Metabolic Panel</h4>
+<div class="flex justify-between items-center py-2 border-b border-gray-50 dark:border-white/5">
+<div>
+<p class="font-semibold">Glucose (Fasting)</p>
+<p class="text-xs text-gray-500">Range: 70 - 99 mg/dL</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-red-500">104</p>
+<p class="text-[10px] text-red-500 font-bold">HIGH</p>
+</div>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-gray-50 dark:border-white/5">
+<div>
+<p class="font-semibold">Cholesterol, Total</p>
+<p class="text-xs text-gray-500">Range: &lt; 200 mg/dL</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-orange-500">215</p>
+<p class="text-[10px] text-orange-500 font-bold">BORDERLINE</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer of report -->
+<div class="mt-12 pt-6 border-t border-gray-100 dark:border-white/5">
+<p class="text-[10px] text-gray-400 leading-relaxed italic">
+                        Interpretation: These results are for informational purposes only. Please consult with your physician to discuss these results in the context of your medical history.
+                    </p>
+<div class="mt-4 flex items-center gap-2">
+<div class="size-8 rounded bg-gray-100 dark:bg-white/10"></div>
+<p class="text-[10px] font-bold">Electronically Signed by Dr. Sarah Miller</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Action Bar (BottomSheet Style) -->
+<div class="fixed bottom-0 left-0 right-0 z-30 flex flex-col items-stretch bg-white dark:bg-background-dark border-t border-gray-200 dark:border-white/10 rounded-t-xl shadow-[0_-8px_30px_rgb(0,0,0,0.05)]">
+<!-- BottomSheetHandle -->
+<button class="flex h-6 w-full items-center justify-center">
+<div class="h-1 w-9 rounded-full bg-[#dbe5e6] dark:bg-white/20"></div>
+</button>
+<div class="px-4 pb-8">
+<!-- SectionHeader -->
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-3 pt-1">Report Actions</h3>
+<!-- ButtonGroup -->
+<div class="flex flex-col gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-14 px-5 bg-primary text-[#111818] text-base font-bold leading-normal tracking-[0.015em] w-full shadow-lg active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">video_call</span>
+<span class="truncate">Order Follow-up</span>
+</button>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-12 px-5 bg-[#f0f4f4] dark:bg-white/10 text-[#111818] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] w-full active:bg-[#e2eaea]">
+<span class="material-symbols-outlined text-xl">download</span>
+<span class="truncate">Download PDF</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-12 px-5 bg-[#f0f4f4] dark:bg-white/10 text-[#111818] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] w-full active:bg-[#e2eaea]">
+<span class="material-symbols-outlined text-xl">send_to_mobile</span>
+<span class="truncate">Share Doctor</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

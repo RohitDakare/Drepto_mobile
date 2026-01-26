@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registration - Personal Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex justify-center">
+<div class="relative flex h-full min-h-screen w-full max-w-[430px] flex-col bg-white dark:bg-background-dark shadow-2xl overflow-x-hidden">
+<!-- TopAppBar Component -->
+<div class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between">
+<div class="text-[#111818] dark:text-white flex size-12 shrink-0 items-center cursor-pointer" data-icon="ArrowLeft" data-size="24px" data-weight="regular">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Registration</h2>
+</div>
+<!-- PageIndicators Component -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-4">
+<div class="h-2 w-2 rounded-full bg-primary/20"></div>
+<div class="h-2 w-8 rounded-full bg-primary"></div>
+<div class="h-2 w-2 rounded-full bg-[#dbe5e6] dark:bg-gray-700"></div>
+</div>
+<!-- HeadlineText Component -->
+<h3 class="text-[#111818] dark:text-white tracking-light text-2xl font-bold leading-tight px-4 text-left pb-2 pt-4">Personal Details</h3>
+<!-- BodyText Component -->
+<p class="text-[#111818] dark:text-gray-300 text-base font-normal leading-normal pb-6 pt-1 px-4">Please provide your basic health information to help us personalize your experience.</p>
+<!-- Form Section -->
+<div class="flex flex-col gap-6 px-4 pb-10">
+<!-- Gender Section (Customized SectionHeader + Segmented Control) -->
+<div>
+<h3 class="text-[#111818] dark:text-white text-base font-bold leading-tight tracking-[-0.015em] pb-3">Gender</h3>
+<div class="flex p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
+<button class="flex-1 py-2 text-sm font-semibold rounded-md bg-white dark:bg-gray-700 shadow-sm text-[#111818] dark:text-white">Male</button>
+<button class="flex-1 py-2 text-sm font-medium text-gray-500 dark:text-gray-400">Female</button>
+<button class="flex-1 py-2 text-sm font-medium text-gray-500 dark:text-gray-400">Other</button>
+</div>
+</div>
+<!-- Age Input -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111818] dark:text-white text-base font-bold">How old are you?</label>
+<div class="relative">
+<input class="w-full h-14 px-4 bg-gray-50 dark:bg-gray-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-[#111818] dark:text-white placeholder-gray-400" placeholder="Enter your age" type="number"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 material-symbols-outlined">calendar_today</span>
+</div>
+</div>
+<!-- Blood Group Selection -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111818] dark:text-white text-base font-bold">Blood Group</label>
+<div class="relative">
+<select class="w-full h-14 px-4 bg-gray-50 dark:bg-gray-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-[#111818] dark:text-white appearance-none">
+<option disabled="" selected="" value="">Select blood type</option>
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="O+">O+</option>
+<option value="O-">O-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+</select>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 material-symbols-outlined pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Terms and Conditions -->
+<div class="flex items-start gap-3 pt-4">
+<div class="flex items-center h-6">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary" id="terms" type="checkbox"/>
+</div>
+<div class="text-sm leading-6">
+<label class="text-gray-600 dark:text-gray-400" for="terms">
+                        I agree to the <a class="text-primary font-semibold underline underline-offset-4" href="#">Terms &amp; Conditions</a> and <a class="text-primary font-semibold underline underline-offset-4" href="#">Privacy Policy</a>
+</label>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-6">
+<button class="w-full bg-primary hover:bg-primary/90 text-[#102122] font-bold py-4 rounded-xl transition-colors text-lg shadow-lg shadow-primary/20">
+                    Sign Up
+                </button>
+</div>
+</div>
+<!-- Visual Decorative Element (Clinical Minimalist) -->
+<div class="mt-auto px-4 pb-8 flex justify-center">
+<div class="flex items-center gap-2 text-gray-400 text-xs uppercase tracking-widest font-medium">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                Secure Medical Encryption
+            </div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Shopping Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111818] dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark overflow-x-hidden pb-32">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex items-center bg-white dark:bg-background-dark/90 backdrop-blur-md px-4 py-4 border-b border-gray-100 dark:border-gray-800">
+<div class="flex size-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors" data-icon="arrow_back_ios">
+<span class="material-symbols-outlined text-[#111818] dark:text-white">arrow_back_ios</span>
+</div>
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">My Shopping Cart</h2>
+</header>
+<!-- Cart Items List -->
+<main class="flex flex-col gap-3 p-4">
+<!-- Item 1 -->
+<div class="flex gap-4 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 transition-colors">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-20 shrink-0 border border-gray-50 dark:border-gray-800" data-alt="Pack of Paracetamol 500mg tablets" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAO3eT-1MTW67zHQ9GjhHMuGbBFA5EKna7NJ4ccPO-w9-CcBABgrmOygSLISiMgukC2aqdiVpHjWDcr73FKqtXvHqWYpoYINaQgr9rp0cdga_tHwCEJuZ6OXKteRVjRA5n18MWrghBloqwSbjmVs_KmrKkpqGOverSCCq2sG3QQP9wyiSQmD2VujGrYn6sf-XC4KlL5rWFJP5mo5GzWx2CWYM1T4mGNbMZkOCL3KihGzwiDeK7cUdI-iDi74wqhdi6Gowe6eDs7wA");'>
+</div>
+<div class="flex flex-1 flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight">Paracetamol 500mg</p>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1">10 Capsules • Pain Relief</p>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-lg cursor-pointer hover:text-red-500 transition-colors">delete</span>
+</div>
+<div class="flex items-center justify-between mt-2">
+<p class="text-[#111818] dark:text-white text-base font-bold">$5.99</p>
+<div class="flex items-center gap-3 bg-background-light dark:bg-gray-800 px-2 py-1 rounded-lg">
+<button class="flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-700 text-[#111818] dark:text-white hover:bg-primary/20 transition-colors">-</button>
+<span class="text-sm font-bold w-4 text-center">1</span>
+<button class="flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-700 text-[#111818] dark:text-white hover:bg-primary/20 transition-colors">+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 transition-colors">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-20 shrink-0 border border-gray-50 dark:border-gray-800" data-alt="Modern digital thermometer device" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeMEYi0cpsjH0PFmjTwMMQGD-_4JL82nDmJwAmFDTgz0qQh7UCTKV9H1ZYStEtrCWqYqTu5LFmGXDuXVF80LHa_pf6vlPCxytSawCkCbfbXZRtxbgMTk50NIk7nL_WkeI4FjsUBrZ-nwm6Ko4dbYRU_a2CGWF-LL8s4B_AclxtE_YPwT5lcGaSC2KwGR6F4kDsVWxffsp6Ili8hPWwAOpn1uyUoPc5XgKX1OmfNS8mGDlv9OKbB5c_yO04A3uILUh_pp5cFTVH1w");'>
+</div>
+<div class="flex flex-1 flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight">Digital Thermometer</p>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1">High precision • Infrared</p>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-lg cursor-pointer hover:text-red-500 transition-colors">delete</span>
+</div>
+<div class="flex items-center justify-between mt-2">
+<p class="text-[#111818] dark:text-white text-base font-bold">$12.50</p>
+<div class="flex items-center gap-3 bg-background-light dark:bg-gray-800 px-2 py-1 rounded-lg">
+<button class="flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-700 text-[#111818] dark:text-white hover:bg-primary/20 transition-colors">-</button>
+<span class="text-sm font-bold w-4 text-center">1</span>
+<button class="flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-700 text-[#111818] dark:text-white hover:bg-primary/20 transition-colors">+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Coupon Code Section -->
+<div class="mt-4 px-1">
+<p class="text-[#111818] dark:text-white text-sm font-semibold mb-2">Have a coupon?</p>
+<div class="flex gap-2">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">confirmation_number</span>
+<input class="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl h-12 pl-10 pr-4 text-sm focus:ring-primary focus:border-primary dark:text-white" placeholder="Enter promo code" value=""/>
+</div>
+<button class="bg-primary/20 hover:bg-primary/30 text-primary dark:text-primary font-bold px-6 rounded-xl text-sm transition-colors">
+                        Apply
+                    </button>
+</div>
+</div>
+<!-- Price Breakdown -->
+<div class="mt-6 bg-white dark:bg-gray-900 p-5 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm space-y-3">
+<h3 class="text-[#111818] dark:text-white text-base font-bold mb-4">Price Details</h3>
+<div class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
+<span>Subtotal</span>
+<span class="font-medium text-[#111818] dark:text-white">$18.49</span>
+</div>
+<div class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
+<span>Delivery Fee</span>
+<span class="font-medium text-green-500">Free</span>
+</div>
+<div class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
+<span>Taxes &amp; Charges</span>
+<span class="font-medium text-[#111818] dark:text-white">$1.20</span>
+</div>
+<div class="pt-3 mt-3 border-t border-dashed border-gray-200 dark:border-gray-700 flex justify-between items-center">
+<span class="text-base font-bold text-[#111818] dark:text-white">Total Amount</span>
+<span class="text-xl font-bold text-primary">$19.69</span>
+</div>
+</div>
+<!-- Trust Badge -->
+<div class="flex items-center justify-center gap-2 mt-4 text-gray-400 py-4">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Secure checkout guaranteed</span>
+</div>
+</main>
+<!-- Fixed Bottom CTA -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white dark:bg-background-dark/95 backdrop-blur-md p-4 border-t border-gray-100 dark:border-gray-800 pb-8">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold h-14 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
+<span>Proceed to Checkout</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</footer>
+</div>
+</body></html>

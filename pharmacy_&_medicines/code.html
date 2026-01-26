@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Drepto Biodevices Medicine Pharmacy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007e85",
+                        "accent-pink": "#FF4D8D",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2223",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#101818] dark:text-white">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center p-4 justify-between max-w-md mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#101818] dark:text-white cursor-pointer">arrow_back_ios</span>
+<h1 class="text-lg font-bold leading-tight tracking-tight">Drepto Pharmacy</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-[#101818] dark:text-white">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent-pink text-[10px] font-bold text-white">3</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto pb-24">
+<!-- Search Section -->
+<div class="px-4 py-4 sticky top-[60px] z-40 bg-background-light dark:bg-background-dark">
+<label class="flex flex-col w-full">
+<div class="flex w-full items-stretch rounded-xl h-12 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="text-primary flex bg-white dark:bg-gray-900 items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-white dark:bg-gray-900 text-[#101818] dark:text-white focus:ring-0 h-full placeholder:text-gray-400 px-4 rounded-r-xl pl-2 text-base font-normal" placeholder="Search for medicines..." value=""/>
+</div>
+</label>
+</div>
+<!-- Quick Action Cards -->
+<div class="grid grid-cols-3 gap-3 px-4 py-2">
+<div class="flex flex-col items-center gap-2 p-3 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-50 dark:border-gray-800">
+<div class="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366]">
+<span class="material-symbols-outlined" style="font-size: 28px;">chat</span>
+</div>
+<p class="text-[11px] font-bold text-center leading-tight">Order via WhatsApp</p>
+</div>
+<div class="flex flex-col items-center gap-2 p-3 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-50 dark:border-gray-800">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 28px;">upload_file</span>
+</div>
+<p class="text-[11px] font-bold text-center leading-tight">Upload Prescription</p>
+</div>
+<div class="flex flex-col items-center gap-2 p-3 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-50 dark:border-gray-800">
+<div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined" style="font-size: 28px;">call</span>
+</div>
+<p class="text-[11px] font-bold text-center leading-tight">Call to Order</p>
+</div>
+</div>
+<!-- Offers Banner -->
+<div class="mt-6">
+<div class="flex items-center justify-between px-4 mb-3">
+<h3 class="text-lg font-bold tracking-tight">Special Offers</h3>
+<span class="text-primary text-sm font-semibold">View All</span>
+</div>
+<div class="flex overflow-x-auto gap-4 px-4 no-scrollbar pb-2">
+<div class="min-w-[280px] h-36 rounded-xl bg-gradient-to-r from-primary to-[#00a8b0] p-5 flex flex-col justify-between relative overflow-hidden shrink-0 shadow-lg">
+<div class="relative z-10">
+<p class="text-white/80 text-xs font-medium uppercase tracking-wider">Health Essentials</p>
+<h4 class="text-white text-xl font-bold mt-1">Flat 25% OFF</h4>
+<p class="text-white/90 text-sm mt-1">On first medicine order</p>
+</div>
+<button class="relative z-10 bg-white text-primary px-4 py-1.5 rounded-full text-xs font-bold w-fit">USE: FIRST25</button>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+</div>
+<div class="min-w-[280px] h-36 rounded-xl bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] p-5 flex flex-col justify-between relative overflow-hidden shrink-0 shadow-lg">
+<div class="relative z-10">
+<p class="text-white/80 text-xs font-medium uppercase tracking-wider">Lab Tests</p>
+<h4 class="text-white text-xl font-bold mt-1">Health Checkup</h4>
+<p class="text-white/90 text-sm mt-1">Starting at just $29</p>
+</div>
+<button class="relative z-10 bg-white text-[#6366f1] px-4 py-1.5 rounded-full text-xs font-bold w-fit">BOOK NOW</button>
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+<!-- Medicine Grid Section -->
+<div class="mt-8">
+<div class="flex items-center justify-between px-4 mb-4">
+<h3 class="text-lg font-bold tracking-tight">Best Sellers</h3>
+<div class="flex gap-2">
+<button class="p-1.5 bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
+<span class="material-symbols-outlined text-sm">tune</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 px-4">
+<!-- Product Card 1 -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-3 border border-gray-50 dark:border-gray-800 shadow-sm flex flex-col relative">
+<span class="absolute top-2 left-2 bg-accent-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">15% OFF</span>
+<div class="aspect-square w-full rounded-lg bg-gray-50 dark:bg-gray-800 mb-3 flex items-center justify-center overflow-hidden">
+<img class="w-2/3 h-2/3 object-contain" data-alt="Clear medicine bottle on clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcVqG84_akJyMazYFitTniXwWZpDczpu_KQbyXsDrUMcNg_NxIcybCvMDRBUOOy4jGwyD0CfRu5k1AW2gNf8sGI1yxYErlHZkj5kGZQL6heApjl7x_QZ7udW9Q7-9Brq4kFcYz8iufthaZemQVEB4X2KxIStvnUzURO91i3uZvJdC7x-komLLVFYlcaP_Kg30GYkTzW1QkLIuEgNofbbzJfApIfYF9OkR5jmiXxTdrL1_cAL1uoC9ITXqf986kBqBz6TUcwgBQKw"/>
+</div>
+<h4 class="text-sm font-semibold line-clamp-2 min-h-[40px]">Amoxicillin 500mg (10 Caps)</h4>
+<p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Generic Healthcare</p>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="text-lg font-bold text-primary">$12.50</span>
+<span class="text-[11px] text-gray-400 line-through">$14.99</span>
+</div>
+<button class="mt-3 w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span> Add
+                    </button>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-3 border border-gray-50 dark:border-gray-800 shadow-sm flex flex-col relative">
+<span class="absolute top-2 left-2 bg-accent-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">20% OFF</span>
+<div class="aspect-square w-full rounded-lg bg-gray-50 dark:bg-gray-800 mb-3 flex items-center justify-center overflow-hidden">
+<img class="w-2/3 h-2/3 object-contain" data-alt="Vitamin C chewable tablets pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1bsUliDQoTHSBbVWP7Q_3JXH6l5arAcEHAjAMs3f9E7mcQnn2V7YKEaHaEWgU3Etsdlq8otWW_07DuiDV8KIauni8DemS6zUbcR_fV81UUP2RNDrzWJye8RkXs0UMIPD0a-yi5O0niIN4AT0hzC_B7zfwMsMccCO_qjTEGPlOyHIz3Qzqn6KCDxMjQbjX4jFlOszEk9YuBrM70CBw2PamFLXbIaKMmhJwMeld4X5Ul5f0WtjwB0rY21yVDcdfLmB0oedbWCCqsQ"/>
+</div>
+<h4 class="text-sm font-semibold line-clamp-2 min-h-[40px]">Vitamin C 500mg Chewable</h4>
+<p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Nature's Best</p>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="text-lg font-bold text-primary">$8.20</span>
+<span class="text-[11px] text-gray-400 line-through">$10.25</span>
+</div>
+<button class="mt-3 w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span> Add
+                    </button>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-3 border border-gray-50 dark:border-gray-800 shadow-sm flex flex-col relative">
+<span class="absolute top-2 left-2 bg-accent-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">10% OFF</span>
+<div class="aspect-square w-full rounded-lg bg-gray-50 dark:bg-gray-800 mb-3 flex items-center justify-center overflow-hidden">
+<img class="w-2/3 h-2/3 object-contain" data-alt="Paracetamol tablet strip" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjVTqiKRckGGxX8l3mpx_wdKz0Zeja7uhUKOkb25K050QA1zjpGdo_wuNaKfD9LTNE57v9lOPuBawYziHgyAJazZCHPas10hi1XvShjoEkoyk-sm70WGAEX0oW2rAAvxWRPAcWtGwFrZ6tUWL2NE3Z4N837zBTOMakR5LTTEP7sJ-BG5w_j-q65OmH8dm0alMAOUR8Fhrl7RYf8rgFtxohHCSikamm-gLlPESu-24BoKd7r7DMabrgT3R7GHTsiOcMWbggs6VvIg"/>
+</div>
+<h4 class="text-sm font-semibold line-clamp-2 min-h-[40px]">Paracetamol 650mg (15 Tablets)</h4>
+<p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Dolo Plus</p>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="text-lg font-bold text-primary">$4.50</span>
+<span class="text-[11px] text-gray-400 line-through">$5.00</span>
+</div>
+<button class="mt-3 w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span> Add
+                    </button>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-3 border border-gray-50 dark:border-gray-800 shadow-sm flex flex-col relative">
+<div class="aspect-square w-full rounded-lg bg-gray-50 dark:bg-gray-800 mb-3 flex items-center justify-center overflow-hidden">
+<img class="w-2/3 h-2/3 object-contain" data-alt="Asthma inhaler pump" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2aITo7kX7owXuGSY_JnTlgL23U_QAvWaIwp86zzmSB_sVM4WwHL1eq3ehEKZmQjATDqh6PQnjGu0gKC3e3XO1Cs4Q70UprRGz08X0NNIMRNVh67qfpgV1BinWJOuVw1oZAEhZq-T2DXooDeWqesOhm4TPkWvxi5U51vpk0vNah5mCzRk_0gIIFG59meFimhcjKSbRFbIDZE4xEV13DIBxjLtnJlR0ql1zggw0YBJ6djd9dLLTA-Gbo48fBOaN_ZtVIcDt0qqq3w"/>
+</div>
+<h4 class="text-sm font-semibold line-clamp-2 min-h-[40px]">Beclomethasone Inhaler 100mcg</h4>
+<p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">RespiCare</p>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="text-lg font-bold text-primary">$18.75</span>
+</div>
+<button class="mt-3 w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span> Add
+                    </button>
+</div>
+</div>
+</div>
+<div class="h-10"></div>
+</main>
+<!-- Bottom Tab Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 pb-safe shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<div class="max-w-md mx-auto flex justify-around p-3">
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] mt-1 font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="text-[10px] mt-1 font-bold">Pharmacy</span>
+</div>
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-[10px] mt-1 font-medium">Orders</span>
+</div>
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] mt-1 font-medium">Profile</span>
+</div>
+</div>
+</nav>
+</body></html>

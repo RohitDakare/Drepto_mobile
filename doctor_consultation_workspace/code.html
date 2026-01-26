@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Consultation Workspace</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111818] dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-white dark:bg-background-dark/80 backdrop-blur-md p-4 pb-2 border-b border-[#dbe5e6] dark:border-white/10 justify-between">
+<div class="flex items-center gap-3">
+<div class="text-[#111818] dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full bg-background-light dark:bg-white/10">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<div>
+<h2 class="text-[#111818] dark:text-white text-base font-bold leading-tight tracking-[-0.015em]">Jane Doe (28F)</h2>
+<p class="text-[#618789] dark:text-white/60 text-xs">Primary Complaint: Persistent Cough</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<p class="text-[#111818] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] shrink-0">12:45</p>
+</div>
+</div>
+<!-- Main Content Area (Split Screen) -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Video Feed Section -->
+<div class="p-4">
+<div class="relative w-full aspect-[4/3] bg-black rounded-xl overflow-hidden shadow-lg" data-alt="Patient video feed showing a young woman in a brightly lit room">
+<!-- Background Gradient Placeholder for Video -->
+<div class="absolute inset-0 bg-gradient-to-br from-[#2a2a2a] to-[#111111]"></div>
+<img alt="Patient Jane Doe" class="w-full h-full object-cover" data-alt="Video feed of female patient sitting in front of a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzQ5BRlG14dEJYjL9aOGYBFohVbQMok3j-jVJgYTilKPTs23jEOPVAOgSO5xt7iTcvDq8tUkIYADdrjzVqd9CY-uKuLWOnTDeZbIBhbM4z4y19qDdwAAiYWT1nI8x-vJYVoXJIFM1BzbYyu260wEhERFbdTDck13YDBWZKMIkLsE8fyJCigMsBIRlYb87PCPyZsooJAapJ3NmglcztGGylpNDNFbZNERd1b8krRLwcyYJZaqFv0UyLG9F7KEg4Uh7a13nZeUlBpw"/>
+<!-- Doctor PIP (Picture in Picture) -->
+<div class="absolute top-4 right-4 w-24 h-32 bg-[#333] border-2 border-white/20 rounded-lg overflow-hidden shadow-2xl" data-alt="Small video feed of the doctor">
+<img alt="Doctor feed" class="w-full h-full object-cover" data-alt="The doctor's self-view camera feed" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKf71Y51xioHMm73xhosiJx1RRqY4bSvP6EZi8nnwaTLtonchThA-Rfb75Ctf1ivfvkjgHXanWAiDeJb1kE1aiqVTD5GgTf3Jg9ItQOknrO-7B6In8xf2AXyx2EY94Jq2YKS9sDK7I1elbmxT8bQdc8-RRcCQFr1R1b2gKD66iDAHygT1uexcPJjLEUaPd3Ya-uq_Wmt0vWwsEa78dt9b4BnLXg4QjgHyX8b_7UBd8nXsOCvTCDfd_p8yE-t6LlF9OBTSK51xxJw"/>
+</div>
+<!-- Signal Indicator -->
+<div class="absolute bottom-4 left-4 flex gap-1 items-end h-4">
+<div class="w-1 h-2 bg-primary rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-4 bg-primary/30 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Sidebar / Tabs Section -->
+<div class="flex-1 bg-white dark:bg-background-dark rounded-t-3xl shadow-inner-lg mt-2">
+<!-- Tabs -->
+<div class="pb-3 sticky top-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md rounded-t-3xl">
+<div class="flex border-b border-[#dbe5e6] dark:border-white/10 px-4 justify-between">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-[#111818] dark:text-primary pb-[13px] pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Notes</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#618789] dark:text-white/40 pb-[13px] pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">History</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#618789] dark:text-white/40 pb-[13px] pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Prescriptions</p>
+</a>
+</div>
+</div>
+<!-- Notes Editor Section -->
+<div class="px-4 py-3">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight">Live Consultation Notes</h3>
+<div class="flex gap-2">
+<button class="p-2 bg-background-light dark:bg-white/5 rounded-lg text-[#618789] dark:text-white/60">
+<span class="material-symbols-outlined text-sm">format_list_bulleted</span>
+</button>
+<button class="p-2 bg-background-light dark:bg-white/5 rounded-lg text-[#618789] dark:text-white/60">
+<span class="material-symbols-outlined text-sm">save</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-[#111818] dark:text-white/80 text-sm font-medium leading-normal pb-2">Observation &amp; Symptoms</p>
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111818] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-background-light dark:bg-white/5 min-h-48 placeholder:text-[#618789]/50 p-4 text-base font-normal leading-normal" placeholder="Type clinical findings here..."></textarea>
+</label>
+</div>
+</div>
+<!-- Quick Access Vitals (Optional Medical Dashboard Style) -->
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-6">Patient Vitals (Last Recorded)</h3>
+<div class="grid grid-cols-2 gap-4 px-4 pb-32">
+<div class="p-4 bg-background-light dark:bg-white/5 rounded-xl border border-[#dbe5e6] dark:border-white/10">
+<p class="text-xs text-[#618789] dark:text-white/40 uppercase font-bold tracking-wider">Blood Pressure</p>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-lg font-bold dark:text-white">118/75</span>
+<span class="text-xs text-[#618789] dark:text-white/40">mmHg</span>
+</div>
+</div>
+<div class="p-4 bg-background-light dark:bg-white/5 rounded-xl border border-[#dbe5e6] dark:border-white/10">
+<p class="text-xs text-[#618789] dark:text-white/40 uppercase font-bold tracking-wider">Heart Rate</p>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-lg font-bold dark:text-white">72</span>
+<span class="text-xs text-[#618789] dark:text-white/40">bpm</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Call Controls Bar -->
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white dark:from-background-dark via-white/90 dark:via-background-dark/90 to-transparent">
+<div class="max-w-md mx-auto flex items-center justify-between bg-[#111818] dark:bg-white/10 backdrop-blur-xl p-4 rounded-full shadow-2xl">
+<!-- Mute Toggle -->
+<button class="flex items-center justify-center size-12 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<!-- Video Toggle -->
+<button class="flex items-center justify-center size-12 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<!-- Screen Share (Secondary) -->
+<button class="flex items-center justify-center size-12 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+<span class="material-symbols-outlined">present_to_all</span>
+</button>
+<!-- End Call -->
+<button class="flex items-center justify-center size-12 rounded-full bg-red-500 hover:bg-red-600 text-white shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all">
+<span class="material-symbols-outlined filled-icon">call_end</span>
+</button>
+</div>
+</div>
+<!-- Padding for bottom bar -->
+<div class="h-20 bg-transparent"></div>
+</body></html>

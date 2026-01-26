@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detailed Patient Profile</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111818] dark:text-white">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-white dark:bg-background-dark border-b border-gray-100 dark:border-gray-800 p-4 justify-between">
+<div class="flex items-center gap-3">
+<div class="text-[#111818] dark:text-white cursor-pointer" data-icon="arrow_back">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Patient Profile</h2>
+</div>
+<div class="relative">
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-gray-50 dark:bg-gray-800 text-[#111818] dark:text-white">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<div class="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full border-2 border-white dark:border-background-dark"></div>
+</div>
+</div>
+<main class="pb-32">
+<!-- Patient Overview -->
+<div class="flex p-6 @container">
+<div class="flex w-full flex-col gap-4 items-center">
+<div class="flex gap-4 flex-col items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-white dark:border-gray-800 shadow-sm" data-alt="Patient profile photo of a young male" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjnSBXKgz_PihebprdaNCOsZFbhxvdQK-oFQX6el7mlLOy7O5MLMNMHpJrQsKxJuBJ3KvexMPDbV159ZWv2NR5AxfNZvWI1kg5trldI3a9CJKuq4QknZwcOl0Z5eOuw_GVVNsrBH9baIoHsRgH3xS8KCmsDiLqzjUFqhKIMAi_Hm4EO1PBAZTi69KygqsU37qLuzcdpJsdA9S9goQa6QACTXrUCvkHBDmRmd8-vxs01SLe1v-ahEiqcDon1ANNT7-6gKuWJB-kzw");'>
+</div>
+<div class="absolute bottom-1 right-1 bg-green-500 h-5 w-5 rounded-full border-2 border-white dark:border-background-dark"></div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-[24px] font-bold leading-tight tracking-[-0.015em] text-center">John Doe</p>
+<p class="text-[#618789] dark:text-gray-400 text-base font-normal leading-normal text-center">Male, 28 Years Old</p>
+<div class="mt-2 flex gap-2">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">Blood Group: O+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Vitals/Stats Cards -->
+<div class="flex flex-wrap gap-3 px-4 mb-4">
+<div class="flex min-w-[100px] flex-1 flex-col gap-1 rounded-xl p-4 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+<p class="text-[#618789] dark:text-gray-400 text-xs font-medium uppercase tracking-wider">Weight</p>
+<p class="tracking-tight text-xl font-bold leading-tight">72 kg</p>
+</div>
+<div class="flex min-w-[100px] flex-1 flex-col gap-1 rounded-xl p-4 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+<p class="text-[#618789] dark:text-gray-400 text-xs font-medium uppercase tracking-wider">Height</p>
+<p class="tracking-tight text-xl font-bold leading-tight">178 cm</p>
+</div>
+<div class="flex min-w-[100px] flex-1 flex-col gap-1 rounded-xl p-4 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+<p class="text-[#618789] dark:text-gray-400 text-xs font-medium uppercase tracking-wider">BMI</p>
+<p class="tracking-tight text-xl font-bold leading-tight">22.7</p>
+</div>
+</div>
+<!-- History Timeline Section -->
+<div class="flex items-center justify-between px-4 pt-4">
+<h2 class="text-[20px] font-bold leading-tight tracking-[-0.015em]">Medical History</h2>
+<button class="text-primary text-sm font-semibold">Filter</button>
+</div>
+<div class="grid grid-cols-[48px_1fr] gap-x-2 px-4 mt-4">
+<!-- Timeline Item 1 -->
+<div class="flex flex-col items-center gap-1">
+<div class="bg-primary/20 text-primary p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">video_chat</span>
+</div>
+<div class="w-[2px] bg-gray-200 dark:bg-gray-700 h-16 grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-8">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-base font-bold leading-normal">Virtual Consultation</p>
+<p class="text-[#618789] dark:text-gray-400 text-sm font-normal">Oct 12, 2023 • Dr. Sarah Wilson</p>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+<div class="mt-2 bg-white dark:bg-gray-800 p-3 rounded-lg border border-gray-100 dark:border-gray-700">
+<p class="text-sm text-gray-600 dark:text-gray-300">Patient reported mild fatigue and vitamin D deficiency symptoms. Recommended supplements.</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="flex flex-col items-center gap-1">
+<div class="bg-blue-100 text-blue-500 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">lab_profile</span>
+</div>
+<div class="w-[2px] bg-gray-200 dark:bg-gray-700 h-16 grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-8">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-base font-bold leading-normal">Blood Lab Report</p>
+<p class="text-[#618789] dark:text-gray-400 text-sm font-normal">Sep 28, 2023 • Metropolis Lab</p>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+<div class="mt-2 flex gap-2">
+<div class="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 py-2 rounded-lg border border-gray-100 dark:border-gray-700">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<span class="text-xs font-medium">CBC_Results.pdf</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="flex flex-col items-center gap-1">
+<div class="bg-purple-100 text-purple-500 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">medication</span>
+</div>
+<div class="w-[2px] bg-gray-200 dark:bg-gray-700 h-16 grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-8">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-base font-bold leading-normal">Pharmacy Prescription</p>
+<p class="text-[#618789] dark:text-gray-400 text-sm font-normal">Sep 25, 2023 • General Pharma</p>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+<div class="mt-2">
+<ul class="text-xs space-y-1 text-gray-600 dark:text-gray-300">
+<li class="flex items-center gap-2"><span class="h-1 w-1 bg-gray-400 rounded-full"></span> Amoxicillin 500mg (3x Daily)</li>
+<li class="flex items-center gap-2"><span class="h-1 w-1 bg-gray-400 rounded-full"></span> Vitamin D3 2000IU</li>
+</ul>
+</div>
+</div>
+<!-- Timeline Item 4 (End) -->
+<div class="flex flex-col items-center gap-1">
+<div class="bg-gray-100 dark:bg-gray-800 text-gray-500 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">history</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-base font-bold leading-normal">Registered</p>
+<p class="text-[#618789] dark:text-gray-400 text-sm font-normal">Jun 10, 2023</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-gray-100 dark:border-gray-800">
+<div class="flex gap-3 max-w-md mx-auto">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary text-white h-14 rounded-xl font-bold shadow-lg shadow-primary/20 hover:brightness-105 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                New Prescription
+            </button>
+<button class="w-14 h-14 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- iOS Home Indicator Spacing -->
+<div class="h-4"></div>
+</div>
+</body></html>

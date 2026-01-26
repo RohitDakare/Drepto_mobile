@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Health Records Vault</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden pb-24">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-[#111818] dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-3xl">account_circle</span>
+</div>
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Health Records Vault</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-[#111818] dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+<!-- Search Bar (Optional Addition for Utility) -->
+<div class="px-4 py-2">
+<div class="flex items-center bg-white dark:bg-[#1a2e2f] border border-[#e0e4e4] dark:border-[#2a3e3f] rounded-lg px-3 py-2">
+<span class="material-symbols-outlined text-[#618789]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-[#111818] dark:text-white placeholder-[#618789]" placeholder="Search your records..." type="text"/>
+</div>
+</div>
+<!-- Categories Header -->
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Categories</h3>
+<!-- Categories ImageGrid -->
+<div class="grid grid-cols-2 gap-3 p-4">
+<div class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square border border-white/10" data-alt="Blue medical background with pill icons" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaqXxYvpqwQ7_S4Fb3880gSUmRdnEwuxeaSBLEZv4zKh33o3ZBbvuyACUvB_5qcpLZXRWgBlc2Nw387ybV2yyELRPVQZIT1OfgOICXMfABho1eIivTJu_EEt_Chgly9L4j_bI3A4bm2d_zRWrXu8D6Yk8fyvk2z2ZQT1mLHcSWxMW_BQwVXK4aRQmsuiZ9YUoKSaFuQ6vBebBqGNjm5mRHNrYp4aadl90LZJRClj7OKpDKXoBc6b3fGFPw8duIMtWXcBHc6xQc_Q");'>
+<div class="bg-primary w-8 h-8 rounded-full flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-white text-sm">prescriptions</span>
+</div>
+<p class="text-white text-base font-bold leading-tight line-clamp-2">Prescriptions</p>
+</div>
+<div class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square border border-white/10" data-alt="Laboratory equipment with cool blue lighting" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZBtAfj14bFPzK0lhEd7cHqfA7BPbtVgIvZsKZAlRpxaBkArU-8-xpWZU4bPFdpwMNFkcY_6XosR8qOUU8eOzqhKqIdb-baFKNPGGr09DMixKhByLDj_a3RiPaALaX3lVQurlmx5PlkzzOmSbGJBJhyUj3K9_Oy0q40I0AWk5wPbHFII8TzGoQGkZlS_jfpFxK9GtJpJaFxO7g9M__r7FHV6kczBkK6U9uAuleVtjGbZRxq80pJUNRzMGvICZenx5RzM_al89EUg");'>
+<div class="bg-primary w-8 h-8 rounded-full flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-white text-sm">biotech</span>
+</div>
+<p class="text-white text-base font-bold leading-tight line-clamp-2">Lab Reports</p>
+</div>
+<div class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square border border-white/10" data-alt="Vaccine vial on a medical surface" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZoJ3efPUvqk4CSKSWUa5wQ6EtP1KIntqU7Nkr_cUwWIvpzD9Q-bAKiu_8dhgV3uX-kuyjgMs3fgLfQoQt51kqTcuc752rXudgaQohsyd4d5nc8apnh8cbuf1qCdSM4Y3ARiGNHg07u6v2XDoT46uEpsD7G3Ji1l5CEQo__wZwG4sxMLEWqNAqnuEeBO-c2DLXHi089qwTRH2hNesNkQlXZ6l5PQfN13kLnvFLIl8O4OmSOoR3cooWh1HOHkHvmMr5E6_bXS2zrA");'>
+<div class="bg-primary w-8 h-8 rounded-full flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-white text-sm">vaccines</span>
+</div>
+<p class="text-white text-base font-bold leading-tight line-clamp-2">Vaccinations</p>
+</div>
+<div class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square border border-white/10" data-alt="Organized medical folders and files" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9JH2zT4X5Gd55B8lelv-Jun2Qmsxn8M6Lui6_mwU2Os9ejKkfxDBHJ4oYq8bIh9duF11a9aPC9MPpAu5V9lMj0twp7i0XzqVd1Y8xAVIbZBjrAw2kECVDNd4WFHw9WTHgcIqLdUA_lawuoFnjjSsfSlEBZ9FnBqpCE_YfxhPHOTVcCkHU9-BY4YpPBoU4_2Gtg7pOEF49XUosap9Jo8quCiEZqPBkEtBI7oANvCv1tKaHA3EhRJFU2LGMO03NLXpOnQ_PjslMuQ");'>
+<div class="bg-primary w-8 h-8 rounded-full flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-white text-sm">history_edu</span>
+</div>
+<p class="text-white text-base font-bold leading-tight line-clamp-2">Medical History</p>
+</div>
+</div>
+<!-- Recent Documents Header -->
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Recent Documents</h3>
+<!-- Document ListItems -->
+<div class="flex flex-col gap-1 px-4">
+<!-- ListItem 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2e2f] px-4 min-h-[72px] py-2 justify-between rounded-lg border border-[#e0e4e4] dark:border-[#2a3e3f] mb-2 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-normal line-clamp-1">Annual Blood Work</p>
+<p class="text-[#618789] dark:text-[#a1b7b9] text-sm font-normal leading-normal line-clamp-2">Oct 12, 2023 • Dr. Sarah Jenkins</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-2">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Verified</span>
+<span class="material-symbols-outlined text-[#111818] dark:text-white">chevron_right</span>
+</div>
+</div>
+<!-- ListItem 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2e2f] px-4 min-h-[72px] py-2 justify-between rounded-lg border border-[#e0e4e4] dark:border-[#2a3e3f] mb-2 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+<span class="material-symbols-outlined">pill</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-normal line-clamp-1">Lisinopril Renewal</p>
+<p class="text-[#618789] dark:text-[#a1b7b9] text-sm font-normal leading-normal line-clamp-2">Sep 28, 2023 • Dr. Michael Chen</p>
+</div>
+</div>
+<div class="shrink-0">
+<span class="material-symbols-outlined text-[#111818] dark:text-white">chevron_right</span>
+</div>
+</div>
+<!-- ListItem 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2e2f] px-4 min-h-[72px] py-2 justify-between rounded-lg border border-[#e0e4e4] dark:border-[#2a3e3f] mb-2 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+<span class="material-symbols-outlined">vaccines</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-normal line-clamp-1">Covid-19 Booster</p>
+<p class="text-[#618789] dark:text-[#a1b7b9] text-sm font-normal leading-normal line-clamp-2">Aug 15, 2023 • HealthHub Clinic</p>
+</div>
+</div>
+<div class="shrink-0">
+<span class="material-symbols-outlined text-[#111818] dark:text-white">chevron_right</span>
+</div>
+</div>
+<!-- ListItem 4 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2e2f] px-4 min-h-[72px] py-2 justify-between rounded-lg border border-[#e0e4e4] dark:border-[#2a3e3f] mb-2 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+<span class="material-symbols-outlined">radiology</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-normal line-clamp-1">Chest X-Ray Scan</p>
+<p class="text-[#618789] dark:text-[#a1b7b9] text-sm font-normal leading-normal line-clamp-2">Jul 20, 2023 • Radiology Center</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-2">
+<span class="bg-primary/20 text-[#139ca3] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">New</span>
+<span class="material-symbols-outlined text-[#111818] dark:text-white">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<div class="fixed bottom-8 right-6">
+<button class="bg-primary hover:bg-[#11ccd6] text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform active:scale-95 focus:outline-none">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+</div>
+<!-- iOS Bottom Spacer -->
+<div class="h-8"></div>
+</div>
+</body></html>

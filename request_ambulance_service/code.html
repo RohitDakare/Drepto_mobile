@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Request Ambulance Service</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111818] dark:text-white">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between z-10 border-b dark:border-gray-800">
+<div class="text-[#111818] dark:text-white flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Request Ambulance</h2>
+</div>
+<!-- Map Section -->
+<div class="relative flex-1 bg-gray-200">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover" data-alt="Interactive city map with ambulance location markers" data-location="New York City" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTSFnHku-BqG8FLGTUZ5ouTZ0z4caVwWydpcVgRgLEt-JYfcbveBaP_eanIMsxEMhkVUt7Do5Fl8aiPa-7CHqy4Ohj3QcTR5dRxwd29z5TXmCDq2kmYxOsP81xL7J0zCIv34RF8W52C21LaxkfBVLd-_CRRhCJrYAnQ155hiUDwEpX0w25xV-rt9d5_G26KwyIGef6IcogdRFKHTAOO_A8RALErsDdiFVO94zNhK5jTbkyx9YeD3OoMV_qk4S3o96ut4B4JlnJTA");'>
+<!-- Floating Location Inputs -->
+<div class="absolute top-4 left-4 right-4 flex flex-col gap-2">
+<div class="flex items-center gap-3 bg-white dark:bg-background-dark p-3 rounded-lg shadow-lg border dark:border-gray-700">
+<span class="material-symbols-outlined text-primary text-sm">my_location</span>
+<input class="bg-transparent border-none p-0 text-sm w-full focus:ring-0" readonly="" type="text" value="Current Location: 5th Ave, NY"/>
+</div>
+<div class="flex items-center gap-3 bg-white dark:bg-background-dark p-3 rounded-lg shadow-lg border dark:border-gray-700">
+<span class="material-symbols-outlined text-red-500 text-sm">location_on</span>
+<input class="bg-transparent border-none p-0 text-sm w-full focus:ring-0" placeholder="Set drop-off location" type="text"/>
+</div>
+</div>
+<!-- Emergency Quick Call Button (FAB style) -->
+<div class="absolute bottom-6 right-4 z-20">
+<button class="bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">call</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Sheet Selection Area -->
+<div class="flex flex-col items-stretch bg-white dark:bg-background-dark shadow-[0_-4px_20px_rgba(0,0,0,0.1)] rounded-t-xl z-20">
+<!-- BottomSheetHandle -->
+<button class="flex h-6 w-full items-center justify-center">
+<div class="h-1.5 w-12 rounded-full bg-[#dbe5e6] dark:bg-gray-700"></div>
+</button>
+<div class="px-4 pb-4">
+<!-- SectionHeader -->
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] pt-2 pb-4">Select Ambulance Type</h3>
+<!-- Ambulance Cards List (Scrollable Area) -->
+<div class="flex flex-col gap-3 max-h-[350px] overflow-y-auto">
+<!-- Basic Life Support (Selected State) -->
+<div class="flex items-stretch justify-between gap-4 rounded-xl border-2 border-primary bg-primary/5 dark:bg-primary/10 p-4">
+<div class="flex flex-col gap-1 flex-[2_2_0px]">
+<div class="flex items-center gap-2">
+<p class="text-[#111818] dark:text-white text-base font-bold leading-tight">Basic Life Support (BLS)</p>
+<span class="bg-primary/20 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Fastest</span>
+</div>
+<p class="text-[#618789] dark:text-gray-400 text-sm font-normal leading-normal">4 mins away • For non-critical emergencies</p>
+<p class="text-primary font-bold text-lg mt-1">$120.00</p>
+</div>
+<div class="w-24 bg-center bg-no-repeat bg-contain rounded-lg" data-alt="Illustration of a standard BLS ambulance" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPoqmqU8cm3J_ci1Xd28StgZPCxRaswa-8-7A0vb-EzsgMFt9sULJ5jZEgZmfyDxav_g79ui1xeINmUbXBb1cxkiHFdAbMsADckdL-fTvNdU9p-r4QOPVn4cYA53rjPGyd0XDkdjR1J_b5UCw3JamnYRaTYN5gJiyreCFfn_D8lpsiJ1OynP26_BXvKDyA94ai_r8Kn4I0LAvRT1-eM2f7X35olbXDODFjz8izHYFFAUidz_A94jzezdsHTvYLdMtAARnkN-zZKA");'></div>
+</div>
+<!-- Advanced Life Support -->
+<div class="flex items-stretch justify-between gap-4 rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 shadow-sm">
+<div class="flex flex-col gap-1 flex-[2_2_0px]">
+<p class="text-[#111818] dark:text-white text-base font-bold leading-tight">Advanced Life Support (ALS)</p>
+<p class="text-[#618789] dark:text-gray-400 text-sm font-normal leading-normal">8 mins away • Paramedic onboard</p>
+<p class="text-[#111818] dark:text-white font-bold text-lg mt-1">$250.00</p>
+</div>
+<div class="w-24 bg-center bg-no-repeat bg-contain rounded-lg" data-alt="Illustration of an ALS ambulance with medical equipment" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpmaB5z6FeVo575UmQilE0GBX-DlVK1unjrl0OhvL8DpzRLbggktlb6hzP4_3004Q8P1QVR-7y3FpjQvMOSVtdb26dydnM5Zc0WuCKiI8tPsmB0i9oaXlvP5IyPt5NuoyZ9mDjdRNjt6iSu5yF_dKXP38ZyW4jrI4D4pKVYigM3cpyRhHWwNVA5nbFBIphJd4g01WsPxzTURDafjOpVEJM5ZIcaCdXPoYFn14_d-7FaLV5NoQBbRD4XByRuj8-gJizw-MMjT65Tg");'></div>
+</div>
+<!-- Neonatal Ambulance -->
+<div class="flex items-stretch justify-between gap-4 rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 shadow-sm">
+<div class="flex flex-col gap-1 flex-[2_2_0px]">
+<p class="text-[#111818] dark:text-white text-base font-bold leading-tight">Neonatal Ambulance</p>
+<p class="text-[#618789] dark:text-gray-400 text-sm font-normal leading-normal">12 mins away • Specialist care for infants</p>
+<p class="text-[#111818] dark:text-white font-bold text-lg mt-1">$300.00</p>
+</div>
+<div class="w-24 bg-center bg-no-repeat bg-contain rounded-lg" data-alt="Specialized neonatal transport vehicle icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDiDcte5BV6231Nn1pW7rQza7_UeCOhBvD0IWoLA1Owx0SGCKTCQ_a8GYy_NlgxSbvrtl2K2aYQq42fNooo-5eWHer2ErdCYcdiAWvyyhT_VqnKtDRx7FDVx8MrlxlLjI6eQmVp16L53tD_OpBwdaJbH6F1CpkLMU8oy8aCkG07MsXbFGOvnwmpHX-bVmOzYJPBbhu5ZkwlwjM_17LiGazGDF8ESZYFMbqHp6yJbJ71c6N6YIa-w7Zn_iPGlCe2LS6TQpBrp2ZrZA");'></div>
+</div>
+</div>
+<!-- Confirm Action -->
+<div class="pt-6 pb-2">
+<button class="w-full bg-primary hover:opacity-90 transition-opacity text-black font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">medical_services</span>
+                        Confirm Emergency Booking
+                    </button>
+<p class="text-center text-xs text-gray-500 mt-3 dark:text-gray-400">By confirming, you agree to emergency service dispatch terms.</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

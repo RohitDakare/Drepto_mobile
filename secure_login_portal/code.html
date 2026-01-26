@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Login Portal - Drepto Biodevices</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007e85",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2223",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.ios-shadow {
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.06)
+    }
+.select-custom-arrow {
+    appearance: none;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCnq4C9nrHyTBZN5wkjQSaDB9_gF14_tiKuqPiyEU7abmbHIjJcoweYPy97Zi0ASDfxniwuG4LO5sx4rxWE8D4A_DryhA27vMK_eUySW94-hj4F7CgRoPUEG9HIqUgBrcnKUi6OYht_xuuTJbeeZ6t0cMlSv-a73D9GHA-SZQcrfIFT_sE7q1JEOY1HreRhKcp7iaYcylt_gtxsbPvVLed2wdK8VGspDDtfT6jclRAYw_YrGV77jVksELq-Y7tsPULMKrzG0DFugA);
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5em
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex items-center justify-center p-4">
+<!-- Main Container (iOS Phone Style) -->
+<div class="w-full max-w-[420px] bg-white dark:bg-slate-900 rounded-xl overflow-hidden ios-shadow flex flex-col">
+<!-- Header Section -->
+<div class="pt-10 pb-6 px-8 flex flex-col items-center">
+<div class="mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-primary text-4xl">biotech</span>
+</div>
+<h1 class="text-[#101818] dark:text-white text-2xl font-bold tracking-tight">Drepto Biodevices</h1>
+<p class="text-[#5e8a8d] text-sm mt-1">Healthcare secure access portal</p>
+</div>
+<!-- Form Section -->
+<div class="px-6 pb-10 space-y-5">
+<!-- Role Selector -->
+<div class="flex flex-col gap-2">
+<label class="text-[#101818] dark:text-slate-200 text-sm font-semibold pl-1">I am a...</label>
+<div class="relative">
+<select class="select-custom-arrow w-full h-14 rounded-xl border border-[#dae6e7] dark:border-slate-700 bg-white dark:bg-slate-800 text-[#101818] dark:text-white px-4 text-base focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option value="patient">Patient</option>
+<option value="doctor">Doctor</option>
+<option value="nurse">Nurse</option>
+<option value="retailer">Medical Retailer</option>
+</select>
+</div>
+</div>
+<!-- Email/Phone Input -->
+<div class="flex flex-col gap-2">
+<label class="text-[#101818] dark:text-slate-200 text-sm font-semibold pl-1">Email or Phone Number</label>
+<input class="w-full h-14 rounded-xl border border-[#dae6e7] dark:border-slate-700 bg-white dark:bg-slate-800 text-[#101818] dark:text-white px-4 text-base placeholder:text-[#5e8a8d]/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="name@example.com" type="text"/>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-2">
+<label class="text-[#101818] dark:text-slate-200 text-sm font-semibold pl-1">Password</label>
+<div class="relative flex items-center">
+<input class="w-full h-14 rounded-xl border border-[#dae6e7] dark:border-slate-700 bg-white dark:bg-slate-800 text-[#101818] dark:text-white px-4 pr-12 text-base placeholder:text-[#5e8a8d]/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 text-[#5e8a8d] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<div class="flex justify-end mt-1">
+<a class="text-primary text-xs font-medium hover:underline" href="#">Forgot Password?</a>
+</div>
+</div>
+<!-- Login Button -->
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98] mt-4">
+                Log In
+            </button>
+<!-- Sign Up Footer -->
+<div class="pt-6 text-center">
+<p class="text-[#5e8a8d] text-sm">
+                    Don't have an account? 
+                    <a class="text-primary font-bold hover:underline ml-1" href="#">Sign Up</a>
+</p>
+</div>
+</div>
+<!-- App Footer (Security Note) -->
+<div class="bg-background-light dark:bg-slate-800/50 py-4 px-6 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-[#5e8a8d]">lock</span>
+<span class="text-[12px] text-[#5e8a8d] font-medium tracking-wide uppercase">End-to-end encrypted session</span>
+</div>
+</div>
+</body></html>

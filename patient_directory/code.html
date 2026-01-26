@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<div class="max-w-md mx-auto bg-white dark:bg-background-dark min-h-screen shadow-xl relative overflow-hidden flex flex-col">
+<!-- TopAppBar Component -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="text-[#111818] dark:text-white flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+</div>
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Patient Directory</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-xl h-12 bg-transparent text-primary gap-2 font-bold p-0">
+<span class="material-symbols-outlined text-2xl">tune</span>
+</button>
+</div>
+</div>
+</header>
+<!-- SearchBar Component -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-[#f0f4f4] dark:bg-white/5 border border-transparent focus-within:border-primary/50 transition-all">
+<div class="text-[#618789] dark:text-gray-400 flex items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-[#618789] dark:placeholder:text-gray-500 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal text-[#111818] dark:text-white" placeholder="Search patients by name or ID" value=""/>
+</div>
+</label>
+</div>
+<!-- Chips Component (Filters) -->
+<div class="flex gap-3 px-4 py-2 overflow-x-auto no-scrollbar">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary text-white px-4 shadow-sm shadow-primary/20">
+<p class="text-sm font-semibold leading-normal">All Patients</p>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f4f4] dark:bg-white/10 px-4 border border-transparent hover:border-primary/30 transition-colors">
+<p class="text-[#111818] dark:text-gray-200 text-sm font-medium leading-normal">Severity</p>
+<span class="material-symbols-outlined text-[#111818] dark:text-gray-200 text-[18px]">keyboard_arrow_down</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f4f4] dark:bg-white/10 px-4 border border-transparent hover:border-primary/30 transition-colors">
+<p class="text-[#111818] dark:text-gray-200 text-sm font-medium leading-normal">Department</p>
+<span class="material-symbols-outlined text-[#111818] dark:text-gray-200 text-[18px]">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="h-4"></div>
+<!-- Patient List Container -->
+<div class="flex-1 overflow-y-auto px-4 space-y-3 pb-24">
+<p class="text-[#618789] dark:text-gray-400 text-xs font-bold uppercase tracking-widest px-1 mb-2">Active Cases (24)</p>
+<!-- ListItem Component - Patient 1 -->
+<div class="flex gap-4 bg-white dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow active:scale-[0.98]">
+<div class="flex items-start gap-4 flex-1">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-[60px] w-[60px] border-2 border-primary/20" data-alt="Portrait of a young woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCU_9e_iNc1EbTFgGKeYt7bI1CbBCEPocoVC6t-zUo48xcbUS7mcuOcDmPNNkRmz0tr2ADaVYJ-IxaaBGN1ShVVKlpyaZ__yHGqKDHZ3sfzSyNf9XClgF5IqgN3VBRO_U7qDl6qXM0e2aYWfQlgmYYf7KHPs9hOSd56zqUqyVm2qlMvQAamK0PgbaMUAEirz9TFFnVAiK6n09uprXkmXg51CZA82Yj7hGoyKXBiB32hE1dqCfcVJx0OtNW_huq6ylqaCVLWlHPEuw");'></div>
+<div class="flex flex-1 flex-col justify-center">
+<div class="flex justify-between items-start">
+<p class="text-[#111818] dark:text-white text-base font-bold leading-tight">Sarah Jenkins</p>
+<span class="inline-flex items-center rounded-full bg-red-100 dark:bg-red-900/30 px-2 py-0.5 text-xs font-medium text-red-700 dark:text-red-400">High Risk</span>
+</div>
+<p class="text-primary font-semibold text-sm mt-0.5">Hypertension</p>
+<p class="text-[#618789] dark:text-gray-400 text-xs mt-1 font-medium">Age: 34 • Last Visit: Oct 12, 2023</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center">
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+</div>
+<!-- ListItem Component - Patient 2 -->
+<div class="flex gap-4 bg-white dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow active:scale-[0.98]">
+<div class="flex items-start gap-4 flex-1">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-[60px] w-[60px] border-2 border-primary/20" data-alt="Portrait of a middle aged man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaiLDNbWx4R4HGnpBkkHS86VfmHg1G95UMnmQuzRGclHxtIhp7U2FozoG-YzqQJZqHr-A6Rj4zmcFXkKE8gisvcvQmGxezP17f77rsBgG5J9YdYA-oRFSv-ririiV7wfiBQb9U2zYsap_nfILP1TouSSPZIESrDy6kJ7Wvq95q4dbdK55hTCFIUS2Fuuu-nDNqQtkNsNvFTsQFUw-QEhsDrox582joCTXIdq2GY04fvfIXHWbeTf_lLjIzW4Gs7P934qa2ZhU0xw");'></div>
+<div class="flex flex-1 flex-col justify-center">
+<div class="flex justify-between items-start">
+<p class="text-[#111818] dark:text-white text-base font-bold leading-tight">Michael Chen</p>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-xs font-medium text-primary dark:text-primary">Stable</span>
+</div>
+<p class="text-primary font-semibold text-sm mt-0.5">Post-Op Recovery</p>
+<p class="text-[#618789] dark:text-gray-400 text-xs mt-1 font-medium">Age: 45 • Last Visit: Oct 10, 2023</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center">
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+</div>
+<!-- ListItem Component - Patient 3 -->
+<div class="flex gap-4 bg-white dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow active:scale-[0.98]">
+<div class="flex items-start gap-4 flex-1">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-[60px] w-[60px] border-2 border-primary/20" data-alt="Portrait of an elderly woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoi_X6_jrOtxpj7jqNWQoeHMOlvduwQ6I8VdwHIeBVSHtDqJH15CY5TkLVJEBy9vYUhFTvNb06otD-w3nqmF7yRxVjyGJaB2VkVuD41-Z9g5xHZN3Gf5sE-iCxq81MD46lFX_7CzarGYvgLOwmls9q-Hzj7D2kUq2tR9BIRX8MtYzgfM5qnezxXgcL5o3myXUct-xHrWW-IP8zWjUb4t0dwmSUobu0cZbuB37N-c93mykoTdpdWex3pZxKOeFx30rvM40bCtFHaw");'></div>
+<div class="flex flex-1 flex-col justify-center">
+<div class="flex justify-between items-start">
+<p class="text-[#111818] dark:text-white text-base font-bold leading-tight">Elena Rodriguez</p>
+<span class="inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-900/30 px-2 py-0.5 text-xs font-medium text-orange-700 dark:text-orange-400">Routine</span>
+</div>
+<p class="text-primary font-semibold text-sm mt-0.5">Type 2 Diabetes</p>
+<p class="text-[#618789] dark:text-gray-400 text-xs mt-1 font-medium">Age: 62 • Last Visit: Sep 28, 2023</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center">
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+</div>
+<!-- ListItem Component - Patient 4 -->
+<div class="flex gap-4 bg-white dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow active:scale-[0.98]">
+<div class="flex items-start gap-4 flex-1">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-[60px] w-[60px] border-2 border-primary/20" data-alt="Portrait of a young man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBVIlI1yT7gZeLu7oSggy91oY8ABIJDUZprV2M-H-AyyVwRcj9m1Eq5ym_jWRgRhLYKRJJCdnEe0pzH3oeH-iQw1l5AqZ0Z-LRJKr8bFM37X1TKXb17S33uC3qXMkRA5ai7LtLMXXDK9aFC1d43jzvComlXX-jcqa5v-8YhS_1ccKZNW0gLk-F62-FDR2l_x32u_1BRkgbn78SULdDmJIj0DCd6tBqO5n4w8NxZAvMqHo6N6XjYGOGdFl1QlaA9Preb9Ro-1dVMcQ");'></div>
+<div class="flex flex-1 flex-col justify-center">
+<div class="flex justify-between items-start">
+<p class="text-[#111818] dark:text-white text-base font-bold leading-tight">David Wilson</p>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-xs font-medium text-primary dark:text-primary">Stable</span>
+</div>
+<p class="text-primary font-semibold text-sm mt-0.5">Physical Therapy</p>
+<p class="text-[#618789] dark:text-gray-400 text-xs mt-1 font-medium">Age: 29 • Last Visit: Oct 14, 2023</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center">
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="absolute bottom-6 right-6 w-14 h-14 bg-primary text-background-dark rounded-full shadow-lg shadow-primary/40 flex items-center justify-center transition-transform hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+<!-- iOS Bottom Navigation Bar Mockup -->
+<nav class="absolute bottom-0 left-0 right-0 h-20 bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg border-t border-gray-200 dark:border-white/10 px-8 flex justify-between items-center pb-4">
+<div class="flex flex-col items-center gap-1 text-[#618789] dark:text-gray-400">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined font-variation-fill">group</span>
+<span class="text-[10px] font-bold">Patients</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#618789] dark:text-gray-400">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-bold">Schedule</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#618789] dark:text-gray-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</div>
+</nav>
+<!-- iOS Home Indicator -->
+<div class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-32 h-1 bg-gray-300 dark:bg-white/20 rounded-full"></div>
+</div>
+</body></html>

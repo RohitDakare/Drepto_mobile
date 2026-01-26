@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nurse Assignments Overview</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007e85",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2223",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#101818] dark:text-white min-h-screen">
+<div class="max-w-[480px] mx-auto min-h-screen bg-background-light dark:bg-background-dark relative pb-24">
+<!-- TopAppBar -->
+<header class="flex items-center bg-white dark:bg-[#1a2f30] p-4 pb-4 sticky top-0 z-10 shadow-sm">
+<div class="flex size-10 shrink-0 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Profile photo of a female nurse smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBodXpbu_JvdNAz8qaryS7CAt1GytLnzVGDA2Sm6bCBodP2nhkO6h92Bf8LpQcYgzBV8eUfjvtg_MieKkwTN0r0ddKeNSaBEOBFT-cN_MAXOAC_L_Iu_7ms5saisYO0SSDXK7_ZFEP67CZ9paia589KDd8tNoahHtKM-z96fpj5Ic3kdwnKTzK4f3zMExq1_4uLkLTcBZHOVHTTv4HrYN3Tvv1WBp4fSdtNlWqMjWiRei27SBCG6LjkJuxTN-SqQx9QspqgKaJEuw");'>
+</div>
+</div>
+<div class="flex-1 ml-3">
+<h1 class="text-[#101818] dark:text-white text-lg font-bold leading-tight tracking-tight">Today's Schedule</h1>
+<p class="text-[#5e8a8d] dark:text-[#a0c4c6] text-xs font-medium">Monday, Oct 23</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full bg-[#f0f5f5] dark:bg-primary/20 text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+</div>
+</header>
+<!-- Progress Summary -->
+<div class="px-4 py-4">
+<div class="bg-white dark:bg-[#1a2f30] rounded-xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between gap-4">
+<div class="flex-1">
+<p class="text-[#5e8a8d] dark:text-[#a0c4c6] text-sm font-medium">Daily Progress</p>
+<h2 class="text-[#101818] dark:text-white text-2xl font-bold mt-1">3 of 5 Visits</h2>
+<p class="text-primary text-sm font-semibold mt-1">60% completed</p>
+</div>
+<!-- Circular Progress Ring (SVG Implementation) -->
+<div class="relative flex items-center justify-center">
+<svg class="w-16 h-16 transform -rotate-90">
+<circle class="text-[#f0f5f5] dark:text-[#2a3f40]" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="70.36" stroke-width="6"></circle>
+</svg>
+<span class="absolute text-xs font-bold text-primary">60%</span>
+</div>
+</div>
+<!-- Linear Progress fallback/extra visual -->
+<div class="mt-4">
+<div class="w-full bg-[#f0f5f5] dark:bg-[#2a3f40] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- SectionHeader -->
+<div class="flex items-center justify-between px-4 pt-2">
+<h3 class="text-[#101818] dark:text-white text-lg font-bold leading-tight tracking-tight">Upcoming Tasks</h3>
+<button class="text-primary text-sm font-semibold">View All</button>
+</div>
+<!-- Assigned Tasks List -->
+<div class="space-y-4 p-4">
+<!-- Task Card 1 (Active/Next) -->
+<div class="flex flex-col bg-white dark:bg-[#1a2f30] rounded-xl shadow-md border-l-4 border-primary overflow-hidden">
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="inline-block px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider mb-1">In 15 mins</span>
+<h4 class="text-[#101818] dark:text-white text-lg font-bold">Sarah Johnson</h4>
+</div>
+<div class="bg-[#f0f5f5] dark:bg-primary/20 px-3 py-1 rounded-full">
+<p class="text-primary text-xs font-bold">Post-op Care</p>
+</div>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-[#5e8a8d] dark:text-[#a0c4c6]">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<p class="text-sm font-medium">09:00 AM - 10:30 AM</p>
+</div>
+<div class="flex items-center gap-2 text-[#5e8a8d] dark:text-[#a0c4c6]">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-sm">123 Medical Drive, Health City</p>
+</div>
+</div>
+<div class="flex gap-3 mt-4">
+<button class="flex-1 flex items-center justify-center gap-2 h-11 bg-[#f0f5f5] dark:bg-[#2a3f40] text-[#101818] dark:text-white rounded-xl text-sm font-bold transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">map</span>
+                            Navigate
+                        </button>
+<button class="flex-1 flex items-center justify-center h-11 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/20 transition-all active:scale-95">
+                            Start Visit
+                        </button>
+</div>
+</div>
+</div>
+<!-- Task Card 2 -->
+<div class="flex flex-col bg-white dark:bg-[#1a2f30] rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden opacity-90">
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="text-[#101818] dark:text-white text-lg font-bold">Robert Miller</h4>
+</div>
+<div class="bg-[#f0f5f5] dark:bg-primary/20 px-3 py-1 rounded-full">
+<p class="text-primary text-xs font-bold">IV Antibiotics</p>
+</div>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-[#5e8a8d] dark:text-[#a0c4c6]">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<p class="text-sm font-medium">11:00 AM - 12:00 PM</p>
+</div>
+<div class="flex items-center gap-2 text-[#5e8a8d] dark:text-[#a0c4c6]">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-sm">456 Wellness Way, East Side</p>
+</div>
+</div>
+<div class="flex gap-3 mt-4">
+<button class="flex-1 flex items-center justify-center gap-2 h-11 bg-[#f0f5f5] dark:bg-[#2a3f40] text-[#101818] dark:text-white rounded-xl text-sm font-bold opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg">map</span>
+                            Navigate
+                        </button>
+<button class="flex-1 flex items-center justify-center h-11 bg-primary/40 text-white rounded-xl text-sm font-bold cursor-not-allowed">
+                            Start Visit
+                        </button>
+</div>
+</div>
+</div>
+<!-- Task Card 3 (Completed Example) -->
+<div class="flex flex-col bg-[#f0f5f5]/50 dark:bg-[#1a2f30]/50 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 overflow-hidden">
+<div class="p-4 relative">
+<div class="absolute top-4 right-4 text-green-600 dark:text-green-400 flex items-center gap-1 bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="text-[10px] font-bold">COMPLETED</span>
+</div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="text-[#101818]/50 dark:text-white/50 text-lg font-bold line-through">Emily Davis</h4>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-xs text-[#5e8a8d] dark:text-[#a0c4c6]">Vitals Checkup • 08:00 AM</p>
+<p class="text-xs text-[#5e8a8d] dark:text-[#a0c4c6]">Completed at 08:42 AM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Bar (iOS Style) -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-white/80 dark:bg-[#1a2f30]/80 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 flex justify-around items-center py-2 pb-6 px-4 z-20">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Agenda</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Patients</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Chat</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Profile</span>
+</button>
+</nav>
+</div>
+</body></html>

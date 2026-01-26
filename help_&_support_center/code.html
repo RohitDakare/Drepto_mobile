@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Help &amp; Support Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11cbd4",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111818] dark:text-white">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center p-4 justify-between max-w-md mx-auto">
+<div class="flex size-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-gray-700 dark:text-gray-200">arrow_back_ios</span>
+</div>
+<h1 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Help &amp; Support</h1>
+</div>
+</header>
+<main class="max-w-md mx-auto pb-10">
+<!-- Search Bar Section -->
+<section class="px-4 py-6">
+<h2 class="text-2xl font-bold mb-4 px-1">How can we help?</h2>
+<div class="relative">
+<label class="flex flex-col min-w-40 h-14 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm">
+<div class="text-primary flex border-none bg-white dark:bg-gray-800 items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111818] dark:text-white focus:outline-0 focus:ring-0 border-none bg-white dark:bg-gray-800 focus:border-none h-full placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search for help articles..." value=""/>
+</div>
+</label>
+</div>
+</section>
+<!-- Category Grid Section -->
+<section>
+<div class="flex items-center justify-between px-4 pb-2">
+<h3 class="text-[#111818] dark:text-white text-lg font-bold">Browse Categories</h3>
+</div>
+<div class="grid grid-cols-2 gap-3 p-4">
+<!-- Category 1 -->
+<div class="flex flex-col gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm active:scale-95 transition-transform">
+<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">package_2</span>
+</div>
+<div>
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight">Order Issues</p>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Prescriptions &amp; delivery</p>
+</div>
+</div>
+<!-- Category 2 -->
+<div class="flex flex-col gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm active:scale-95 transition-transform">
+<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+</div>
+<div>
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight">Booking Help</p>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Schedule appts</p>
+</div>
+</div>
+<!-- Category 3 -->
+<div class="flex flex-col gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm active:scale-95 transition-transform">
+<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<div>
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight">Payments</p>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Billing &amp; refunds</p>
+</div>
+</div>
+<!-- Category 4 -->
+<div class="flex flex-col gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm active:scale-95 transition-transform">
+<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">quiz</span>
+</div>
+<div>
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight">General FAQs</p>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Common questions</p>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Chat Promo Card -->
+<section class="p-4">
+<div class="flex items-stretch justify-between gap-4 rounded-xl bg-primary p-5 text-white shadow-lg overflow-hidden relative">
+<div class="flex flex-col gap-3 relative z-10">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-white/20 text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider uppercase">FASTEST SUPPORT</span>
+</div>
+<p class="text-xl font-bold leading-tight">Chat with Drepto AI</p>
+<p class="text-white/80 text-sm font-normal leading-normal max-w-[180px]">Get instant answers to your health queries 24/7</p>
+</div>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white text-primary text-sm font-bold active:bg-gray-100 transition-colors w-fit shadow-sm">
+<span>Chat Now</span>
+</button>
+</div>
+<!-- Abstract AI Graphic Element -->
+<div class="absolute -right-6 -bottom-6 opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[140px]">smart_toy</span>
+</div>
+<div class="flex-1 flex items-center justify-end">
+<div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-5xl">smart_toy</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Support List -->
+<section class="px-4 mt-4">
+<h3 class="text-[#111818] dark:text-white text-lg font-bold mb-3 px-1">Contact Support</h3>
+<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden shadow-sm">
+<!-- Phone Support -->
+<div class="flex items-center gap-4 p-4 active:bg-gray-50 dark:active:bg-gray-700 transition-colors cursor-pointer">
+<div class="size-10 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-[#111818] dark:text-white">Call Us</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Available Mon-Fri, 9am - 6pm</p>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-sm">chevron_right</span>
+</div>
+<!-- Email Support -->
+<div class="flex items-center gap-4 p-4 active:bg-gray-50 dark:active:bg-gray-700 transition-colors cursor-pointer">
+<div class="size-10 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-[#111818] dark:text-white">Email Support</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Response within 24 hours</p>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-sm">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Footer Note -->
+<footer class="mt-8 px-4 text-center">
+<p class="text-xs text-gray-400 dark:text-gray-500">
+                Drepto Help Center v2.4.1<br/>
+                Privacy Policy • Terms of Service
+            </p>
+</footer>
+</main>
+</body></html>

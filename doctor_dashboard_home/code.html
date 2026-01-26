@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Dashboard Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13e1ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111818] dark:text-white transition-colors duration-200">
+<!-- Main Container -->
+<div class="relative flex h-screen max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- TopAppBar -->
+<header class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="flex size-12 shrink-0 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="Profile picture of a male doctor in a white coat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgtHa8AnSH-kxjeR7kFdUXahTpmAQ9AJHGnVbqZNLAcYKKN266FALVwWSAzAwuC6fVeev4v3D76KsO1zH_1c1m7tDa1vikKKKlnMGhvRgv0S40UicDdpxUOdFVgsIxfDDKaRF5tHPPw704Ek-r0b6MAKQeJsUY2L4QcJAJsZegXA3X1cMNY8_OlwCwqrB34CVuTSSMfD4ApxSe6ZnLd6m9Zeu_KfWSPYO6uqc1SA9LjfyRIxZG3m5Y85SJL5actinpWLZzr0efwQ");'>
+</div>
+</div>
+<div class="flex-1 px-3">
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Good Morning, Dr. Smith</h2>
+<p class="text-xs text-[#618789] dark:text-gray-400">Monday, Oct 24</p>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-white dark:bg-[#1a2d2e] shadow-sm border border-gray-100 dark:border-gray-800">
+<span class="material-symbols-outlined text-[#111818] dark:text-white">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Content -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Stats Section -->
+<div class="px-4 py-2">
+<div class="flex flex-wrap gap-3">
+<div class="flex min-w-[100px] flex-1 flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a2d2e] shadow-sm border border-gray-100 dark:border-gray-800">
+<span class="material-symbols-outlined text-primary mb-1">group</span>
+<p class="text-[#618789] dark:text-gray-400 text-xs font-medium uppercase tracking-wider">Patients</p>
+<p class="text-[#111818] dark:text-white text-xl font-bold">24</p>
+</div>
+<div class="flex min-w-[100px] flex-1 flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a2d2e] shadow-sm border border-gray-100 dark:border-gray-800">
+<span class="material-symbols-outlined text-green-500 mb-1">task_alt</span>
+<p class="text-[#618789] dark:text-gray-400 text-xs font-medium uppercase tracking-wider">Completed</p>
+<p class="text-[#111818] dark:text-white text-xl font-bold">12</p>
+</div>
+<div class="flex min-w-[100px] flex-1 flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a2d2e] shadow-sm border border-gray-100 dark:border-gray-800">
+<span class="material-symbols-outlined text-orange-400 mb-1">pending_actions</span>
+<p class="text-[#618789] dark:text-gray-400 text-xs font-medium uppercase tracking-wider">Pending</p>
+<p class="text-[#111818] dark:text-white text-xl font-bold">5</p>
+</div>
+</div>
+</div>
+<!-- SectionHeader -->
+<div class="flex items-center justify-between px-4 pt-4 pb-2">
+<h2 class="text-[#111818] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Today's Schedule</h2>
+<button class="text-primary text-sm font-semibold">See All</button>
+</div>
+<!-- List Items -->
+<div class="flex flex-col gap-1 px-4">
+<!-- Appointment 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2d2e] px-4 min-h-[80px] py-3 justify-between rounded-xl shadow-sm border border-gray-50 dark:border-gray-800 mb-3">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-gray-100 dark:border-gray-700" data-alt="Portrait of a female patient with glasses" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnJ0U0Spo9-Zb1KcOmj97cbZt3jFFXAUi7rXfQEWEHFAmyIO1uyE67rCln6c1PKvsSP0XfnlW5YQxsCbtCP_pKLLqutdW_bOrhAsMvnhUuYomOXT_jXzEX_aF82Xc0-wy2FCe3qtpZUEGz9m7w4YR_qoT7tzdboBM_y3-_l_1H5ECHVOxkGah-sSO4FZxhaw8I2yBQM76_rRPK59sCocORywvfPHKo7RbEHmOhwaKQgSmq-5CDoYN5lktYLa-sgXBXFwkMJO8ZDw");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight line-clamp-1">Sarah Jenkins</p>
+<p class="text-[#618789] dark:text-gray-400 text-xs font-normal mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 09:30 AM • Routine Checkup
+                            </p>
+</div>
+</div>
+<div class="shrink-0">
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-primary text-white text-sm font-bold shadow-sm shadow-primary/30">
+<span>Start Call</span>
+</button>
+</div>
+</div>
+<!-- Appointment 2 (Active/Current Highlight) -->
+<div class="flex items-center gap-4 bg-primary/10 dark:bg-primary/5 border-2 border-primary px-4 min-h-[80px] py-3 justify-between rounded-xl shadow-sm mb-3">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-white" data-alt="Portrait of an elderly male patient smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5QAvX4myMog39W6Y79TQ3XsU72kUD2vn0MVNLWUesjU60clRkZUK6LhoGgeiWTquWyLJYKGTLQoOE-BSEy7hMAOzpvOVpzH0dktjJ3_We3OqQPyOcgYE00qTiXwKQdr7oiCzzr3J4Sqhn3vjbEY_DWGLJ2y5lh7bqvhROqbHtpTOA0BY75wfyr4rOJYwN4HaL7UvBJ4agAN5fXQhqWnanCQxBkf32fjwmiMC3TqC8Zag0XUyK_w0AV-X6pREoEVzQcSrJuZL8aA");'></div>
+<div class="flex flex-col justify-center">
+<div class="flex items-center gap-2">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight line-clamp-1">Michael Chen</p>
+<span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<p class="text-[#618789] dark:text-gray-300 text-xs font-medium mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 10:15 AM • Lab Review
+                            </p>
+</div>
+</div>
+<div class="shrink-0">
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-primary text-white text-sm font-bold shadow-md shadow-primary/40">
+<span>Join Now</span>
+</button>
+</div>
+</div>
+<!-- Appointment 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2d2e] px-4 min-h-[80px] py-3 justify-between rounded-xl shadow-sm border border-gray-50 dark:border-gray-800 mb-3">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-gray-100 dark:border-gray-700" data-alt="Portrait of a young woman with curly hair" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-EOi0442CeNt6tGfRAlkN77munojoVioYavNBWCVZfFuaX6DFMOAq22bNspkkjV27kqNlJ5hylmMohnR-kgz46FdfZfcP6Gb9pqEgqrHRg9y7tHEy6b4uM7NmyhyypqFJe--jcneA3s2TUQgYStow4FMatNNflwcVpVaB0VbJJUsUdNi_TC-VS7cv9AyInyfHJjdJyVIjZNee_x1ZXduuqxhVHGYU0OKiGYyq9FRFAL8iysNY8PL6HY98CV7cY9Kz9FSghO1Vzw");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight line-clamp-1">Emily Rodriguez</p>
+<p class="text-[#618789] dark:text-gray-400 text-xs font-normal mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 11:00 AM • Follow-up
+                            </p>
+</div>
+</div>
+<div class="shrink-0">
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-[#f0f4f4] dark:bg-gray-700 text-[#111818] dark:text-white text-sm font-medium">
+<span>View Chart</span>
+</button>
+</div>
+</div>
+<!-- Appointment 4 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2d2e] px-4 min-h-[80px] py-3 justify-between rounded-xl shadow-sm border border-gray-50 dark:border-gray-800 mb-3">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-gray-100 dark:border-gray-700" data-alt="Portrait of a middle aged man with beard" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC4XYtYP5zuWc7gGUwEP_bcbDGVsCReEtAjk9a16Cf9mrIJLPeOpj1gCGlaRM628sc9HCdrcla9l0dj-dNz0R3iWMR8Ue8ZTczz85qiAHzc9zrJkypkUtQk_TwM5U2n1kBwpGc1PcCRXedQ2uEbLYL11tYjU5bsbO5c07HjlmEE5x-KkueYRJM6aK2QBSJnKIu7XwQXJ-JjU2KE2AJ54mMwjmy89hl6em-tXJE5b5UPBE3lWriS_237G1LXD9qnsOS_XpCveXq2DA");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-base font-semibold leading-tight line-clamp-1">David Thompson</p>
+<p class="text-[#618789] dark:text-gray-400 text-xs font-normal mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 01:45 PM • Consultation
+                            </p>
+</div>
+</div>
+<div class="shrink-0">
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-[#f0f4f4] dark:bg-gray-700 text-[#111818] dark:text-white text-sm font-medium">
+<span>View Chart</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 px-6 py-3 pb-8 flex justify-between items-center z-20">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined active-nav-icon">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#618789] dark:text-gray-400">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-medium">Schedule</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#618789] dark:text-gray-400">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-medium">Patients</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#618789] dark:text-gray-400">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-medium">Messages</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#618789] dark:text-gray-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</nav>
+<!-- iOS Home Indicator Overlay -->
+<div class="fixed bottom-1 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full z-30"></div>
+</div>
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile &amp; Health Settings</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007e85",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2223",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#101818] dark:text-white transition-colors duration-200">
+<div class="relative flex h-auto min-h-screen w-full max-w-[480px] mx-auto flex-col bg-white dark:bg-background-dark overflow-x-hidden shadow-2xl">
+<!-- TopAppBar -->
+<div class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-[#101818] dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+</div>
+<h2 class="text-[#101818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Profile</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-xl h-12 bg-transparent text-[#101818] dark:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- ProfileHeader -->
+<div class="flex p-4 @container bg-white dark:bg-background-dark">
+<div class="flex w-full flex-col gap-4 items-center">
+<div class="flex gap-4 flex-col items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-primary/10" data-alt="Professional portrait of a male patient smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDip4HQw3ZuEF3lSyl_2ajrLnMJZNaaVZNPuYk7PFf2sX8C0UXwnJ_zAqPLUBtfux1Xq276pXIctdOSI16z6yYV2QAp3TaFJnNGDsG7NderVH9R56Pr0yzU_68W9Kqx9HYRBRRRP6b-37OPDloOuSDP-xz7YrLNK52DwJYLlzpisksyVhUEWOFCiJfFVf08_f3l_dZ55ajBEkCR7EL9rZFVn3ZRqwkiSfaZa0V3w1ms0MH2GdY3aghlGL1zcRy9pv774xivBy8e2Q");'>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full border-2 border-white dark:border-background-dark cursor-pointer">
+<span class="material-symbols-outlined text-sm">edit</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-[#101818] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] text-center">Alex Johnson</p>
+<p class="text-primary text-sm font-semibold leading-normal text-center mt-1 px-3 py-0.5 bg-primary/10 rounded-full">Premium Member</p>
+<p class="text-[#5e8a8d] dark:text-[#a3c2c4] text-sm font-medium leading-normal text-center mt-2 cursor-pointer hover:underline">Edit Profile</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SectionHeader: Health Profile -->
+<h3 class="text-[#101818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-6">Health Profile</h3>
+<!-- Stats -->
+<div class="flex flex-wrap gap-4 p-4">
+<div class="flex min-w-[120px] flex-1 flex-col gap-2 rounded-xl p-4 border border-[#dae6e7] dark:border-primary/20 bg-white dark:bg-background-dark/50">
+<p class="text-[#5e8a8d] dark:text-[#a3c2c4] text-xs font-medium leading-normal uppercase tracking-wider">Blood Group</p>
+<p class="text-primary tracking-light text-2xl font-bold leading-tight">O+</p>
+</div>
+<div class="flex min-w-[120px] flex-1 flex-col gap-2 rounded-xl p-4 border border-[#dae6e7] dark:border-primary/20 bg-white dark:bg-background-dark/50">
+<p class="text-[#5e8a8d] dark:text-[#a3c2c4] text-xs font-medium leading-normal uppercase tracking-wider">Weight</p>
+<p class="text-primary tracking-light text-2xl font-bold leading-tight">72kg</p>
+</div>
+<div class="flex min-w-[120px] flex-1 flex-col gap-2 rounded-xl p-4 border border-[#dae6e7] dark:border-primary/20 bg-white dark:bg-background-dark/50">
+<p class="text-[#5e8a8d] dark:text-[#a3c2c4] text-xs font-medium leading-normal uppercase tracking-wider">Height</p>
+<p class="text-primary tracking-light text-2xl font-bold leading-tight">175cm</p>
+</div>
+</div>
+<!-- SectionHeader: Settings -->
+<h3 class="text-[#101818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Settings</h3>
+<!-- Settings List -->
+<div class="flex flex-col mb-10">
+<!-- ListItem: Personal Info -->
+<div class="flex items-center gap-4 bg-white dark:bg-background-dark px-4 min-h-16 justify-between cursor-pointer hover:bg-gray-50 dark:hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-10">
+<span class="material-symbols-outlined">person</span>
+</div>
+<p class="text-[#101818] dark:text-white text-base font-normal leading-normal flex-1 truncate">Personal Information</p>
+</div>
+<div class="shrink-0">
+<div class="text-[#101818] dark:text-white/50 flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ListItem: Saved Addresses -->
+<div class="flex items-center gap-4 bg-white dark:bg-background-dark px-4 min-h-16 justify-between cursor-pointer hover:bg-gray-50 dark:hover:bg-primary/5 transition-colors border-t border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-10">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<p class="text-[#101818] dark:text-white text-base font-normal leading-normal flex-1 truncate">Saved Addresses</p>
+</div>
+<div class="shrink-0">
+<div class="text-[#101818] dark:text-white/50 flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ListItem: Notifications -->
+<div class="flex items-center gap-4 bg-white dark:bg-background-dark px-4 min-h-16 justify-between cursor-pointer hover:bg-gray-50 dark:hover:bg-primary/5 transition-colors border-t border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-10">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<p class="text-[#101818] dark:text-white text-base font-normal leading-normal flex-1 truncate">Notification Preferences</p>
+</div>
+<div class="shrink-0">
+<div class="text-[#101818] dark:text-white/50 flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ListItem: Security -->
+<div class="flex items-center gap-4 bg-white dark:bg-background-dark px-4 min-h-16 justify-between cursor-pointer hover:bg-gray-50 dark:hover:bg-primary/5 transition-colors border-t border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-10">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<p class="text-[#101818] dark:text-white text-base font-normal leading-normal flex-1 truncate">Security &amp; Password</p>
+</div>
+<div class="shrink-0">
+<div class="text-[#101818] dark:text-white/50 flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Logout Button -->
+<div class="p-4 mt-auto mb-6">
+<button class="w-full flex items-center justify-center gap-2 rounded-xl h-14 bg-red-50 dark:bg-red-500/10 text-red-600 font-bold text-lg hover:bg-red-100 dark:hover:bg-red-500/20 transition-all border border-red-100 dark:border-red-500/20">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </button>
+</div>
+<!-- Bottom Navigation Spacer -->
+<div class="h-16 bg-white dark:bg-background-dark border-t border-gray-100 dark:border-white/5 flex items-center justify-around px-4">
+<div class="flex flex-col items-center gap-1 text-gray-400 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px]">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-gray-400 cursor-pointer">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px]">Bookings</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-gray-400 cursor-pointer">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-[10px]">Chat</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Home Visit Tracker</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13e1ec",
+              "background-light": "#f6f8f8",
+              "background-dark": "#102122",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .ios-input-group {
+        border-top: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      @media (prefers-color-scheme: dark) {
+        .ios-input-group {
+          border-color: #2d3748;
+        }
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111818] dark:text-white min-h-screen font-display">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-white dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800">
+<div class="text-[#111818] dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+</div>
+<h2 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Active Visit</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-[#111818] dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+<main class="pb-32">
+<!-- Patient Profile Header -->
+<div class="flex p-4 @container bg-white dark:bg-background-dark mb-2">
+<div class="flex w-full flex-col gap-4 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
+<div class="flex gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-24 w-24 border-2 border-primary/20" data-alt="Elderly patient smiling softly for medical profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmp5JATzaBWV8P4KbPQEDeafKCMfY5UhwjyDbmxT9UHAktj9Wp7e-dew2CRqS-7XMuL_zQtw94slXxmoqsIFxhagMmu8mMoigP-os8h2J09ve2to868bzpWW1paldhZ9QrdhWceIIDFpIs9iQTgvwTnkzl-SekBEoxgblq7J5J8L7LgzgpP46noclDwa9ebSkllKXKTCXfZLAa5Sc6vXyiQDLvoLt6a2YH5xGG3Rq2-0Zswc3adeEcwJZ0WTMyE1kp7T60FNlsOQ");'>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#111818] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">John Doe</p>
+<p class="text-[#618789] dark:text-gray-400 text-base font-normal leading-normal">Room 402 • Home Visit</p>
+<p class="text-[#618789] dark:text-gray-400 text-base font-normal leading-normal">72 years old • Diabetic Care</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Header: Procedures -->
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-6">Procedures to Perform</h3>
+<!-- Checklist of Procedures -->
+<div class="px-4 bg-white dark:bg-background-dark/50 mx-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800" style="--checkbox-tick-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(255,255,255)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e');">
+<label class="flex items-center gap-x-4 py-4 border-b border-gray-100 dark:border-gray-800 last:border-0">
+<input class="h-6 w-6 rounded-full border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none" type="checkbox"/>
+<p class="text-[#111818] dark:text-white text-base font-medium leading-normal">Wound dressing change</p>
+</label>
+<label class="flex items-center gap-x-4 py-4 border-b border-gray-100 dark:border-gray-800 last:border-0">
+<input class="h-6 w-6 rounded-full border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none" type="checkbox"/>
+<p class="text-[#111818] dark:text-white text-base font-medium leading-normal">Vital signs check</p>
+</label>
+<label class="flex items-center gap-x-4 py-4 border-b border-gray-100 dark:border-gray-800 last:border-0">
+<input class="h-6 w-6 rounded-full border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none" type="checkbox"/>
+<p class="text-[#111818] dark:text-white text-base font-medium leading-normal">Medication administration</p>
+</label>
+<label class="flex items-center gap-x-4 py-4">
+<input class="h-6 w-6 rounded-full border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none" type="checkbox"/>
+<p class="text-[#111818] dark:text-white text-base font-medium leading-normal">Physical therapy assistance</p>
+</label>
+</div>
+<!-- Section Header: Patient Vitals -->
+<h3 class="text-[#111818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-8">Patient Vitals</h3>
+<!-- Vitals Input Fields -->
+<div class="px-4 space-y-4">
+<div class="bg-white dark:bg-background-dark/50 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between mb-2">
+<label class="text-sm font-semibold text-[#618789] dark:text-gray-400 uppercase tracking-wider">Blood Pressure</label>
+<span class="text-xs text-gray-400">mmHg</span>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-full bg-background-light dark:bg-background-dark border-none rounded-lg p-3 text-lg focus:ring-2 focus:ring-primary/50 text-center" placeholder="Sys" type="number"/>
+<span class="text-gray-400 text-xl">/</span>
+<input class="w-full bg-background-light dark:bg-background-dark border-none rounded-lg p-3 text-lg focus:ring-2 focus:ring-primary/50 text-center" placeholder="Dia" type="number"/>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-1 bg-white dark:bg-background-dark/50 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+<label class="block text-sm font-semibold text-[#618789] dark:text-gray-400 uppercase tracking-wider mb-2">Temp (°F)</label>
+<input class="w-full bg-background-light dark:bg-background-dark border-none rounded-lg p-3 text-lg focus:ring-2 focus:ring-primary/50 text-center" placeholder="98.6" step="0.1" type="number"/>
+</div>
+<div class="flex-1 bg-white dark:bg-background-dark/50 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+<label class="block text-sm font-semibold text-[#618789] dark:text-gray-400 uppercase tracking-wider mb-2">SpO2 (%)</label>
+<input class="w-full bg-background-light dark:bg-background-dark border-none rounded-lg p-3 text-lg focus:ring-2 focus:ring-primary/50 text-center" placeholder="98" type="number"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/95 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 p-4 space-y-3">
+<button class="w-full py-4 bg-primary text-[#102122] font-bold rounded-xl shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">task_alt</span>
+            Complete Visit
+        </button>
+<button class="w-full py-3 bg-white dark:bg-background-dark text-red-500 font-semibold rounded-xl border border-red-100 dark:border-red-900/30 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">emergency_share</span>
+            Contact Doctor
+        </button>
+</div>
+</body></html>

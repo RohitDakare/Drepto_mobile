@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reminders &amp; Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007e85",
+                        "emerald-accent": "#10B981",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2223",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<div class="max-w-[430px] mx-auto bg-background-light dark:bg-background-dark min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="text-primary flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-3xl">account_circle</span>
+</div>
+<h2 class="text-[#101818] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Reminders</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-xl h-10 w-10 bg-transparent text-[#101818] dark:text-white hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Medication Reminders Section -->
+<section class="mt-2">
+<h2 class="text-[#101818] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3">Medication Reminders</h2>
+<!-- Horizontal Timeline Tabs -->
+<div class="pb-4 overflow-x-auto">
+<div class="flex px-4 gap-4">
+<a class="flex flex-col min-w-[64px] items-center justify-center rounded-2xl bg-white dark:bg-[#1a2e2f] border border-transparent py-3 shadow-sm" href="#">
+<p class="text-[#5e8a8d] text-xs font-medium">Mon</p>
+<p class="text-[#101818] dark:text-white text-lg font-bold">12</p>
+</a>
+<a class="flex flex-col min-w-[64px] items-center justify-center rounded-2xl bg-white dark:bg-[#1a2e2f] border border-transparent py-3 shadow-sm" href="#">
+<p class="text-[#5e8a8d] text-xs font-medium">Tue</p>
+<p class="text-[#101818] dark:text-white text-lg font-bold">13</p>
+</a>
+<a class="flex flex-col min-w-[64px] items-center justify-center rounded-2xl bg-primary py-3 shadow-lg shadow-primary/20" href="#">
+<p class="text-white/80 text-xs font-medium">Wed</p>
+<p class="text-white text-lg font-bold">14</p>
+</a>
+<a class="flex flex-col min-w-[64px] items-center justify-center rounded-2xl bg-white dark:bg-[#1a2e2f] border border-transparent py-3 shadow-sm" href="#">
+<p class="text-[#5e8a8d] text-xs font-medium">Thu</p>
+<p class="text-[#101818] dark:text-white text-lg font-bold">15</p>
+</a>
+<a class="flex flex-col min-w-[64px] items-center justify-center rounded-2xl bg-white dark:bg-[#1a2e2f] border border-transparent py-3 shadow-sm" href="#">
+<p class="text-[#5e8a8d] text-xs font-medium">Fri</p>
+<p class="text-[#101818] dark:text-white text-lg font-bold">16</p>
+</a>
+</div>
+</div>
+<!-- Medication Items -->
+<div class="px-4 space-y-3">
+<!-- ListItem 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2e2f] px-4 min-h-[88px] py-3 justify-between rounded-2xl shadow-sm border border-black/5 dark:border-white/5">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center">
+<input checked="" class="h-6 w-6 rounded-lg border-[#dae6e7] border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#101818] dark:text-white text-base font-semibold leading-normal line-clamp-1">Metformin - 500mg</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-sm text-[#5e8a8d]">schedule</span>
+<p class="text-[#5e8a8d] text-sm font-medium leading-normal">8:00 AM</p>
+</div>
+</div>
+</div>
+<div class="shrink-0">
+<div class="flex size-8 items-center justify-center rounded-full bg-emerald-accent/15">
+<div class="size-2.5 rounded-full bg-emerald-accent animate-pulse"></div>
+</div>
+</div>
+</div>
+<!-- ListItem 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#1a2e2f] px-4 min-h-[88px] py-3 justify-between rounded-2xl shadow-sm border border-black/5 dark:border-white/5">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center">
+<input class="h-6 w-6 rounded-lg border-[#dae6e7] border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-[#101818] dark:text-white text-base font-semibold leading-normal line-clamp-1">Vitamin D3 - 1000 IU</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-sm text-[#5e8a8d]">schedule</span>
+<p class="text-[#5e8a8d] text-sm font-medium leading-normal">10:00 AM</p>
+</div>
+</div>
+</div>
+<div class="shrink-0">
+<div class="flex size-8 items-center justify-center rounded-full bg-orange-400/15">
+<div class="size-2.5 rounded-full bg-orange-400"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- App Notifications Section -->
+<section class="mt-8">
+<h2 class="text-[#101818] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3">App Notifications</h2>
+<div class="px-4 space-y-1">
+<!-- Notification Item 1 -->
+<div class="flex items-start gap-4 py-4 px-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">science</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<p class="text-[#101818] dark:text-white text-base font-semibold leading-tight">Lab Report Ready</p>
+<p class="text-[#5e8a8d] text-xs font-medium">2m ago</p>
+</div>
+<p class="text-[#5e8a8d] dark:text-[#a1bfc1] text-sm font-normal mt-1 leading-relaxed">Your recent blood work results are available for review.</p>
+</div>
+</div>
+<!-- Notification Item 2 -->
+<div class="flex items-start gap-4 py-4 px-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-emerald-accent/15 text-emerald-accent">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<p class="text-[#101818] dark:text-white text-base font-semibold leading-tight">Order Shipped</p>
+<p class="text-[#5e8a8d] text-xs font-medium">1h ago</p>
+</div>
+<p class="text-[#5e8a8d] dark:text-[#a1bfc1] text-sm font-normal mt-1 leading-relaxed">Your prescription refill #4920 has been shipped and is on its way.</p>
+</div>
+</div>
+<!-- Notification Item 3 -->
+<div class="flex items-start gap-4 py-4 px-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<p class="text-[#101818] dark:text-white text-base font-semibold leading-tight">Appointment Reminder</p>
+<p class="text-[#5e8a8d] text-xs font-medium">3h ago</p>
+</div>
+<p class="text-[#5e8a8d] dark:text-[#a1bfc1] text-sm font-normal mt-1 leading-relaxed">Meeting with Dr. Smith in 2 hours for your quarterly checkup.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation Bar (iOS Style) -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-white/90 dark:bg-[#0f2223]/90 backdrop-blur-xl border-t border-black/5 dark:border-white/10 px-6 py-3 pb-6 flex justify-between items-center z-50">
+<button class="flex flex-col items-center text-[#5e8a8d] gap-1">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center text-[#5e8a8d] gap-1">
+<span class="material-symbols-outlined">medication</span>
+<span class="text-[10px] font-bold">Meds</span>
+</button>
+<button class="flex flex-col items-center text-primary gap-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">notifications</span>
+<span class="text-[10px] font-bold">Alerts</span>
+</button>
+<button class="flex flex-col items-center text-[#5e8a8d] gap-1">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-bold">Support</span>
+</button>
+<button class="flex flex-col items-center text-[#5e8a8d] gap-1">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+</div>
+</body></html>
