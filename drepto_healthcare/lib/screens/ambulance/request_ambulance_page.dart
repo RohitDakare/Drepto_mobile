@@ -5,6 +5,8 @@ import '../../core/constants/app_text_styles.dart';
 import '../../widgets/buttons/app_buttons.dart';
 import 'ambulance_tracking_page.dart';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class RequestAmbulancePage extends StatefulWidget {
   const RequestAmbulancePage({super.key});
 
@@ -13,6 +15,9 @@ class RequestAmbulancePage extends StatefulWidget {
 }
 
 class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
+  late GoogleMapController _mapController;
+  final LatLng _initialPosition = const LatLng(37.7749, -122.4194); // Default to San Francisco
+
   int _selectedType = 0;
 
   final List<AmbulanceType> _types = [
@@ -86,21 +91,16 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
             flex: 2,
             child: Stack(
               children: [
-                Container(
+                SizedBox(
                   width: double.infinity,
-                  color: AppColors.gray100,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.map, size: 80, color: AppColors.gray300),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Map View',
-                        style: AppTextStyles.bodyMedium.copyWith(
-                          color: AppColors.textSecondary,
-                        ),
-                      ),
-                    ],
+                  child: GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: _initialPosition,
+                      zoom: 14.0,
+                    ),
+                    onMapCreated: (controller) => _mapController = controller,
+                    myLocationEnabled: true,
+                    zoomControlsEnabled: false,
                   ),
                 ),
                 // Call button
