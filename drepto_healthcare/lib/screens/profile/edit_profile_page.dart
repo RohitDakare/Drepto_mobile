@@ -46,14 +46,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Container(
                   width: 100,
                   height: 100,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://randomuser.me/api/portraits/men/32.jpg'),
-                      fit: BoxFit.cover,
-                    ),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                   ),
+                  child: const Icon(Icons.person,
+                      size: 50, color: AppColors.primary),
                 ),
                 Positioned(
                   bottom: 0,

@@ -21,10 +21,11 @@ class NurseProfilePage extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(
-                          'https://randomuser.me/api/portraits/women/68.jpg'),
+                      backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+                      child: const Icon(Icons.person,
+                          size: 50, color: AppColors.primary),
                     ),
                     const SizedBox(height: 16),
                     const Text('Sarah Williams', style: AppTextStyles.h3),

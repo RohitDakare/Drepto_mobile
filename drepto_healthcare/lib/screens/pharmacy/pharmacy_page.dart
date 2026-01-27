@@ -88,123 +88,143 @@ class _PharmacyPageState extends State<PharmacyPage> {
           children: [
             // Search bar
             AppSearchField(
-              hint: 'Search for medicines...',
+              hint: 'Search for medicines, health products...',
               onChanged: (value) {},
             ),
-            const SizedBox(height: 20),
-
-            // Quick actions
-            Row(
-              children: [
-                Expanded(
-                  child: _QuickActionCard(
-                    icon: Icons.message,
-                    label: 'Order via WhatsApp',
-                    onTap: () {},
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _QuickActionCard(
-                    icon: Icons.upload_file,
-                    label: 'Upload Prescription',
-                    onTap: () {},
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _QuickActionCard(
-                    icon: Icons.phone,
-                    label: 'Call to Order',
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
             const SizedBox(height: 24),
+
+            // Categories
+            const Text('Shop by Category', style: AppTextStyles.h4),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 100,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: const [
+                  _CategoryItem(
+                    icon: Icons.medication,
+                    label: 'Medicines',
+                    color: AppColors.primary,
+                  ),
+                  SizedBox(width: 16),
+                  _CategoryItem(
+                    icon: Icons.favorite,
+                    label: 'Cardiology',
+                    color: AppColors.error,
+                  ),
+                  SizedBox(width: 16),
+                  _CategoryItem(
+                    icon: Icons.healing,
+                    label: 'Pain Relief',
+                    color: AppColors.warning,
+                  ),
+                  SizedBox(width: 16),
+                  _CategoryItem(
+                    icon: Icons.spa,
+                    label: 'Wellness',
+                    color: AppColors.accent,
+                  ),
+                  SizedBox(width: 16),
+                   _CategoryItem(
+                    icon: Icons.child_care,
+                    label: 'Baby Care',
+                    color: Colors.purple,
+                  ),
+                   SizedBox(width: 16),
+                  _CategoryItem(
+                    icon: Icons.clean_hands,
+                    label: 'Personal Care',
+                    color: Colors.teal,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
 
             // Special Offers
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Special Offers', style: AppTextStyles.h4),
-                _ViewAllButton(),
+                // _ViewAllButton(), // Hide until there is data
+              ],
+            ),
+            const SizedBox(height: 16),
+            // Placeholder for dynamic offers
+            Container(
+              height: 140,
+              width: double.infinity,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: AppColors.surfaceLight,
+                borderRadius: AppSpacing.borderRadiusMd,
+                border: Border.all(color: AppColors.borderLight),
+              ),
+              child: Text(
+                'No active offers',
+                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+              ),
+            ),
+            const SizedBox(height: 32),
+
+            // Popular in Pain Relief
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Popular in Pain Relief', style: AppTextStyles.h4),
+                IconButton(icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
             ),
             const SizedBox(height: 12),
-            SizedBox(
-              height: 120,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: const [
-                  _OfferBanner(
-                    title: 'HEALTH ESSENTIALS',
-                    subtitle: 'Flat 25% OFF',
-                    description: 'On first medicine order',
-                    code: 'USE: FIRST25',
-                    gradient: [AppColors.primary, AppColors.primaryLight],
-                  ),
-                  SizedBox(width: 12),
-                  _OfferBanner(
-                    title: 'LAB TESTS',
-                    subtitle: 'Health Checkup',
-                    description: 'Starting @\$29',
-                    code: 'BOOK NOW',
-                    gradient: [AppColors.accent, AppColors.accentLight],
-                  ),
-                ],
+            // Placeholder for products
+             Container(
+              height: 100,
+              width: double.infinity,
+              alignment: Alignment.center,
+              child: Text(
+                'No products available',
+                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
               ),
             ),
             const SizedBox(height: 24),
 
-            // Best Sellers
-            Row(
+            // Vitamins & Supplements
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Best Sellers', style: AppTextStyles.h4),
-                IconButton(icon: const Icon(Icons.grid_view), onPressed: () {}),
+                const Text('Vitamins & Supplements', style: AppTextStyles.h4),
+                IconButton(icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
             ),
             const SizedBox(height: 12),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-              childAspectRatio: 0.65,
+             Container(
+              height: 100,
+              width: double.infinity,
+              alignment: Alignment.center,
+              child: Text(
+                'No products available',
+                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+              ),
+            ),
+             const SizedBox(height: 24),
+
+             // Antibiotics
+             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ProductCard(
-                  name: 'Amoxicillin 500mg',
-                  description: 'Generic Healthcare',
-                  price: 12.50,
-                  originalPrice: 16.00,
-                  discountPercent: 8,
-                  onAddPressed: _addToCart,
-                ),
-                ProductCard(
-                  name: 'Vitamin C 500mg',
-                  description: 'Nature\'s Best',
-                  price: 8.20,
-                  originalPrice: 10.50,
-                  discountPercent: 10,
-                  onAddPressed: _addToCart,
-                ),
-                ProductCard(
-                  name: 'Paracetamol 650mg',
-                  description: 'Dolo Plus',
-                  price: 4.50,
-                  originalPrice: 5.00,
-                  discountPercent: 5,
-                  onAddPressed: _addToCart,
-                ),
-                ProductCard(
-                  name: 'Beclomethasone',
-                  description: 'Inhaler 100mcg',
-                  price: 18.75,
-                  onAddPressed: _addToCart,
-                ),
+                const Text('Antibiotics', style: AppTextStyles.h4),
+                IconButton(icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
+            ),
+            const SizedBox(height: 12),
+             Container(
+              height: 100,
+              width: double.infinity,
+              alignment: Alignment.center,
+              child: Text(
+                'No products available',
+                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+              ),
             ),
           ],
         ),
@@ -213,49 +233,35 @@ class _PharmacyPageState extends State<PharmacyPage> {
   }
 }
 
-class _QuickActionCard extends StatelessWidget {
+class _CategoryItem extends StatelessWidget {
   final IconData icon;
   final String label;
-  final VoidCallback onTap;
+  final Color color;
 
-  const _QuickActionCard({
+  const _CategoryItem({
     required this.icon,
     required this.label,
-    required this.onTap,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          color: AppColors.surfaceLight,
-          borderRadius: AppSpacing.borderRadiusMd,
-          border: Border.all(color: AppColors.borderLight),
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, color: color, size: 28),
         ),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, color: AppColors.primary, size: 20),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              label,
-              style: AppTextStyles.caption.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
+        const SizedBox(height: 8),
+        Text(
+          label,
+          style: AppTextStyles.caption.copyWith(fontWeight: FontWeight.w600),
         ),
-      ),
+      ],
     );
   }
 }

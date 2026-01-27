@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../../widgets/buttons/app_buttons.dart';
 import '../onboarding/login_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -16,183 +17,224 @@ class ProfilePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
+              // Modern Header
               Container(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Profile', style: AppTextStyles.h2),
-                    IconButton(
-                      icon: const Icon(Icons.more_vert),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ),
-
-              // Profile card
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: AppColors.surfaceLight,
-                  borderRadius: AppSpacing.borderRadiusMd,
-                  border: Border.all(color: AppColors.borderLight),
-                ),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: AppColors.primary.withValues(alpha: 0.2),
-                              width: 3,
-                            ),
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                'https://randomuser.me/api/portraits/men/32.jpg',
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            width: 28,
-                            height: 28,
-                            decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white, width: 2),
-                            ),
-                            child: const Icon(
-                              Icons.check,
-                              color: Colors.white,
-                              size: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    const Text('Alex Johnson', style: AppTextStyles.h3),
-                    const SizedBox(height: 4),
+                    const Text('My Profile', style: AppTextStyles.h2),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
+                      decoration: const BoxDecoration(
+                        color: AppColors.surfaceLight,
+                        shape: BoxShape.circle,
                       ),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                        borderRadius: AppSpacing.borderRadiusFull,
-                      ),
-                      child: Text(
-                        'Premium Member',
-                        style: AppTextStyles.labelSmall.copyWith(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    TextButton(
-                      onPressed: () {
-                        context.pushNamed('edit_profile');
-                      },
-                      child: Text(
-                        'Edit Profile',
-                        style: AppTextStyles.labelMedium.copyWith(
-                          color: AppColors.primary,
-                        ),
+                      child: IconButton(
+                        icon: const Icon(Icons.settings_outlined),
+                        onPressed: () {},
+                        color: AppColors.textPrimary,
                       ),
                     ),
                   ],
                 ),
               ),
+
+              // Profile Card
+              ScaleButton(
+                onPressed: () {
+                   context.pushNamed('edit_profile');
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    gradient: AppColors.primaryGradient,
+                    borderRadius: AppSpacing.borderRadiusXl,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withValues(alpha: 0.3),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 72,
+                        height: 72,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                          image: const DecorationImage(
+                            image: NetworkImage('https://i.pravatar.cc/300'), // Replace with actual user image
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Alex Johnson',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              '+1 (555) 123-4567',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white.withValues(alpha: 0.8),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.2),
+                                borderRadius: AppSpacing.borderRadiusFull,
+                              ),
+                              child: const Text(
+                                'Patient',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 32),
               const SizedBox(height: 24),
 
-              // Health Profile
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              // Health Stats
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
                   children: [
-                    Text('Health Profile', style: AppTextStyles.h5),
-                    SizedBox(height: 12),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _HealthStatCard(
-                            label: 'BLOOD GROUP',
-                            value: 'O+',
-                          ),
-                        ),
-                        SizedBox(width: 12),
-                        Expanded(
-                          child: _HealthStatCard(
-                            label: 'WEIGHT',
-                            value: '72kg',
-                          ),
-                        ),
-                      ],
+                    Expanded(
+                      child: _HealthStatCard(
+                        label: 'Weight',
+                        value: '72',
+                        unit: 'kg',
+                        icon: Icons.monitor_weight_outlined,
+                        color: AppColors.primary,
+                      ),
                     ),
-                    SizedBox(height: 12),
-                    _HealthStatCard(label: 'HEIGHT', value: '175cm'),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: _HealthStatCard(
+                        label: 'Height',
+                        value: '175',
+                        unit: 'cm',
+                        icon: Icons.height,
+                        color: AppColors.accent,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: _HealthStatCard(
+                        label: 'Blood',
+                        value: 'O+',
+                        unit: '',
+                        icon: Icons.bloodtype_outlined,
+                        color: AppColors.error,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 32),
 
               // Settings
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Settings', style: AppTextStyles.h5),
-                    const SizedBox(height: 12),
-                    _SettingsItem(
-                      icon: Icons.person_outline,
-                      title: 'Personal Information',
-                      onTap: () {},
-                    ),
-                    _SettingsItem(
-                      icon: Icons.location_on_outlined,
-                      title: 'Saved Addresses',
-                      onTap: () {},
-                    ),
-                    _SettingsItem(
-                      icon: Icons.notifications_outlined,
-                      title: 'Notification Preferences',
-                      onTap: () {
-                        context.pushNamed('notifications');
-                      },
-                    ),
-                    _SettingsItem(
-                      icon: Icons.security,
-                      title: 'Security & Password',
-                      onTap: () {},
+                    const Text('Account', style: AppTextStyles.h4),
+                    const SizedBox(height: 16),
+                    _SettingsSection(
+                      children: [
+                        _SettingsItem(
+                          icon: Icons.person_outline,
+                          title: 'Personal Information',
+                          onTap: () {},
+                        ),
+                        _SettingsItem(
+                          icon: Icons.location_on_outlined,
+                          title: 'Saved Addresses',
+                          onTap: () {},
+                        ),
+                        _SettingsItem(
+                          icon: Icons.notifications_outlined,
+                          title: 'Notifications',
+                          onTap: () {
+                            context.pushNamed('notifications');
+                          },
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 24),
-                    _SettingsItem(
-                      icon: Icons.logout,
-                      title: 'Logout',
-                      iconColor: AppColors.error,
-                      titleColor: AppColors.error,
-                      onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (_) => const LoginPage()),
-                          (route) => false,
-                        );
-                      },
+                    
+                    const Text('Security', style: AppTextStyles.h4),
+                    const SizedBox(height: 16),
+                    _SettingsSection(
+                      children: [
+                        _SettingsItem(
+                          icon: Icons.lock_outline,
+                          title: 'Change Password',
+                          onTap: () {},
+                        ),
+                        _SettingsItem(
+                          icon: Icons.security,
+                          title: 'Privacy Settings',
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    
+                    _SettingsSection(
+                      children: [
+                        _SettingsItem(
+                          icon: Icons.logout,
+                          title: 'Log Out',
+                          iconColor: AppColors.error,
+                          titleColor: AppColors.error,
+                          showChevron: false,
+                          onTap: () {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => const LoginPage()),
+                              (route) => false,
+                            );
+                          },
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 32),
                   ],
@@ -209,8 +251,17 @@ class ProfilePage extends StatelessWidget {
 class _HealthStatCard extends StatelessWidget {
   final String label;
   final String value;
+  final String unit;
+  final IconData icon;
+  final Color color;
 
-  const _HealthStatCard({required this.label, required this.value});
+  const _HealthStatCard({
+    required this.label,
+    required this.value,
+    this.unit = '',
+    required this.icon,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -220,19 +271,77 @@ class _HealthStatCard extends StatelessWidget {
         color: AppColors.surfaceLight,
         borderRadius: AppSpacing.borderRadiusMd,
         border: Border.all(color: AppColors.borderLight),
+        boxShadow: [
+          BoxShadow(
+            color: color.withValues(alpha: 0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: AppTextStyles.overline.copyWith(
-              color: AppColors.textSecondary,
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.1),
+              borderRadius: AppSpacing.borderRadiusSm,
             ),
+            child: Icon(icon, size: 20, color: color),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                value,
+                style: AppTextStyles.h4.copyWith(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              if (unit.isNotEmpty) ...[
+                const SizedBox(width: 2),
+                Text(
+                  unit,
+                  style: AppTextStyles.caption.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ],
           ),
           const SizedBox(height: 4),
-          Text(value, style: AppTextStyles.h4),
+          Text(
+            label,
+            style: AppTextStyles.caption.copyWith(
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _SettingsSection extends StatelessWidget {
+  final List<Widget> children;
+
+  const _SettingsSection({required this.children});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.surfaceLight,
+        borderRadius: AppSpacing.borderRadiusMd,
+        border: Border.all(color: AppColors.borderLight),
+      ),
+      child: Column(
+        children: children,
       ),
     );
   }
@@ -244,6 +353,7 @@ class _SettingsItem extends StatelessWidget {
   final VoidCallback onTap;
   final Color? iconColor;
   final Color? titleColor;
+  final bool showChevron;
 
   const _SettingsItem({
     required this.icon,
@@ -251,36 +361,44 @@ class _SettingsItem extends StatelessWidget {
     required this.onTap,
     this.iconColor,
     this.titleColor,
+    this.showChevron = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
-        borderRadius: AppSpacing.borderRadiusMd,
-        border: Border.all(color: AppColors.borderLight),
-      ),
-      child: ListTile(
-        leading: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: (iconColor ?? AppColors.primary).withValues(alpha: 0.1),
-            borderRadius: AppSpacing.borderRadiusSm,
-          ),
-          child: Icon(icon, color: iconColor ?? AppColors.primary, size: 20),
-        ),
-        title: Text(
-          title,
-          style: AppTextStyles.labelMedium.copyWith(
-            color: titleColor ?? AppColors.textPrimary,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        trailing: const Icon(Icons.chevron_right, color: AppColors.gray400),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         onTap: onTap,
+        borderRadius: AppSpacing.borderRadiusMd,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: (iconColor ?? AppColors.primary).withValues(alpha: 0.1),
+                  borderRadius: AppSpacing.borderRadiusSm,
+                ),
+                child: Icon(icon, color: iconColor ?? AppColors.primary, size: 20),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  title,
+                  style: AppTextStyles.labelMedium.copyWith(
+                    color: titleColor ?? AppColors.textPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              if (showChevron)
+                const Icon(Icons.chevron_right, color: AppColors.gray400),
+            ],
+          ),
+        ),
       ),
     );
   }

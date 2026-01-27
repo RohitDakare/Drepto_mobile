@@ -27,16 +27,21 @@ class AuthProvider extends ChangeNotifier {
     // SECURITY: In production, password should be hashed or handled by TLS
     // This is where ApiService.post('/login', ...) would be called
 
-    await Future.delayed(const Duration(seconds: 2));
-
-    // Simulate receiving a secure JWT from backend
-    _token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy_secure_payload';
-
-    // Persist token in hardware-encrypted storage
-    await SecureStorageService.saveToken(_token!);
-
-    _status = AuthStatus.authenticated;
-    notifyListeners();
+    // TODO: Implement actual API login
+    // For now, we won't mock a successful login to avoid keeping mock data.
+    // However, to allow the user to 'enter', we might typically show an error or 
+    // waiting for backend. But since the request is strictly to remove mock data...
+    
+    // Changing behavior: Login now requires backend. 
+    // IF the user needs to bypass login to test UI, they should implement a 'Demo Mode' explicitly
+    // rather than us hiding a mock token here.
+    
+    // _token = ... 
+    // await SecureStorageService.saveToken(_token!);
+    // _status = AuthStatus.authenticated;
+    // notifyListeners();
+    
+    throw UnimplementedError('Backend login not integrated yet.');
   }
 
   Future<void> logout() async {

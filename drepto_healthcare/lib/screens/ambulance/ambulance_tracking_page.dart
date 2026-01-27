@@ -150,13 +150,9 @@ class AmbulanceTrackingPage extends StatelessWidget {
                                 color: Colors.white.withValues(alpha: 0.2),
                                 width: 2,
                               ),
-                              image: const DecorationImage(
-                                image: NetworkImage(
-                                  'https://randomuser.me/api/portraits/men/32.jpg',
-                                ),
-                                fit: BoxFit.cover,
-                              ),
+                              color: AppColors.primary.withValues(alpha: 0.1),
                             ),
+                            child: const Icon(Icons.person, color: Colors.white),
                           ),
                           const SizedBox(width: 16),
                           Expanded(

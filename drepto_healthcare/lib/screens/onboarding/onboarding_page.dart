@@ -19,22 +19,22 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   final List<OnboardingItem> _pages = [
     OnboardingItem(
-      title: 'Your Health, Our Priority',
+      title: 'Expert Care, Always Here',
       description:
-          'Experience 24/7 expert care and advanced biodevice monitoring at your fingertips.',
-      imagePath: 'assets/images/onboarding_1.png',
+          'Connect with top-rated doctors for instant consultations and personalized care plans, 24/7.',
+      imagePath: 'assets/images/onboarding_doctor.png',
     ),
     OnboardingItem(
-      title: 'Connect with Doctors',
+      title: 'Smart Health Monitoring',
       description:
-          'Consult with specialists anytime, anywhere through secure video calls and chat.',
-      imagePath: 'assets/images/onboarding_2.png',
+          'Track your vitals with advanced biodevices and get real-time health insights tailored for you.',
+      imagePath: 'assets/images/onboarding_monitor.png',
     ),
     OnboardingItem(
-      title: 'Track Your Health',
+      title: 'Medicine Delivered Fast',
       description:
-          'Monitor vitals, manage prescriptions, and keep all your health records in one place.',
-      imagePath: 'assets/images/onboarding_3.png',
+          'Order medicines effortlessly and get them delivered to your doorstep with incredible speed.',
+      imagePath: 'assets/images/onboarding_delivery.png',
     ),
   ];
 
@@ -165,36 +165,22 @@ class _OnboardingContent extends StatelessWidget {
             height: 280,
             margin: const EdgeInsets.only(bottom: 40),
             decoration: BoxDecoration(
-              color: AppColors.backgroundDark,
+              color: Colors.transparent, // Changed to transparent for image
               borderRadius: AppSpacing.borderRadiusLg,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.15),
-                  blurRadius: 30,
-                  offset: const Offset(0, 10),
-                ),
-              ],
+              // Shadow removed/optional depending on design
             ),
             child: ClipRRect(
-              borderRadius: AppSpacing.borderRadiusLg,
-              child: Image.asset(
-                item.imagePath,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.favorite, color: AppColors.primary, size: 80),
-                      SizedBox(height: 16),
-                      Icon(
-                        Icons.monitor_heart,
-                        color: AppColors.accent,
-                        size: 40,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+               borderRadius: AppSpacing.borderRadiusLg,
+               child: Image.asset(
+                 item.imagePath,
+                 fit: BoxFit.contain, // or cover depending on the image aspect ratio
+                 errorBuilder: (context, error, stackTrace) {
+                   return Container(
+                     color: AppColors.gray100,
+                     child: const Icon(Icons.image_not_supported, size: 50, color: AppColors.gray400),
+                   );
+                 },
+               ),
             ),
           ),
 
@@ -224,7 +210,7 @@ class _OnboardingContent extends StatelessWidget {
 class OnboardingItem {
   final String title;
   final String description;
-  final String imagePath;
+  final String imagePath; // Changed from IconData to String
 
   OnboardingItem({
     required this.title,

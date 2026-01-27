@@ -71,11 +71,10 @@ class _MessageItem extends StatelessWidget {
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       leading: Stack(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 24,
-            backgroundColor: AppColors.gray200,
-            backgroundImage: NetworkImage(
-                'https://randomuser.me/api/portraits/thumb/men/42.jpg'),
+            backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+            child: const Icon(Icons.person, color: AppColors.primary),
           ),
           if (isOnline)
             Positioned(

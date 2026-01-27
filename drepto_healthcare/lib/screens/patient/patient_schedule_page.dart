@@ -11,36 +11,10 @@ class PatientSchedulePage extends StatefulWidget {
 }
 
 class _PatientSchedulePageState extends State<PatientSchedulePage> {
-  // Mock data for appointments
-  final List<Appointment> _appointments = [
-    Appointment(
-      doctorName: 'Dr. Sarah Smith',
-      specialty: 'Cardiologist',
-      date: 'Today, Oct 24',
-      time: '10:30 AM',
-      type: 'Video Consultation',
-      status: AppointmentStatus.upcoming,
-      imageUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
-    ),
-    Appointment(
-      doctorName: 'Dr. Michael Chen',
-      specialty: 'Dermatologist',
-      date: 'Oct 26, 2023',
-      time: '02:15 PM',
-      type: 'Clinic Visit',
-      status: AppointmentStatus.upcoming,
-      imageUrl: 'https://randomuser.me/api/portraits/men/32.jpg',
-    ),
-    Appointment(
-      doctorName: 'Dr. Emily Wilson',
-      specialty: 'General Physician',
-      date: 'Oct 10, 2023',
-      time: '09:00 AM',
-      type: 'Video Consultation',
-      status: AppointmentStatus.completed,
-      imageUrl: 'https://randomuser.me/api/portraits/women/68.jpg',
-    ),
-  ];
+  // TODO: Integrate with backend to fetch real appointments
+  final List<Appointment> _appointments = []; 
+  int _selectedTab = 0;
+  final List<String> _tabs = ['Upcoming', 'Completed', 'Canceled'];
 
   @override
   Widget build(BuildContext context) {
@@ -64,23 +38,50 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
                 ],
               ),
             ),
-            // Tabs (Simplified for now)
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  _StatusTab(label: 'Upcoming', isActive: true),
-                  SizedBox(width: 12),
-                  _StatusTab(label: 'Completed', isActive: false),
-                  SizedBox(width: 12),
-                  _StatusTab(label: 'Canceled', isActive: false),
-                ],
+            // Tabs
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(_tabs.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: GestureDetector(
+                        onTap: () => setState(() => _selectedTab = index),
+                        child: _StatusTab(
+                          label: _tabs[index], 
+                          isActive: _selectedTab == index
+                        ),
+                      ),
+                    );
+                  }),
+                ),
               ),
             ),
             const SizedBox(height: 16),
 
             Expanded(
-              child: ListView.builder(
+              child: _appointments.isEmpty 
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.event_busy, size: 64, color: AppColors.gray400),
+                      const SizedBox(height: 16),
+                      Text(
+                        'No appointments yet',
+                        style: AppTextStyles.h5.copyWith(color: AppColors.gray500),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Your upcoming appointments will appear here',
+                        style: AppTextStyles.bodyMedium.copyWith(color: AppColors.gray400),
+                      ),
+                    ],
+                  ),
+                )
+              : ListView.builder(
                 padding: const EdgeInsets.all(16),
                 itemCount: _appointments.length,
                 itemBuilder: (context, index) {
@@ -160,11 +161,19 @@ class _AppointmentCard extends StatelessWidget {
                 height: 60,
                 decoration: BoxDecoration(
                   borderRadius: AppSpacing.borderRadiusSm,
-                  image: DecorationImage(
-                    image: NetworkImage(appointment.imageUrl),
-                    fit: BoxFit.cover,
-                  ),
+                  // Use placeholder if image is failing or empty
+                  color: AppColors.gray100, 
+                  image: appointment.imageUrl.isNotEmpty 
+                    ? DecorationImage(
+                        image: NetworkImage(appointment.imageUrl),
+                        fit: BoxFit.cover,
+                        onError: (_, __) {}, 
+                      )
+                    : null,
                 ),
+                child: appointment.imageUrl.isEmpty 
+                  ? const Icon(Icons.person, color: AppColors.gray400) 
+                  : null, 
               ),
               const SizedBox(width: 16),
               Expanded(

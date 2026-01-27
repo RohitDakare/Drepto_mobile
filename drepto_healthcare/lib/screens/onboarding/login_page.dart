@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/buttons/app_buttons.dart';
 import '../../widgets/inputs/app_inputs.dart';
 
@@ -32,22 +33,8 @@ class _LoginPageState extends State<LoginPage> {
 
       if (mounted) {
         setState(() => _isLoading = false);
-
-        // Navigate based on role
-        switch (_selectedRole) {
-          case UserRole.doctor:
-            context.goNamed('doctor_dashboard');
-            break;
-          case UserRole.nurse:
-            context.goNamed('nurse_dashboard');
-            break;
-          case UserRole.patient:
-            context.goNamed('dashboard');
-            break;
-          case UserRole.pharmacy:
-            context.goNamed('dashboard'); // Placeholder for pharmacy
-            break;
-        }
+        // Navigate to patient dashboard by default
+        context.goNamed('dashboard');
       }
     }
   }
@@ -72,41 +59,28 @@ class _LoginPageState extends State<LoginPage> {
               key: _formKey,
               child: Column(
                 children: [
-                  const SizedBox(height: 48),
+                  SizedBox(height: 48.h),
 
                   // Logo
-                  Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withValues(alpha: 0.1),
-                      shape: BoxShape.circle,
+                    Container(
+                      height: 80.h,
+                      alignment: Alignment.center,
+                      child: Hero(
+                        tag: 'app_logo',
+                        child: Image.asset(
+                          'assets/images/logo_full.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.biotech,
-                      color: AppColors.primary,
-                      size: 40,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
 
-                  // Title
-                  Text(
-                    'Drepto Biodevices',
-                    style: AppTextStyles.h2.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Healthcare secure access portal',
-                    style: AppTextStyles.bodyMedium.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
-                  const SizedBox(height: 40),
+                  // Title and subtitle removed
+                  SizedBox(height: 8.h),
+                  SizedBox(height: 40.h),
 
-                  // Role Selector
+                  // Role Selector removed
+                  /*
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -114,129 +88,26 @@ class _LoginPageState extends State<LoginPage> {
                         'I am a...',
                         style: AppTextStyles.labelMedium.copyWith(
                           fontWeight: FontWeight.w500,
+                          fontSize: 14.sp,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Container(
                         decoration: BoxDecoration(
                           color: AppColors.surfaceLight,
-                          borderRadius: AppSpacing.borderRadiusMd,
+                          borderRadius: BorderRadius.circular(8.r),
                           border: Border.all(color: AppColors.borderLight),
                         ),
                         child: DropdownButtonFormField<UserRole>(
                           initialValue: _selectedRole,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 8,
-                            ),
-                          ),
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: AppColors.gray400,
-                          ),
-                          items: [
-                            DropdownMenuItem(
-                              value: UserRole.patient,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(6),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.primary
-                                          .withValues(alpha: 0.1),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: const Icon(
-                                      Icons.person,
-                                      color: AppColors.primary,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  const Text('Patient'),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: UserRole.doctor,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(6),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.accent
-                                          .withValues(alpha: 0.1),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: const Icon(
-                                      Icons.medical_services,
-                                      color: AppColors.accent,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  const Text('Doctor'),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: UserRole.nurse,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(6),
-                                    decoration: BoxDecoration(
-                                      color:
-                                          AppColors.info.withValues(alpha: 0.1),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: const Icon(
-                                      Icons.health_and_safety,
-                                      color: AppColors.info,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  const Text('Nurse'),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: UserRole.pharmacy,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(6),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.warning
-                                          .withValues(alpha: 0.1),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: const Icon(
-                                      Icons.local_pharmacy,
-                                      color: AppColors.warning,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  const Text('Pharmacy'),
-                                ],
-                              ),
-                            ),
-                          ],
-                          onChanged: (value) {
-                            if (value != null) {
-                              setState(() => _selectedRole = value);
-                            }
-                          },
+                          // ... items ...
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
-
+                  SizedBox(height: 20.h),
+                  */
+                  SizedBox(height: 20.h),
                   // Email field
                   AppTextField(
                     label: 'Email or Phone Number',
@@ -251,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
 
                   // Password field
                   AppTextField(
@@ -267,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.h),
 
                   // Forgot password
                   Align(
@@ -280,11 +151,12 @@ class _LoginPageState extends State<LoginPage> {
                         'Forgot Password?',
                         style: AppTextStyles.labelMedium.copyWith(
                           color: AppColors.primary,
+                          fontSize: 14.sp,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
 
                   // Login button
                   PrimaryButton(
@@ -292,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: _handleLogin,
                     isLoading: _isLoading,
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
 
                   // Sign up link
                   Row(

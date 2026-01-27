@@ -3,21 +3,21 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 
-class ConsultationPage extends StatefulWidget {
+class VideoCallPage extends StatefulWidget {
   final String doctorName;
   final String specialty;
 
-  const ConsultationPage({
+  const VideoCallPage({
     super.key,
     required this.doctorName,
     required this.specialty,
   });
 
   @override
-  State<ConsultationPage> createState() => _ConsultationPageState();
+  State<VideoCallPage> createState() => _VideoCallPageState();
 }
 
-class _ConsultationPageState extends State<ConsultationPage> {
+class _VideoCallPageState extends State<VideoCallPage> {
   bool _isMicMuted = false;
   bool _isVideoOff = false;
 
@@ -32,13 +32,9 @@ class _ConsultationPageState extends State<ConsultationPage> {
             Container(
               width: double.infinity,
               height: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://randomuser.me/api/portraits/women/44.jpg',
-                  ),
-                  fit: BoxFit.cover,
-                ),
+              color: Colors.grey[900],
+              child: const Center(
+                child: Icon(Icons.person, size: 120, color: Colors.white24),
               ),
             ),
 
@@ -93,15 +89,12 @@ class _ConsultationPageState extends State<ConsultationPage> {
                 width: 100,
                 height: 150,
                 decoration: BoxDecoration(
-                  color: Colors.grey[900],
+                  color: Colors.grey[800],
                   borderRadius: AppSpacing.borderRadiusMd,
                   border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                      'https://randomuser.me/api/portraits/men/32.jpg',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+                ),
+                child: const Center(
+                  child: Icon(Icons.person, color: Colors.white54),
                 ),
               ),
             ),

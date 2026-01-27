@@ -16,37 +16,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
   int _selectedAddress = 0;
   int _selectedPayment = 0;
 
-  final List<Address> _addresses = [
-    Address(
-      label: 'Home',
-      name: 'John Doe',
-      phone: '+1 234 567 890',
-      address: '123 Medical Lane, Health City, HC 56789',
-    ),
-    Address(
-      label: 'Office',
-      name: 'John Doe',
-      phone: '+1 987 654 321',
-      address: '456 Wellness Blvd, Pharma Park, PP 12345',
-    ),
-  ];
+  // TODO: Fetch from profile service
+  final List<Address> _addresses = [];
 
+  // TODO: Determine supported methods
   final List<PaymentMethod> _paymentMethods = [
-    PaymentMethod(
-      icon: Icons.account_balance_wallet,
-      title: 'UPI (GPay / PhonePe / BHIM)',
-      subtitle: 'Pay directly from your bank account',
-    ),
-    PaymentMethod(
-      icon: Icons.credit_card,
-      title: 'Credit / Debit Card',
-      subtitle: 'Visa, Mastercard, RuPay & more',
-    ),
-    PaymentMethod(
-      icon: Icons.money,
-      title: 'Cash on Delivery',
-      subtitle: 'Pay at your doorstep',
-    ),
+    // Temporarily keeping hardcoded structural options as they are UI choices rather than 'user data' per se,
+    // but the request said remove mock data. 
+    // Usually Payment Methods are static config, but Addresses are definitely user data.
   ];
 
   void _placeOrder() {

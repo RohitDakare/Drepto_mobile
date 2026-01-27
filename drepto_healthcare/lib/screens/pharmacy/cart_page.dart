@@ -13,20 +13,8 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final List<CartItem> _items = [
-    CartItem(
-      name: 'Paracetamol 500mg',
-      description: '10 Capsules • Pain Relief',
-      price: 5.99,
-      quantity: 1,
-    ),
-    CartItem(
-      name: 'Digital Thermometer',
-      description: 'High precision • Infrared',
-      price: 12.50,
-      quantity: 1,
-    ),
-  ];
+  // TODO: Fetch real cart items from backend
+  final List<CartItem> _items = [];
 
   double get _subtotal =>
       _items.fold(0, (sum, item) => sum + (item.price * item.quantity));
@@ -66,136 +54,193 @@ class _CartPageState extends State<CartPage> {
       body: Column(
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Cart Items
-                  ..._items.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    final item = entry.value;
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: _CartItemCard(
-                        item: item,
-                        onIncrement: () => _updateQuantity(index, 1),
-                        onDecrement: () => _updateQuantity(index, -1),
-                      ),
-                    );
-                  }).toList(),
-
-                  const SizedBox(height: 16),
-
-                  // Coupon Section
-                  Text(
-                    'Have a coupon?',
-                    style: AppTextStyles.labelMedium.copyWith(
-                      fontWeight: FontWeight.w500,
+            child: _items.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.shopping_cart_outlined,
+                          size: 64,
+                          color: AppColors.gray400,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Your cart is empty',
+                          style: AppTextStyles.h5
+                              .copyWith(color: AppColors.gray500),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Add items to start shopping',
+                          style: AppTextStyles.bodyMedium
+                              .copyWith(color: AppColors.gray400),
+                        ),
+                        const SizedBox(height: 24),
+                        PrimaryButton(
+                          text: 'Browse Store',
+                          onPressed: () => Navigator.pop(context), 
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 48,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          decoration: BoxDecoration(
-                            color: AppColors.surfaceLight,
-                            borderRadius: AppSpacing.borderRadiusMd,
-                            border: Border.all(color: AppColors.borderLight),
+                  )
+                : SingleChildScrollView(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Cart Items
+                        ..._items.asMap().entries.map((entry) {
+                          final index = entry.key;
+                          final item = entry.value;
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: _CartItemCard(
+                              item: item,
+                              onIncrement: () => _updateQuantity(index, 1),
+                              onDecrement: () => _updateQuantity(index, -1),
+                            ),
+                          );
+                        }).toList(),
+
+                        const SizedBox(height: 16),
+
+                        // Coupon Section
+                        Text(
+                          'Have a coupon?',
+                          style: AppTextStyles.labelMedium.copyWith(
+                            fontWeight: FontWeight.w500,
                           ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.confirmation_number_outlined,
-                                color: AppColors.gray400,
-                                size: 20,
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 48,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                decoration: BoxDecoration(
+                                  color: AppColors.surfaceLight,
+                                  borderRadius: AppSpacing.borderRadiusMd,
+                                  border:
+                                      Border.all(color: AppColors.borderLight),
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.confirmation_number_outlined,
+                                      color: AppColors.gray400,
+                                      size: 20,
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                          hintText: 'Enter promo code',
+                                          hintStyle: AppTextStyles.bodyMedium
+                                              .copyWith(
+                                                  color: AppColors.textMuted),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter promo code',
-                                    hintStyle: AppTextStyles.bodyMedium
-                                        .copyWith(color: AppColors.textMuted),
-                                    border: InputBorder.none,
+                            ),
+                            const SizedBox(width: 12),
+                            Container(
+                              height: 48,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.primary),
+                                borderRadius: AppSpacing.borderRadiusMd,
+                              ),
+                              child: TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'Apply',
+                                  style: AppTextStyles.buttonMedium.copyWith(
+                                    color: AppColors.primary,
                                   ),
                                 ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        // Price Details
+                        Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: const BoxDecoration(
+                            color: AppColors.gray50,
+                            borderRadius: AppSpacing.borderRadiusMd,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Price Details',
+                                style: AppTextStyles.labelLarge.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              _PriceRow(
+                                label: 'Subtotal',
+                                value: '\$${_subtotal.toStringAsFixed(2)}',
+                              ),
+                              const SizedBox(height: 8),
+                              const _PriceRow(
+                                label: 'Delivery Fee',
+                                value: 'Free',
+                                valueColor: AppColors.accent,
+                              ),
+                              const SizedBox(height: 8),
+                              _PriceRow(
+                                label: 'Taxes & Charges',
+                                value: '\$${_taxes.toStringAsFixed(2)}',
+                              ),
+                              const Divider(height: 24),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Total Amount',
+                                    style: AppTextStyles.labelLarge.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  Text(
+                                    '\$${_total.toStringAsFixed(2)}',
+                                    style: AppTextStyles.h4.copyWith(
+                                      color: AppColors.primary,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      Container(
-                        height: 48,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.primary),
-                          borderRadius: AppSpacing.borderRadiusMd,
-                        ),
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Apply',
-                            style: AppTextStyles.buttonMedium.copyWith(
-                              color: AppColors.primary,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
 
-                  const SizedBox(height: 24),
-
-                  // Price Details
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: const BoxDecoration(
-                      color: AppColors.gray50,
-                      borderRadius: AppSpacing.borderRadiusMd,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Price Details',
-                          style: AppTextStyles.labelLarge.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
                         const SizedBox(height: 16),
-                        _PriceRow(
-                          label: 'Subtotal',
-                          value: '\$${_subtotal.toStringAsFixed(2)}',
-                        ),
-                        const SizedBox(height: 8),
-                        const _PriceRow(
-                          label: 'Delivery Fee',
-                          value: 'Free',
-                          valueColor: AppColors.accent,
-                        ),
-                        const SizedBox(height: 8),
-                        _PriceRow(
-                          label: 'Taxes & Charges',
-                          value: '\$${_taxes.toStringAsFixed(2)}',
-                        ),
-                        const Divider(height: 24),
+
+                        // Security badge
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              'Total Amount',
-                              style: AppTextStyles.labelLarge.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
+                            const Icon(
+                              Icons.verified_user_outlined,
+                              color: AppColors.gray400,
+                              size: 14,
                             ),
+                            const SizedBox(width: 6),
                             Text(
-                              '\$${_total.toStringAsFixed(2)}',
-                              style: AppTextStyles.h4.copyWith(
-                                color: AppColors.primary,
+                              'SECURE CHECKOUT GUARANTEED',
+                              style: AppTextStyles.overline.copyWith(
+                                color: AppColors.gray400,
                               ),
                             ),
                           ],
@@ -203,30 +248,6 @@ class _CartPageState extends State<CartPage> {
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 16),
-
-                  // Security badge
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.verified_user_outlined,
-                        color: AppColors.gray400,
-                        size: 14,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        'SECURE CHECKOUT GUARANTEED',
-                        style: AppTextStyles.overline.copyWith(
-                          color: AppColors.gray400,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
           ),
 
           // Checkout Button

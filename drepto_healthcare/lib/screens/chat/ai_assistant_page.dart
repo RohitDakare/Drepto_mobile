@@ -336,15 +336,11 @@ class _ChatBubble extends StatelessWidget {
             Container(
               width: 32,
               height: 32,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://randomuser.me/api/portraits/men/32.jpg',
-                  ),
-                  fit: BoxFit.cover,
-                ),
+                color: AppColors.primary.withValues(alpha: 0.1),
               ),
+              child: const Icon(Icons.person, size: 20, color: AppColors.primary),
             ),
           ],
         ],

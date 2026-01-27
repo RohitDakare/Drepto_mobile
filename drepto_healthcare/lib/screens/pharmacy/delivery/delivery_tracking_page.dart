@@ -272,9 +272,9 @@ class _DriverInfoCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const CircleAvatar(
-            backgroundImage:
-                NetworkImage('https://randomuser.me/api/portraits/men/11.jpg'),
+          CircleAvatar(
+            backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+            child: const Icon(Icons.person, color: AppColors.primary),
           ),
           const SizedBox(width: 12),
           const Expanded(

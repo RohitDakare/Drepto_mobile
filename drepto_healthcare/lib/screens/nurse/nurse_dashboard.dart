@@ -66,17 +66,13 @@ class _NurseHomePage extends StatelessWidget {
                     height: 44,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
+                      color: AppColors.primary.withValues(alpha: 0.1),
                       border: Border.all(
                         color: AppColors.primary.withValues(alpha: 0.2),
                         width: 2,
                       ),
-                      image: const DecorationImage(
-                        image: NetworkImage(
-                          'https://randomuser.me/api/portraits/women/68.jpg',
-                        ),
-                        fit: BoxFit.cover,
-                      ),
                     ),
+                    child: const Icon(Icons.person, color: AppColors.primary),
                   ),
                   const SizedBox(width: 12),
                   const Expanded(
@@ -215,7 +211,7 @@ class _NurseHomePage extends StatelessWidget {
                   taskType: 'Post-op Care',
                   time: '09:00 AM - 10:30 AM',
                   address: '123 Medical Drive, Health City',
-                  imageUrl: 'https://randomuser.me/api/portraits/women/33.jpg',
+                  // imageUrl: 'https://randomuser.me/api/portraits/women/33.jpg',
                   urgency: 'IN 15 MINS',
                   urgencyColor: AppColors.warning,
                 ),
@@ -225,7 +221,7 @@ class _NurseHomePage extends StatelessWidget {
                   taskType: 'IV Antibiotics',
                   time: '11:00 AM - 12:00 PM',
                   address: '456 Wellness Way, East Side',
-                  imageUrl: 'https://randomuser.me/api/portraits/men/42.jpg',
+                  // imageUrl: 'https://randomuser.me/api/portraits/men/42.jpg',
                 ),
                 const SizedBox(height: 12),
                 const _TaskCard(
@@ -233,7 +229,7 @@ class _NurseHomePage extends StatelessWidget {
                   taskType: 'Vitals Checkup',
                   time: '08:00 AM',
                   address: 'Completed at 08:42 AM',
-                  imageUrl: 'https://randomuser.me/api/portraits/women/56.jpg',
+                  // imageUrl: 'https://randomuser.me/api/portraits/women/56.jpg',
                   isCompleted: true,
                 ),
               ]),
@@ -250,7 +246,7 @@ class _TaskCard extends StatelessWidget {
   final String taskType;
   final String time;
   final String address;
-  final String imageUrl;
+  // final String imageUrl;
   final String? urgency;
   final Color? urgencyColor;
   final bool isCompleted;
@@ -260,7 +256,7 @@ class _TaskCard extends StatelessWidget {
     required this.taskType,
     required this.time,
     required this.address,
-    required this.imageUrl,
+    // required this.imageUrl,
     this.urgency,
     this.urgencyColor,
     this.isCompleted = false,
@@ -354,12 +350,10 @@ class _TaskCard extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(imageUrl),
-                    fit: BoxFit.cover,
-                  ),
                 ),
+                child: const Icon(Icons.person, size: 20, color: AppColors.primary),
               ),
               const SizedBox(width: 12),
               Expanded(

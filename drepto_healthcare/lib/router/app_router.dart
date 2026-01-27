@@ -10,7 +10,8 @@ import '../screens/lab/lab_tests_page.dart';
 import '../screens/ambulance/request_ambulance_page.dart';
 import '../screens/health_records/health_records_page.dart';
 import '../screens/chat/ai_assistant_page.dart';
-import '../screens/consultation/consultation_page.dart';
+import '../screens/consultation/video_call_page.dart';
+import '../screens/doctor/doctor_details_page.dart';
 import '../screens/notifications/notifications_page.dart';
 import '../screens/onboarding/forgot_password_page.dart';
 import '../screens/profile/edit_profile_page.dart';
@@ -81,9 +82,19 @@ class AppRouter {
         path: '/consultation',
         name: 'consultation',
         builder: (context, state) {
-          // You can pass query parameters if needed, or default values for now
+           final extra = state.extra as Map<String, dynamic>? ?? {};
+          return DoctorDetailsPage(
+            doctorName: extra['doctorName'] ?? 'Dr. Sarah Smith',
+            specialty: extra['specialty'] ?? 'Cardiologist',
+          );
+        },
+      ),
+      GoRoute(
+        path: '/video-call',
+        name: 'video_call',
+        builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>? ?? {};
-          return ConsultationPage(
+          return VideoCallPage(
             doctorName: extra['doctorName'] ?? 'Dr. Sarah Smith',
             specialty: extra['specialty'] ?? 'Cardiologist',
           );

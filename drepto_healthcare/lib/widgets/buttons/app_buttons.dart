@@ -26,64 +26,60 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: isFullWidth ? double.infinity : null,
-      height: height ?? AppSpacing.buttonHeightLg,
-      decoration: BoxDecoration(
-        gradient: onPressed != null ? AppColors.primaryGradient : null,
-        color: onPressed == null ? AppColors.gray300 : null,
-        borderRadius: AppSpacing.borderRadiusXl,
-        boxShadow: onPressed != null
-            ? [
-                BoxShadow(
-                  color: AppColors.primary.withValues(alpha: 0.3),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ]
-            : null,
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: isLoading ? null : onPressed,
+    return ScaleButton(
+      onPressed: isLoading ? null : onPressed,
+      child: Container(
+        width: isFullWidth ? double.infinity : null,
+        height: height ?? AppSpacing.buttonHeightLg,
+        decoration: BoxDecoration(
+          gradient: onPressed != null ? AppColors.primaryGradient : null,
+          color: onPressed == null ? AppColors.gray300 : null,
           borderRadius: AppSpacing.borderRadiusXl,
-          child: Padding(
-            padding: padding ?? const EdgeInsets.symmetric(horizontal: 24),
-            child: Center(
-              child: isLoading
-                  ? const SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.5,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          AppColors.textLight,
-                        ),
+          boxShadow: onPressed != null
+              ? [
+                  BoxShadow(
+                    color: AppColors.primary.withValues(alpha: 0.3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : null,
+        ),
+        child: Padding(
+          padding: padding ?? const EdgeInsets.symmetric(horizontal: 24),
+          child: Center(
+            child: isLoading
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.5,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        AppColors.textLight,
                       ),
-                    )
-                  : Row(
-                      mainAxisSize: isFullWidth
-                          ? MainAxisSize.max
-                          : MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (icon != null) ...[
-                          Icon(icon, color: AppColors.textLight, size: 20),
-                          const SizedBox(width: 8),
-                        ],
-                        Text(text, style: AppTextStyles.buttonLarge),
-                        if (icon == null) ...[
-                          const SizedBox(width: 8),
-                          const Icon(
-                            Icons.arrow_forward,
-                            color: AppColors.textLight,
-                            size: 20,
-                          ),
-                        ],
-                      ],
                     ),
-            ),
+                  )
+                : Row(
+                    mainAxisSize: isFullWidth
+                        ? MainAxisSize.max
+                        : MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (icon != null) ...[
+                        Icon(icon, color: AppColors.textLight, size: 20),
+                        const SizedBox(width: 8),
+                      ],
+                      Text(text, style: AppTextStyles.buttonLarge),
+                      if (icon == null) ...[
+                        const SizedBox(width: 8),
+                        const Icon(
+                          Icons.arrow_forward,
+                          color: AppColors.textLight,
+                          size: 20,
+                        ),
+                      ],
+                    ],
+                  ),
           ),
         ),
       ),
@@ -110,48 +106,44 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: isFullWidth ? double.infinity : null,
-      height: height ?? AppSpacing.buttonHeightLg,
-      decoration: BoxDecoration(
-        borderRadius: AppSpacing.borderRadiusXl,
-        border: Border.all(
-          color: onPressed != null ? AppColors.primary : AppColors.gray300,
-          width: 1.5,
-        ),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onPressed,
+    return ScaleButton(
+      onPressed: onPressed,
+      child: Container(
+        width: isFullWidth ? double.infinity : null,
+        height: height ?? AppSpacing.buttonHeightLg,
+        decoration: BoxDecoration(
           borderRadius: AppSpacing.borderRadiusXl,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Center(
-              child: Row(
-                mainAxisSize: isFullWidth ? MainAxisSize.max : MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (icon != null) ...[
-                    Icon(
-                      icon,
-                      color: onPressed != null
-                          ? AppColors.primary
-                          : AppColors.gray400,
-                      size: 20,
-                    ),
-                    const SizedBox(width: 8),
-                  ],
-                  Text(
-                    text,
-                    style: AppTextStyles.buttonLarge.copyWith(
-                      color: onPressed != null
-                          ? AppColors.primary
-                          : AppColors.gray400,
-                    ),
+          border: Border.all(
+            color: onPressed != null ? AppColors.primary : AppColors.gray300,
+            width: 1.5,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Center(
+            child: Row(
+              mainAxisSize: isFullWidth ? MainAxisSize.max : MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (icon != null) ...[
+                  Icon(
+                    icon,
+                    color: onPressed != null
+                        ? AppColors.primary
+                        : AppColors.gray400,
+                    size: 20,
                   ),
+                  const SizedBox(width: 8),
                 ],
-              ),
+                Text(
+                  text,
+                  style: AppTextStyles.buttonLarge.copyWith(
+                    color: onPressed != null
+                        ? AppColors.primary
+                        : AppColors.gray400,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -254,6 +246,65 @@ class IconButtonWithBg extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Scale animation button wrapper
+class ScaleButton extends StatefulWidget {
+  final Widget child;
+  final VoidCallback? onPressed;
+
+  const ScaleButton({
+    super.key,
+    required this.child,
+    this.onPressed,
+  });
+
+  @override
+  State<ScaleButton> createState() => _ScaleButtonState();
+}
+
+class _ScaleButtonState extends State<ScaleButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    );
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: widget.onPressed != null
+          ? (_) => _controller.forward()
+          : null,
+      onTapUp: widget.onPressed != null
+          ? (_) => _controller.reverse()
+          : null,
+      onTapCancel: widget.onPressed != null
+          ? () => _controller.reverse()
+          : null,
+      onTap: widget.onPressed,
+      child: ScaleTransition(
+        scale: _scaleAnimation,
+        child: widget.child,
       ),
     );
   }

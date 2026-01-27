@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../../widgets/loading/loading_indicators.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/cards/app_cards.dart';
 import '../../widgets/inputs/app_inputs.dart';
 import 'patient_schedule_page.dart';
@@ -70,20 +72,16 @@ class _PatientHomePage extends StatelessWidget {
                         color: AppColors.primary.withValues(alpha: 0.2),
                         width: 2,
                       ),
-                      image: const DecorationImage(
-                        image: NetworkImage(
-                          'https://randomuser.me/api/portraits/men/32.jpg',
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                     ),
+                    child: const Icon(Icons.person, color: AppColors.primary),
                   ),
                   const SizedBox(width: 12),
                   const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Hello, Alex', style: AppTextStyles.h4),
+                        Text('Hello, User', style: AppTextStyles.h4),
                         Text(
                           'How are you feeling today?',
                           style: AppTextStyles.caption,
@@ -135,7 +133,7 @@ class _PatientHomePage extends StatelessWidget {
                   const Text('Our Services', style: AppTextStyles.h4),
                   const SizedBox(height: 12),
                   GridView.count(
-                    crossAxisCount: 2,
+                    crossAxisCount: (MediaQuery.of(context).size.width / 180).floor().clamp(2, 4),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     mainAxisSpacing: 12,
@@ -150,13 +148,7 @@ class _PatientHomePage extends StatelessWidget {
                             AppColors.primary.withValues(alpha: 0.1),
                         iconColor: AppColors.primary,
                         onTap: () {
-                          context.pushNamed(
-                            'consultation',
-                            extra: {
-                              'doctorName': 'Dr. Sarah Smith',
-                              'specialty': 'General Physician',
-                            },
-                          );
+                          context.pushNamed('consultation');
                         },
                       ),
                       ServiceCard(
@@ -240,16 +232,23 @@ class _PatientHomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  AppointmentCard(
-                    doctorName: 'Dr. Sarah Smith',
-                    specialty: 'Cardiologist',
-                    location: 'City Hospital',
-                    date: 'Oct 12, 2023',
-                    time: '10:30 AM',
-                    imageUrl:
-                        'https://randomuser.me/api/portraits/women/44.jpg',
-                    onTap: () {},
+                  SizedBox(height: 12.h),
+                  // Appointments List (Empty State for now)
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(24.w),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(color: AppColors.borderLight),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'No upcoming appointments',
+                        style: AppTextStyles.bodyMedium
+                            .copyWith(color: AppColors.textSecondary),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -257,30 +256,30 @@ class _PatientHomePage extends StatelessWidget {
           ),
 
           // Recent Orders
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 100),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Recent Orders', style: AppTextStyles.h4),
-                  SizedBox(height: 12),
-                  OrderCard(
-                    title: 'Paracetamol 500mg',
-                    orderId: 'Order #12345',
-                    details: '2 items',
-                    status: 'Delivered',
-                    time: 'Today, 2:15 PM',
-                    icon: Icons.medication,
-                  ),
-                  SizedBox(height: 12),
-                  OrderCard(
-                    title: 'Full Body Checkup',
-                    orderId: 'Order #12342',
-                    details: 'Lab Test',
-                    status: 'Processing',
-                    time: 'Yesterday',
-                    icon: Icons.science,
+                  const Text('Recent Orders', style: AppTextStyles.h4),
+                  const SizedBox(height: 12),
+                  // Empty State for Orders
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceLight,
+                      borderRadius: AppSpacing.borderRadiusMd,
+                      border: Border.all(color: AppColors.borderLight),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'No recent orders',
+                        style: AppTextStyles.bodyMedium
+                            .copyWith(color: AppColors.textSecondary),
+                      ),
+                    ),
                   ),
                 ],
               ),

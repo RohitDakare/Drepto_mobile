@@ -36,10 +36,11 @@ class DoctorSettingsPage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 30,
-                      backgroundImage: NetworkImage(
-                          'https://randomuser.me/api/portraits/men/75.jpg'),
+                      backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+                      child: const Icon(Icons.person,
+                          size: 30, color: AppColors.primary),
                     ),
                     const SizedBox(width: 16),
                     Expanded(

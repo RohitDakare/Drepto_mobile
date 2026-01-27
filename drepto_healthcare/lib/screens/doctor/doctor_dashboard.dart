@@ -69,13 +69,9 @@ class _DoctorHomePage extends StatelessWidget {
                         color: AppColors.primary.withValues(alpha: 0.2),
                         width: 2,
                       ),
-                      image: const DecorationImage(
-                        image: NetworkImage(
-                          'https://randomuser.me/api/portraits/men/75.jpg',
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                     ),
+                    child: const Icon(Icons.person, color: AppColors.primary),
                   ),
                   const SizedBox(width: 12),
                   const Expanded(
@@ -119,7 +115,7 @@ class _DoctorHomePage extends StatelessWidget {
                     child: _StatCard(
                       icon: Icons.people,
                       label: 'PATIENTS',
-                      value: '24',
+                      value: '0', // Placeholder
                       color: AppColors.primary,
                     ),
                   ),
@@ -128,7 +124,7 @@ class _DoctorHomePage extends StatelessWidget {
                     child: _StatCard(
                       icon: Icons.check_circle_outline,
                       label: 'COMPLETED',
-                      value: '12',
+                      value: '0', // Placeholder
                       color: AppColors.accent,
                     ),
                   ),
@@ -137,7 +133,7 @@ class _DoctorHomePage extends StatelessWidget {
                     child: _StatCard(
                       icon: Icons.pending_actions,
                       label: 'PENDING',
-                      value: '5',
+                      value: '0', // Placeholder
                       color: AppColors.warning,
                     ),
                   ),
@@ -169,49 +165,26 @@ class _DoctorHomePage extends StatelessWidget {
             ),
           ),
 
-          const SliverPadding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 100),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate.fixed([
-                _AppointmentItem(
-                  patientName: 'Sarah Jenkins',
-                  time: '09:30 AM',
-                  type: 'Routine Checkup',
-                  imageUrl: 'https://randomuser.me/api/portraits/women/21.jpg',
-                  actionLabel: 'Start Call',
-                  actionColor: AppColors.primary,
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
+            sliver: SliverToBoxAdapter(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 32),
+                  child: Column(
+                    children: [
+                      const Icon(Icons.event_available,
+                          size: 48, color: AppColors.gray300),
+                      const SizedBox(height: 12),
+                      Text(
+                        'No appointments for today',
+                        style: AppTextStyles.bodyMedium
+                            .copyWith(color: AppColors.textSecondary),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 8),
-                _AppointmentItem(
-                  patientName: 'Michael Chen',
-                  time: '10:15 AM',
-                  type: 'Lab Review',
-                  imageUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
-                  actionLabel: 'Join Now',
-                  actionColor: AppColors.accent,
-                  isActive: true,
-                ),
-                SizedBox(height: 8),
-                _AppointmentItem(
-                  patientName: 'Emily Rodriguez',
-                  time: '11:00 AM',
-                  type: 'Follow-up',
-                  imageUrl: 'https://randomuser.me/api/portraits/women/45.jpg',
-                  actionLabel: 'View Chart',
-                  actionColor: AppColors.gray600,
-                  isOutlined: true,
-                ),
-                SizedBox(height: 8),
-                _AppointmentItem(
-                  patientName: 'David Thompson',
-                  time: '01:45 PM',
-                  type: 'Consultation',
-                  imageUrl: 'https://randomuser.me/api/portraits/men/55.jpg',
-                  actionLabel: 'View Chart',
-                  actionColor: AppColors.gray600,
-                  isOutlined: true,
-                ),
-              ]),
+              ),
             ),
           ),
         ],
@@ -235,29 +208,36 @@ class _StatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {},
         borderRadius: AppSpacing.borderRadiusMd,
-        border: Border.all(color: AppColors.borderLight),
-      ),
-      child: Column(
-        children: [
-          Icon(icon, color: color, size: 24),
-          const SizedBox(height: 8),
-          Text(
-            label,
-            style: AppTextStyles.overline.copyWith(
-              color: AppColors.textSecondary,
-            ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: AppColors.surfaceLight,
+            borderRadius: AppSpacing.borderRadiusMd,
+            border: Border.all(color: AppColors.borderLight),
           ),
-          const SizedBox(height: 4),
-          Text(
-            value,
-            style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
+          child: Column(
+            children: [
+              Icon(icon, color: color, size: 24),
+              const SizedBox(height: 8),
+              Text(
+                label,
+                style: AppTextStyles.overline.copyWith(
+                  color: AppColors.textSecondary,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                value,
+                style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
