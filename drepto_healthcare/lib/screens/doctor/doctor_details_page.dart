@@ -4,20 +4,14 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../widgets/buttons/app_buttons.dart';
+import '../../models/doctor.dart';
 
 class DoctorDetailsPage extends StatefulWidget {
-  final String doctorName;
-  final String specialty;
-  final String about;
-  final double rating;
+  final Doctor doctor;
 
   const DoctorDetailsPage({
     super.key,
-    required this.doctorName,
-    required this.specialty,
-    this.about =
-        'Experienced specialist with over 10 years of practice. Dedicated to providing comprehensive care and personalized treatment plans for all patients.',
-    this.rating = 4.8,
+    required this.doctor,
   });
 
   @override
@@ -29,14 +23,13 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
   int _selectedTimeIndex = -1;
 
   final List<String> _dates = ['Today, 27 Jan', 'Tomorrow, 28 Jan', 'Wed, 29 Jan'];
-  final List<String> _timeSlots = [
-    '09:00 AM',
-    '10:00 AM',
-    '11:30 AM',
-    '02:00 PM',
-    '04:30 PM',
-    '06:00 PM'
-  ];
+  late List<String> _timeSlots;
+
+  @override
+  void initState() {
+    super.initState();
+    _timeSlots = widget.doctor.availableSlots;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +68,16 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                     child: const Icon(Icons.person, size: 60, color: AppColors.primary), // Fallback
                   ),
                   const SizedBox(height: 16),
-                  Text(widget.doctorName, style: AppTextStyles.h3),
+                  Text(widget.doctor.name, style: AppTextStyles.h3),
                   const SizedBox(height: 8),
                   Text(
-                    widget.specialty,
+                    widget.doctor.specialty,
                     style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    widget.doctor.hospital,
+                    style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -88,7 +86,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                       const Icon(Icons.star, color: Colors.amber, size: 20),
                       const SizedBox(width: 4),
                       Text(
-                        '${widget.rating} (120+ Reviews)',
+                        '${widget.doctor.rating} (${widget.doctor.reviews}+ Reviews)',
                         style: AppTextStyles.labelMedium.copyWith(fontWeight: FontWeight.w600),
                       ),
                     ],
@@ -102,7 +100,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
             const Text('About Doctor', style: AppTextStyles.h4),
             const SizedBox(height: 8),
             Text(
-              widget.about,
+              widget.doctor.about,
               style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary, height: 1.5),
             ),
             const SizedBox(height: 32),
@@ -111,35 +109,17 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
             const Text('Schedules', style: AppTextStyles.h4),
             const SizedBox(height: 16),
             SizedBox(
-              height: 50,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: _dates.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (context, index) {
-                  final isSelected = _selectedDateIndex == index;
-                  return GestureDetector(
-                    onTap: () => setState(() => _selectedDateIndex = index),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: isSelected ? AppColors.primary : AppColors.surfaceLight,
-                        borderRadius: AppSpacing.borderRadiusFull,
-                        border: Border.all(
-                          color: isSelected ? AppColors.primary : AppColors.borderLight,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          _dates[index],
-                          style: AppTextStyles.labelMedium.copyWith(
-                            color: isSelected ? Colors.white : AppColors.textPrimary,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
+              height: 350,
+              child: CalendarDatePicker(
+                initialDate: DateTime.now(),
+                firstDate: DateTime.now(),
+                lastDate: DateTime.now().add(const Duration(days: 30)),
+                onDateChanged: (date) {
+                   setState(() {
+                      // Logic to update selected date index or value
+                      // For now just updating the UI state to show interaction
+                      _selectedDateIndex = date.day;
+                   });
                 },
               ),
             ),
@@ -175,22 +155,24 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
             ),
             const SizedBox(height: 40),
 
-            // Actions
+            // Actions - Video Consultation
             PrimaryButton(
-              text: 'Video Consultation',
+              text: 'Video Consultation (\$${widget.doctor.videoConsultationFee})',
               onPressed: () {
                 context.pushNamed(
                   'video_call',
                   extra: {
-                    'doctorName': widget.doctorName,
-                    'specialty': widget.specialty,
+                    'doctorName': widget.doctor.name,
+                    'specialty': widget.doctor.specialty,
                   },
                 );
               },
             ),
             const SizedBox(height: 16),
+            
+            // Actions - Clinic Visit
             SecondaryButton(
-              text: 'Book Clinic Visit',
+              text: 'Book Clinic Visit (\$${widget.doctor.clinicVisitFee})',
                onPressed: () {
                 // Determine if slot selected
                 if (_selectedTimeIndex == -1) {
@@ -200,7 +182,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                   return;
                 }
                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Clinic Visit Booked!')),
+                    SnackBar(content: Text('Clinic Visit with ${widget.doctor.name} Booked!')),
                   );
                },
             ),

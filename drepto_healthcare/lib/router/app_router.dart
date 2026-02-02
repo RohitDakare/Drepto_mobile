@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import '../models/doctor.dart';
 import '../screens/onboarding/onboarding_page.dart';
 import '../screens/onboarding/login_page.dart';
 import '../screens/patient/patient_dashboard.dart';
@@ -12,6 +13,7 @@ import '../screens/health_records/health_records_page.dart';
 import '../screens/chat/ai_assistant_page.dart';
 import '../screens/consultation/video_call_page.dart';
 import '../screens/doctor/doctor_details_page.dart';
+import '../screens/patient/doctor_selection_page.dart';
 import '../screens/notifications/notifications_page.dart';
 import '../screens/onboarding/forgot_password_page.dart';
 import '../screens/profile/edit_profile_page.dart';
@@ -78,14 +80,21 @@ class AppRouter {
         name: 'ai_assistant',
         builder: (context, state) => const AIAssistantPage(),
       ),
+
       GoRoute(
         path: '/consultation',
         name: 'consultation',
+        builder: (context, state) => const DoctorSelectionPage(),
+      ),
+      GoRoute(
+        path: '/doctor-details',
+        name: 'doctor_details',
         builder: (context, state) {
            final extra = state.extra as Map<String, dynamic>? ?? {};
+           // Handle case where doctor object might be passed directly or constructed from ID (not implemented yet, assuming object passed)
+           final doctor = extra['doctor'] as Doctor;
           return DoctorDetailsPage(
-            doctorName: extra['doctorName'] ?? 'Dr. Sarah Smith',
-            specialty: extra['specialty'] ?? 'Cardiologist',
+            doctor: doctor,
           );
         },
       ),
