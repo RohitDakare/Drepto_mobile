@@ -69,10 +69,12 @@ class ProfilePage extends StatelessWidget {
                             color: Colors.white,
                             width: 2,
                           ),
-                          image: const DecorationImage(
-                            image: NetworkImage('https://i.pravatar.cc/300'), // Replace with actual user image
-                            fit: BoxFit.cover,
-                          ),
+                          color: Colors.white.withValues(alpha: 0.2),
+                        ),
+                        child: const Icon(
+                          Icons.person,
+                          size: 40,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(width: 16),

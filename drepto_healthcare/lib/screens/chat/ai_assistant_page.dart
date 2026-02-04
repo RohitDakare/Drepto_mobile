@@ -4,7 +4,9 @@ import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class AIAssistantPage extends StatefulWidget {
-  const AIAssistantPage({super.key});
+  final bool showBackButton;
+
+  const AIAssistantPage({super.key, this.showBackButton = true});
 
   @override
   State<AIAssistantPage> createState() => _AIAssistantPageState();
@@ -83,10 +85,13 @@ class _AIAssistantPageState extends State<AIAssistantPage> {
       appBar: AppBar(
         backgroundColor: AppColors.surfaceLight,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => Navigator.pop(context),
-        ),
+        leading: widget.showBackButton
+            ? IconButton(
+                icon:
+                    const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                onPressed: () => Navigator.pop(context),
+              )
+            : null,
         title: Row(
           children: [
             Container(

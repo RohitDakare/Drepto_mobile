@@ -41,7 +41,7 @@ class PatientBottomNavBar extends StatelessWidget {
             ),
             _NavItem(
               icon: Icons.chat_bubble_outline,
-              label: 'Messages',
+              label: 'Assistance',
               isSelected: currentIndex == 2,
               onTap: () => onTap(2),
             ),

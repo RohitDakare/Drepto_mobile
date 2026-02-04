@@ -415,6 +415,7 @@ class _LabTestCard extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
+                  minimumSize: const Size(0, 40),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
                     vertical: 12,

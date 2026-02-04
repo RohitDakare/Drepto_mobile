@@ -156,52 +156,56 @@ class _OnboardingContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Image container
-          Container(
-            width: double.infinity,
-            height: 280,
-            margin: const EdgeInsets.only(bottom: 40),
-            decoration: BoxDecoration(
-              color: Colors.transparent, // Changed to transparent for image
-              borderRadius: AppSpacing.borderRadiusLg,
-              // Shadow removed/optional depending on design
-            ),
-            child: ClipRRect(
-               borderRadius: AppSpacing.borderRadiusLg,
-               child: Image.asset(
-                 item.imagePath,
-                 fit: BoxFit.contain, // or cover depending on the image aspect ratio
-                 errorBuilder: (context, error, stackTrace) {
-                   return Container(
-                     color: AppColors.gray100,
-                     child: const Icon(Icons.image_not_supported, size: 50, color: AppColors.gray400),
-                   );
-                 },
-               ),
-            ),
-          ),
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Image container
+              Container(
+                width: double.infinity,
+                height: 280,
+                margin: const EdgeInsets.only(bottom: 40),
+                decoration: BoxDecoration(
+                  color: Colors.transparent, // Changed to transparent for image
+                  borderRadius: AppSpacing.borderRadiusLg,
+                  // Shadow removed/optional depending on design
+                ),
+                child: ClipRRect(
+                   borderRadius: AppSpacing.borderRadiusLg,
+                   child: Image.asset(
+                     item.imagePath,
+                     fit: BoxFit.contain, // or cover depending on the image aspect ratio
+                     errorBuilder: (context, error, stackTrace) {
+                       return Container(
+                         color: AppColors.gray100,
+                         child: const Icon(Icons.image_not_supported, size: 50, color: AppColors.gray400),
+                       );
+                     },
+                   ),
+                ),
+              ),
 
-          // Title
-          Text(
-            item.title,
-            style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.w800),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 16),
+              // Title
+              Text(
+                item.title,
+                style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.w800),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
 
-          // Description
-          Text(
-            item.description,
-            style: AppTextStyles.bodyMedium.copyWith(
-              color: AppColors.textSecondary,
-              height: 1.6,
-            ),
-            textAlign: TextAlign.center,
+              // Description
+              Text(
+                item.description,
+                style: AppTextStyles.bodyMedium.copyWith(
+                  color: AppColors.textSecondary,
+                  height: 1.6,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -11,6 +11,8 @@ import 'patient_schedule_page.dart';
 import '../../widgets/navigation/bottom_nav_bars.dart';
 import '../profile/profile_page.dart';
 
+import '../chat/ai_assistant_page.dart';
+
 class PatientDashboard extends StatefulWidget {
   const PatientDashboard({super.key});
 
@@ -24,7 +26,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
   final List<Widget> _pages = [
     const _PatientHomePage(),
     const PatientSchedulePage(),
-    const _MessagesPage(),
+    const AIAssistantPage(showBackButton: false),
     const ProfilePage(),
   ];
 
@@ -329,61 +331,66 @@ class _MessagesPage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             // AI Assistant card
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                gradient: AppColors.primaryGradient,
-                borderRadius: AppSpacing.borderRadiusMd,
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      shape: BoxShape.circle,
+            GestureDetector(
+              onTap: () {
+                context.pushNamed('ai_assistant');
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: const BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: AppSpacing.borderRadiusMd,
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.smart_toy,
+                        color: Colors.white,
+                        size: 28,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.smart_toy,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Drepto AI Assistant',
-                          style: AppTextStyles.labelLarge.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Drepto AI Assistant',
+                            style: AppTextStyles.labelLarge.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'Get instant health answers 24/7',
-                          style: AppTextStyles.caption.copyWith(
-                            color: Colors.white.withValues(alpha: 0.8),
+                          Text(
+                            'Get instant health answers 24/7',
+                            style: AppTextStyles.caption.copyWith(
+                              color: Colors.white.withValues(alpha: 0.8),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: AppSpacing.borderRadiusFull,
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: AppSpacing.borderRadiusFull,
+                      ),
+                      child: const Icon(
+                        Icons.arrow_forward,
+                        color: AppColors.primary,
+                        size: 20,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.arrow_forward,
-                      color: AppColors.primary,
-                      size: 20,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 24),

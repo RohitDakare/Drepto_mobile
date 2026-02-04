@@ -167,8 +167,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 24.h),
 
                   // Sign up link
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
                         "Don't have an account? ",
