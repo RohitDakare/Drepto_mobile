@@ -23,6 +23,7 @@ import '../screens/profile/edit_profile_page.dart';
 import '../screens/pharmacy/staff/pharmacy_inventory_page.dart';
 import '../screens/pharmacy/staff/pharmacy_orders_page.dart';
 import '../screens/pharmacy/admin/pharmacy_admin_dashboard.dart';
+import '../screens/admin/admin_dashboard.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -63,6 +64,7 @@ class AppRouter {
           '/video-call',
           '/notifications',
           '/profile/edit',
+          '/dashboard/admin',
         ];
 
         // If auth status is unknown, wait for it to be determined
@@ -119,6 +121,11 @@ class AppRouter {
           path: '/dashboard/nurse',
           name: 'nurse_dashboard',
           builder: (context, state) => const NurseDashboard(),
+        ),
+        GoRoute(
+          path: '/dashboard/admin',
+          name: 'admin_dashboard',
+          builder: (context, state) => const AdminDashboard(),
         ),
         GoRoute(
           path: '/pharmacy',

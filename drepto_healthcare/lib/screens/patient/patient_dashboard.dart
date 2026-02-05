@@ -148,7 +148,8 @@ class _PatientHomePage extends StatelessWidget {
               ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.1, curve: Curves.easeOut),
               ),
             ),
-          ),
+
+
 
           // Services Section
           SliverToBoxAdapter(
