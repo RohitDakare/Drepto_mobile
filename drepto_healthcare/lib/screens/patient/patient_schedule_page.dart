@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../../models/appointment.dart';
+import '../../widgets/cards/appointment_card.dart';
 
 class PatientSchedulePage extends StatefulWidget {
   const PatientSchedulePage({super.key});
@@ -11,10 +13,20 @@ class PatientSchedulePage extends StatefulWidget {
 }
 
 class _PatientSchedulePageState extends State<PatientSchedulePage> {
-  // TODO: Integrate with backend to fetch real appointments
-  final List<Appointment> _appointments = []; 
+  // Use mock data from the model for now
+  final List<Appointment> _appointments = Appointment.getMockAppointments(); 
   int _selectedTab = 0;
-  final List<String> _tabs = ['Upcoming', 'Completed', 'Canceled'];
+  final List<String> _tabs = ['Upcoming', 'Completed', 'Cancelled'];
+
+  List<Appointment> get _filteredAppointments {
+    final status = _tabs[_selectedTab].toLowerCase();
+    return _appointments.where((apt) {
+      if (status == 'upcoming') return apt.status == AppointmentStatus.upcoming;
+      if (status == 'completed') return apt.status == AppointmentStatus.completed;
+      if (status == 'cancelled') return apt.status == AppointmentStatus.cancelled;
+      return true;
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +95,9 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
                 )
               : ListView.builder(
                 padding: const EdgeInsets.all(16),
-                itemCount: _appointments.length,
+                itemCount: _filteredAppointments.length,
                 itemBuilder: (context, index) {
-                  return _AppointmentCard(appointment: _appointments[index]);
+                  return AppointmentCard(appointment: _filteredAppointments[index]);
                 },
               ),
             ),
@@ -126,177 +138,4 @@ class _StatusTab extends StatelessWidget {
       ),
     );
   }
-}
-
-class _AppointmentCard extends StatelessWidget {
-  final Appointment appointment;
-
-  const _AppointmentCard({required this.appointment});
-
-  @override
-  Widget build(BuildContext context) {
-    final isUpcoming = appointment.status == AppointmentStatus.upcoming;
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: AppSpacing.borderRadiusMd,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-        border: Border.all(color: AppColors.borderLight),
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: AppSpacing.borderRadiusSm,
-                  // Use placeholder if image is failing or empty
-                  color: AppColors.gray100, 
-                  image: appointment.imageUrl.isNotEmpty 
-                    ? DecorationImage(
-                        image: NetworkImage(appointment.imageUrl),
-                        fit: BoxFit.cover,
-                        onError: (_, __) {}, 
-                      )
-                    : null,
-                ),
-                child: appointment.imageUrl.isEmpty 
-                  ? const Icon(Icons.person, color: AppColors.gray400) 
-                  : null, 
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      appointment.doctorName,
-                      style: AppTextStyles.labelLarge
-                          .copyWith(fontWeight: FontWeight.w700),
-                    ),
-                    Text(
-                      appointment.specialty,
-                      style: AppTextStyles.bodyMedium
-                          .copyWith(color: AppColors.textSecondary),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: isUpcoming
-                            ? AppColors.primary.withValues(alpha: 0.1)
-                            : AppColors.gray100,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        appointment.status == AppointmentStatus.upcoming
-                            ? 'Upcoming'
-                            : 'Completed',
-                        style: AppTextStyles.labelSmall.copyWith(
-                          color: isUpcoming
-                              ? AppColors.primary
-                              : AppColors.gray500,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Divider(height: 1),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              _InfoItem(icon: Icons.calendar_today, text: appointment.date),
-              const SizedBox(width: 24),
-              _InfoItem(icon: Icons.access_time, text: appointment.time),
-              const SizedBox(width: 24),
-              _InfoItem(
-                icon: appointment.type == 'Video Consultation'
-                    ? Icons.videocam
-                    : Icons.local_hospital,
-                text: appointment.type == 'Video Consultation'
-                    ? 'Video'
-                    : 'Visit',
-              ),
-            ],
-          ),
-          if (isUpcoming) ...[
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: AppSpacing.borderRadiusSm),
-                ),
-                child: const Text('Join Call'),
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
-class _InfoItem extends StatelessWidget {
-  final IconData icon;
-  final String text;
-
-  const _InfoItem({required this.icon, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, size: 16, color: AppColors.gray400),
-        const SizedBox(width: 6),
-        Text(
-          text,
-          style: AppTextStyles.caption.copyWith(fontWeight: FontWeight.w500),
-        ),
-      ],
-    );
-  }
-}
-
-enum AppointmentStatus { upcoming, completed, canceled }
-
-class Appointment {
-  final String doctorName;
-  final String specialty;
-  final String date;
-  final String time;
-  final String type;
-  final AppointmentStatus status;
-  final String imageUrl;
-
-  Appointment({
-    required this.doctorName,
-    required this.specialty,
-    required this.date,
-    required this.time,
-    required this.type,
-    required this.status,
-    required this.imageUrl,
-  });
 }

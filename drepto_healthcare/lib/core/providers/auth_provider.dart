@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../models/user_model.dart';
+import '../services/auth_service.dart';
 import '../services/secure_storage_service.dart';
 
 enum AuthStatus { unknown, authenticated, unauthenticated }
@@ -6,48 +8,203 @@ enum AuthStatus { unknown, authenticated, unauthenticated }
 class AuthProvider extends ChangeNotifier {
   AuthStatus _status = AuthStatus.unknown;
   String? _token;
+  UserModel? _currentUser;
+  String? _errorMessage;
 
   AuthStatus get status => _status;
   String? get token => _token;
+  UserModel? get currentUser => _currentUser;
+  String? get errorMessage => _errorMessage;
   bool get isAuthenticated => _status == AuthStatus.authenticated;
 
   /// Call this when the app starts to check for an existing secure session
   Future<void> checkAuthStatus() async {
-    final token = await SecureStorageService.getToken();
-    if (token != null) {
-      _token = token;
-      _status = AuthStatus.authenticated;
-    } else {
+    try {
+      final token = await SecureStorageService.getToken();
+      if (token != null && token.isNotEmpty) {
+        // Verify token is still valid
+        final isValid = await AuthService.verifyToken(token);
+        if (isValid) {
+          _token = token;
+          _currentUser = await AuthService.getCurrentUser();
+          _status = AuthStatus.authenticated;
+        } else {
+          // Token expired or invalid
+          await logout();
+        }
+      } else {
+        _status = AuthStatus.unauthenticated;
+      }
+    } catch (e) {
       _status = AuthStatus.unauthenticated;
+      _errorMessage = 'Failed to restore session';
     }
     notifyListeners();
   }
 
-  Future<void> login(String email, String password) async {
-    // SECURITY: In production, password should be hashed or handled by TLS
-    // This is where ApiService.post('/login', ...) would be called
+  /// Login with email and password
+  Future<bool> login(String email, String password) async {
+    try {
+      _errorMessage = null;
+      notifyListeners();
 
-    // TODO: Implement actual API login
-    // For now, we won't mock a successful login to avoid keeping mock data.
-    // However, to allow the user to 'enter', we might typically show an error or 
-    // waiting for backend. But since the request is strictly to remove mock data...
-    
-    // Changing behavior: Login now requires backend. 
-    // IF the user needs to bypass login to test UI, they should implement a 'Demo Mode' explicitly
-    // rather than us hiding a mock token here.
-    
-    // _token = ... 
-    // await SecureStorageService.saveToken(_token!);
-    // _status = AuthStatus.authenticated;
-    // notifyListeners();
-    
-    throw UnimplementedError('Backend login not integrated yet.');
+      final result = await AuthService.login(
+        email: email,
+        password: password,
+      );
+
+      _token = result['token'] as String;
+      _currentUser = result['user'] as UserModel;
+      _status = AuthStatus.authenticated;
+      _errorMessage = null;
+
+      notifyListeners();
+      return true;
+    } on AuthException catch (e) {
+      _status = AuthStatus.unauthenticated;
+      _errorMessage = e.message;
+      notifyListeners();
+      return false;
+    } catch (e) {
+      _status = AuthStatus.unauthenticated;
+      _errorMessage = 'An unexpected error occurred. Please try again.';
+      notifyListeners();
+      return false;
+    }
   }
 
+  /// Register a new user
+  Future<bool> register({
+    required String email,
+    required String password,
+    required String name,
+    required UserRole role,
+    String? phoneNumber,
+  }) async {
+    try {
+      _errorMessage = null;
+      notifyListeners();
+
+      final result = await AuthService.register(
+        email: email,
+        password: password,
+        name: name,
+        role: role,
+        phoneNumber: phoneNumber,
+      );
+
+      _token = result['token'] as String;
+      _currentUser = result['user'] as UserModel;
+      _status = AuthStatus.authenticated;
+      _errorMessage = null;
+
+      notifyListeners();
+      return true;
+    } on AuthException catch (e) {
+      _status = AuthStatus.unauthenticated;
+      _errorMessage = e.message;
+      notifyListeners();
+      return false;
+    } catch (e) {
+      _status = AuthStatus.unauthenticated;
+      _errorMessage = 'An unexpected error occurred. Please try again.';
+      notifyListeners();
+      return false;
+    }
+  }
+
+  /// Logout user
   Future<void> logout() async {
-    await SecureStorageService.deleteToken();
+    try {
+      await AuthService.logout();
+    } catch (e) {
+      // Continue with logout even if service call fails
+    }
+
     _token = null;
+    _currentUser = null;
     _status = AuthStatus.unauthenticated;
+    _errorMessage = null;
     notifyListeners();
+  }
+
+  /// Clear error message
+  void clearError() {
+    _errorMessage = null;
+    notifyListeners();
+  }
+
+  /// Refresh authentication token
+  Future<void> refreshToken() async {
+    try {
+      final newToken = await AuthService.refreshToken();
+      _token = newToken;
+      notifyListeners();
+    } catch (e) {
+      // If refresh fails, logout user
+      await logout();
+    }
+  }
+
+  /// Update user profile
+  Future<bool> updateUserProfile({
+    String? name,
+    String? phoneNumber,
+    String? address,
+    DateTime? dateOfBirth,
+    String? weight,
+    String? height,
+    String? bloodType,
+  }) async {
+    try {
+      if (_currentUser == null) {
+        _errorMessage = 'No user session found';
+        notifyListeners();
+        return false;
+      }
+
+      _errorMessage = null;
+      notifyListeners();
+
+      final updatedUser = await AuthService.updateUserProfile(
+        userId: _currentUser!.id,
+        name: name,
+        phoneNumber: phoneNumber,
+        address: address,
+        dateOfBirth: dateOfBirth,
+        weight: weight,
+        height: height,
+        bloodType: bloodType,
+      );
+
+      _currentUser = updatedUser;
+      _errorMessage = null;
+      notifyListeners();
+      return true;
+    } on AuthException catch (e) {
+      _errorMessage = e.message;
+      notifyListeners();
+      return false;
+    } catch (e) {
+      _errorMessage = 'Failed to update profile. Please try again.';
+      notifyListeners();
+      return false;
+    }
+  }
+
+  /// Get user's role-specific dashboard route
+  String getDashboardRoute() {
+    if (_currentUser == null) return '/login';
+
+    switch (_currentUser!.role) {
+      case UserRole.doctor:
+        return '/dashboard/doctor';
+      case UserRole.nurse:
+        return '/dashboard/nurse';
+      case UserRole.patient:
+        return '/dashboard';
+      case UserRole.pharmacy:
+        return '/pharmacy/admin';
+    }
   }
 }

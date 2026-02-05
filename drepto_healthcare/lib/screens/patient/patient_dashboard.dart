@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
-import '../../widgets/loading/loading_indicators.dart';
+import '../../core/providers/auth_provider.dart';
+import '../../core/utils/greeting_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/cards/app_cards.dart';
 import '../../widgets/inputs/app_inputs.dart';
+import '../../widgets/cards/appointment_card.dart';
 import 'patient_schedule_page.dart';
 import '../../widgets/navigation/bottom_nav_bars.dart';
 import '../profile/profile_page.dart';
 
+import '../../widgets/container/glass_container.dart';
 import '../chat/ai_assistant_page.dart';
+import '../../models/appointment.dart';
+import '../../core/services/appointment_service.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class PatientDashboard extends StatefulWidget {
   const PatientDashboard({super.key});
@@ -22,6 +30,13 @@ class PatientDashboard extends StatefulWidget {
 
 class _PatientDashboardState extends State<PatientDashboard> {
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize appointment service
+    AppointmentService.initialize();
+  }
 
   final List<Widget> _pages = [
     const _PatientHomePage(),
@@ -79,16 +94,25 @@ class _PatientHomePage extends StatelessWidget {
                     child: const Icon(Icons.person, color: AppColors.primary),
                   ),
                   const SizedBox(width: 12),
-                  const Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Hello, User', style: AppTextStyles.h4),
-                        Text(
-                          'How are you feeling today?',
-                          style: AppTextStyles.caption,
-                        ),
-                      ],
+                  Expanded(
+                    child: Consumer<AuthProvider>(
+                      builder: (context, authProvider, child) {
+                        final user = authProvider.currentUser;
+                        final greeting = user != null
+                            ? GreetingHelper.getPersonalizedGreeting(user.name)
+                            : GreetingHelper.getTimeBasedGreeting();
+                        
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(greeting, style: AppTextStyles.h4),
+                            const Text(
+                              'How are you feeling today?',
+                              style: AppTextStyles.caption,
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                   Container(
@@ -121,6 +145,7 @@ class _PatientHomePage extends StatelessWidget {
                 onTap: () {
                   // Navigate to search page
                 },
+              ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.1, curve: Curves.easeOut),
               ),
             ),
           ),
@@ -204,7 +229,7 @@ class _PatientHomePage extends StatelessWidget {
                           context.pushNamed('health_records');
                         },
                       ),
-                    ],
+                    ].animate(interval: 100.ms).fadeIn(duration: 400.ms).scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack),
                   ),
                 ],
               ),
@@ -236,21 +261,47 @@ class _PatientHomePage extends StatelessWidget {
                   ),
                   SizedBox(height: 12.h),
                   // Appointments List (Empty State for now)
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(24.w),
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceLight,
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: AppColors.borderLight),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'No upcoming appointments',
-                        style: AppTextStyles.bodyMedium
-                            .copyWith(color: AppColors.textSecondary),
-                      ),
-                    ),
+                  // Appointments List
+                  FutureBuilder<List<Appointment>>(
+                    future: AppointmentService.getUpcomingAppointments(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      
+                      if (snapshot.hasError) {
+                        return Center(child: Text('Error loading appointments'));
+                      }
+                      
+                      final appointments = snapshot.data ?? [];
+                      
+                      if (appointments.isEmpty) {
+                        return Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(24.w),
+                          decoration: BoxDecoration(
+                            color: AppColors.surfaceLight,
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(color: AppColors.borderLight),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'No upcoming appointments',
+                              style: AppTextStyles.bodyMedium
+                                  .copyWith(color: AppColors.textSecondary),
+                            ),
+                          ),
+                        );
+                      }
+                      
+                      return Column(
+                        children: appointments.take(3).map((appointment) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: AppointmentCard(appointment: appointment),
+                        )).toList()
+                        .animate(interval: 200.ms).fadeIn(duration: 500.ms).slideX(begin: 0.2, curve: Curves.easeOut),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -335,58 +386,42 @@ class _MessagesPage extends StatelessWidget {
               onTap: () {
                 context.pushNamed('ai_assistant');
               },
-              child: Container(
+              child: GlassContainer(
+                borderRadius: AppSpacing.borderRadiusLg,
+                color: AppColors.primary,
+                opacity: 0.85,
+                blur: 15,
                 padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  borderRadius: AppSpacing.borderRadiusMd,
-                ),
                 child: Row(
                   children: [
                     Container(
-                      width: 48,
-                      height: 48,
+                      padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.2),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
-                        Icons.smart_toy,
-                        color: Colors.white,
-                        size: 28,
-                      ),
+                      child: const Icon(Icons.auto_awesome, color: Colors.white),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Drepto AI Assistant',
-                            style: AppTextStyles.labelLarge.copyWith(
+                            'AI Health Assistant',
+                            style: AppTextStyles.bodyMedium.copyWith(
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
+                          const SizedBox(height: 4),
                           Text(
-                            'Get instant health answers 24/7',
-                            style: AppTextStyles.caption.copyWith(
-                              color: Colors.white.withValues(alpha: 0.8),
+                            'Ask me anything about your health',
+                            style: AppTextStyles.labelSmall.copyWith(
+                              color: Colors.white.withValues(alpha: 0.9),
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: AppSpacing.borderRadiusFull,
-                      ),
-                      child: const Icon(
-                        Icons.arrow_forward,
-                        color: AppColors.primary,
-                        size: 20,
                       ),
                     ),
                   ],
@@ -421,3 +456,5 @@ class _MessagesPage extends StatelessWidget {
     );
   }
 }
+
+

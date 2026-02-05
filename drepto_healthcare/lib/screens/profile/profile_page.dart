@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../../core/providers/auth_provider.dart';
 import '../../widgets/buttons/app_buttons.dart';
 import '../onboarding/login_page.dart';
 
@@ -40,134 +42,156 @@ class ProfilePage extends StatelessWidget {
               ),
 
               // Profile Card
-              ScaleButton(
-                onPressed: () {
-                   context.pushNamed('edit_profile');
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: AppSpacing.borderRadiusXl,
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primary.withValues(alpha: 0.3),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 72,
-                        height: 72,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 2,
+              Consumer<AuthProvider>(
+                builder: (context, authProvider, child) {
+                  final user = authProvider.currentUser;
+                  
+                  return ScaleButton(
+                    onPressed: () {
+                      context.pushNamed('edit_profile');
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        gradient: AppColors.primaryGradient,
+                        borderRadius: AppSpacing.borderRadiusXl,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary.withValues(alpha: 0.3),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
                           ),
-                          color: Colors.white.withValues(alpha: 0.2),
-                        ),
-                        child: const Icon(
-                          Icons.person,
-                          size: 40,
-                          color: Colors.white,
-                        ),
+                        ],
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Alex Johnson',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 72,
+                            height: 72,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
                                 color: Colors.white,
+                                width: 2,
                               ),
+                              color: Colors.white.withValues(alpha: 0.2),
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              '+1 (555) 123-4567',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white.withValues(alpha: 0.8),
-                              ),
+                            child: const Icon(
+                              Icons.person,
+                              size: 40,
+                              color: Colors.white,
                             ),
-                            const SizedBox(height: 8),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.2),
-                                borderRadius: AppSpacing.borderRadiusFull,
-                              ),
-                              child: const Text(
-                                'Patient',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  user?.name ?? 'Guest User',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  user?.email ?? 'No email',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white.withValues(alpha: 0.8),
+                                  ),
+                                ),
+                                if (user?.phoneNumber != null) ...[
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    user!.phoneNumber!,
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.white.withValues(alpha: 0.7),
+                                    ),
+                                  ),
+                                ],
+                                const SizedBox(height: 8),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: 0.2),
+                                    borderRadius: AppSpacing.borderRadiusFull,
+                                  ),
+                                  child: Text(
+                                    user?.roleDisplayName ?? 'Patient',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          const Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ],
                       ),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 32),
               const SizedBox(height: 24),
 
               // Health Stats
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _HealthStatCard(
-                        label: 'Weight',
-                        value: '72',
-                        unit: 'kg',
-                        icon: Icons.monitor_weight_outlined,
-                        color: AppColors.primary,
-                      ),
+              Consumer<AuthProvider>(
+                builder: (context, authProvider, child) {
+                  final user = authProvider.currentUser;
+                  
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: _HealthStatCard(
+                            label: 'Weight',
+                            value: user?.weight ?? '--',
+                            unit: 'kg',
+                            icon: Icons.monitor_weight_outlined,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: _HealthStatCard(
+                            label: 'Height',
+                            value: user?.height ?? '--',
+                            unit: 'cm',
+                            icon: Icons.height,
+                            color: AppColors.accent,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: _HealthStatCard(
+                            label: 'Blood',
+                            value: user?.bloodType ?? '--',
+                            unit: '',
+                            icon: Icons.bloodtype_outlined,
+                            color: AppColors.error,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _HealthStatCard(
-                        label: 'Height',
-                        value: '175',
-                        unit: 'cm',
-                        icon: Icons.height,
-                        color: AppColors.accent,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _HealthStatCard(
-                        label: 'Blood',
-                        value: 'O+',
-                        unit: '',
-                        icon: Icons.bloodtype_outlined,
-                        color: AppColors.error,
-                      ),
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
               const SizedBox(height: 32),
 
@@ -228,12 +252,12 @@ class ProfilePage extends StatelessWidget {
                           iconColor: AppColors.error,
                           titleColor: AppColors.error,
                           showChevron: false,
-                          onTap: () {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (_) => const LoginPage()),
-                              (route) => false,
-                            );
+                          onTap: () async {
+                            final authProvider = context.read<AuthProvider>();
+                            await authProvider.logout();
+                            if (context.mounted) {
+                              context.go('/login');
+                            }
                           },
                         ),
                       ],

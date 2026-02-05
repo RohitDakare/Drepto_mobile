@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../core/providers/auth_provider.dart';
 import '../models/doctor.dart';
 import '../screens/onboarding/onboarding_page.dart';
 import '../screens/onboarding/login_page.dart';
@@ -22,123 +25,185 @@ import '../screens/pharmacy/staff/pharmacy_orders_page.dart';
 import '../screens/pharmacy/admin/pharmacy_admin_dashboard.dart';
 
 class AppRouter {
-  static final router = GoRouter(
-    initialLocation: '/',
-    routes: [
-      GoRoute(
-        path: '/',
-        name: 'onboarding',
-        builder: (context, state) => const OnboardingPage(),
-      ),
-      GoRoute(
-        path: '/login',
-        name: 'login',
-        builder: (context, state) => const LoginPage(),
-      ),
-      GoRoute(
-        path: '/dashboard',
-        name: 'dashboard',
-        builder: (context, state) => const PatientDashboard(),
-      ),
-      GoRoute(
-        path: '/dashboard/doctor',
-        name: 'doctor_dashboard',
-        builder: (context, state) => const DoctorDashboard(),
-      ),
-      GoRoute(
-        path: '/dashboard/nurse',
-        name: 'nurse_dashboard',
-        builder: (context, state) => const NurseDashboard(),
-      ),
-      GoRoute(
-        path: '/register',
-        name: 'register',
-        builder: (context, state) => const RegistrationStep1Page(),
-      ),
-      GoRoute(
-        path: '/pharmacy',
-        name: 'pharmacy',
-        builder: (context, state) => const PharmacyPage(),
-      ),
-      GoRoute(
-        path: '/lab-tests',
-        name: 'lab_tests',
-        builder: (context, state) => const LabTestsPage(),
-      ),
-      GoRoute(
-        path: '/ambulance',
-        name: 'ambulance',
-        builder: (context, state) => const RequestAmbulancePage(),
-      ),
-      GoRoute(
-        path: '/health-records',
-        name: 'health_records',
-        builder: (context, state) => const HealthRecordsPage(),
-      ),
-      GoRoute(
-        path: '/ai-assistant',
-        name: 'ai_assistant',
-        builder: (context, state) => const AIAssistantPage(),
-      ),
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
-      GoRoute(
-        path: '/consultation',
-        name: 'consultation',
-        builder: (context, state) => const DoctorSelectionPage(),
-      ),
-      GoRoute(
-        path: '/doctor-details',
-        name: 'doctor_details',
-        builder: (context, state) {
-           final extra = state.extra as Map<String, dynamic>? ?? {};
-           // Handle case where doctor object might be passed directly or constructed from ID (not implemented yet, assuming object passed)
-           final doctor = extra['doctor'] as Doctor;
-          return DoctorDetailsPage(
-            doctor: doctor,
-          );
-        },
-      ),
-      GoRoute(
-        path: '/video-call',
-        name: 'video_call',
-        builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>? ?? {};
-          return VideoCallPage(
-            doctorName: extra['doctorName'] ?? 'Dr. Sarah Smith',
-            specialty: extra['specialty'] ?? 'Cardiologist',
-          );
-        },
-      ),
-      GoRoute(
-        path: '/notifications',
-        name: 'notifications',
-        builder: (context, state) => const NotificationsPage(),
-      ),
-      GoRoute(
-        path: '/forgot-password',
-        name: 'forgot_password',
-        builder: (context, state) => const ForgotPasswordPage(),
-      ),
-      GoRoute(
-        path: '/profile/edit',
-        name: 'edit_profile',
-        builder: (context, state) => const EditProfilePage(),
-      ),
-      GoRoute(
-        path: '/pharmacy/inventory',
-        name: 'pharmacy_inventory',
-        builder: (context, state) => const PharmacyInventoryPage(),
-      ),
-      GoRoute(
-        path: '/pharmacy/orders',
-        name: 'pharmacy_orders',
-        builder: (context, state) => const PharmacyOrdersPage(),
-      ),
-      GoRoute(
-        path: '/pharmacy/admin',
-        name: 'pharmacy_admin',
-        builder: (context, state) => const PharmacyAdminDashboard(),
-      ),
-    ],
-  );
+  static GoRouter createRouter(AuthProvider authProvider) {
+    return GoRouter(
+      navigatorKey: _rootNavigatorKey,
+      initialLocation: '/',
+      refreshListenable: authProvider,
+      redirect: (BuildContext context, GoRouterState state) {
+        final authStatus = authProvider.status;
+        final isAuthenticated = authProvider.isAuthenticated;
+        final currentPath = state.uri.path;
+
+        // List of public routes that don't require authentication
+        final publicRoutes = [
+          '/',
+          '/login',
+          '/register',
+          '/forgot-password',
+        ];
+
+        // List of protected routes that require authentication
+        final protectedRoutes = [
+          '/dashboard',
+          '/dashboard/doctor',
+          '/dashboard/nurse',
+          '/pharmacy',
+          '/pharmacy/admin',
+          '/pharmacy/inventory',
+          '/pharmacy/orders',
+          '/lab-tests',
+          '/ambulance',
+          '/health-records',
+          '/ai-assistant',
+          '/consultation',
+          '/doctor-details',
+          '/video-call',
+          '/notifications',
+          '/profile/edit',
+        ];
+
+        // If auth status is unknown, wait for it to be determined
+        if (authStatus == AuthStatus.unknown) {
+          return null;
+        }
+
+        // If user is not authenticated and trying to access protected route
+        if (!isAuthenticated && protectedRoutes.any((route) => currentPath.startsWith(route))) {
+          return '/login';
+        }
+
+        // If user is authenticated and trying to access login/onboarding
+        if (isAuthenticated && (currentPath == '/login' || currentPath == '/' || currentPath == '/register')) {
+          return authProvider.getDashboardRoute();
+        }
+
+        // No redirect needed
+        return null;
+      },
+      routes: [
+        GoRoute(
+          path: '/',
+          name: 'onboarding',
+          builder: (context, state) => const OnboardingPage(),
+        ),
+        GoRoute(
+          path: '/login',
+          name: 'login',
+          builder: (context, state) => const LoginPage(),
+        ),
+        GoRoute(
+          path: '/register',
+          name: 'register',
+          builder: (context, state) => const RegistrationStep1Page(),
+        ),
+        GoRoute(
+          path: '/forgot-password',
+          name: 'forgot_password',
+          builder: (context, state) => const ForgotPasswordPage(),
+        ),
+        // Protected routes below
+        GoRoute(
+          path: '/dashboard',
+          name: 'dashboard',
+          builder: (context, state) => const PatientDashboard(),
+        ),
+        GoRoute(
+          path: '/dashboard/doctor',
+          name: 'doctor_dashboard',
+          builder: (context, state) => const DoctorDashboard(),
+        ),
+        GoRoute(
+          path: '/dashboard/nurse',
+          name: 'nurse_dashboard',
+          builder: (context, state) => const NurseDashboard(),
+        ),
+        GoRoute(
+          path: '/pharmacy',
+          name: 'pharmacy',
+          builder: (context, state) => const PharmacyPage(),
+        ),
+        GoRoute(
+          path: '/pharmacy/admin',
+          name: 'pharmacy_admin',
+          builder: (context, state) => const PharmacyAdminDashboard(),
+        ),
+        GoRoute(
+          path: '/pharmacy/inventory',
+          name: 'pharmacy_inventory',
+          builder: (context, state) => const PharmacyInventoryPage(),
+        ),
+        GoRoute(
+          path: '/pharmacy/orders',
+          name: 'pharmacy_orders',
+          builder: (context, state) => const PharmacyOrdersPage(),
+        ),
+        GoRoute(
+          path: '/lab-tests',
+          name: 'lab_tests',
+          builder: (context, state) => const LabTestsPage(),
+        ),
+        GoRoute(
+          path: '/ambulance',
+          name: 'ambulance',
+          builder: (context, state) => const RequestAmbulancePage(),
+        ),
+        GoRoute(
+          path: '/health-records',
+          name: 'health_records',
+          builder: (context, state) => const HealthRecordsPage(),
+        ),
+        GoRoute(
+          path: '/ai-assistant',
+          name: 'ai_assistant',
+          builder: (context, state) => const AIAssistantPage(),
+        ),
+        GoRoute(
+          path: '/consultation',
+          name: 'consultation',
+          builder: (context, state) => const DoctorSelectionPage(),
+        ),
+        GoRoute(
+          path: '/doctor-details',
+          name: 'doctor_details',
+          builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>? ?? {};
+            final doctor = extra['doctor'] as Doctor;
+            return DoctorDetailsPage(doctor: doctor);
+          },
+        ),
+        GoRoute(
+          path: '/video-call',
+          name: 'video_call',
+          builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>? ?? {};
+            return VideoCallPage(
+              doctorName: extra['doctorName'] ?? 'Dr. Sarah Smith',
+              specialty: extra['specialty'] ?? 'Cardiologist',
+            );
+          },
+        ),
+        GoRoute(
+          path: '/notifications',
+          name: 'notifications',
+          builder: (context, state) => const NotificationsPage(),
+        ),
+        GoRoute(
+          path: '/profile/edit',
+          name: 'edit_profile',
+          builder: (context, state) => const EditProfilePage(),
+        ),
+      ],
+    );
+  }
+
+  // Legacy router getter for backward compatibility
+  static late final GoRouter router;
+
+  static void initialize(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    router = createRouter(authProvider);
+  }
 }

@@ -49,13 +49,17 @@ class DreptoHealthcareApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
+        // Get auth provider to create router with auth guards
+        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+        final router = AppRouter.createRouter(authProvider);
+
         return MaterialApp.router(
           title: 'Drepto Healthcare',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.light,
-          routerConfig: AppRouter.router,
+          routerConfig: router,
         );
       },
     );
