@@ -19,6 +19,11 @@ class OrderService {
     // Sort by date newest first
     _orders.sort((a, b) => b.date.compareTo(a.date));
     
-    return _orders;
+  }
+
+  /// Get all orders (for Admin Dashboard)
+  static Future<List<Order>> getAllOrders() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return List.from(_orders);
   }
 }

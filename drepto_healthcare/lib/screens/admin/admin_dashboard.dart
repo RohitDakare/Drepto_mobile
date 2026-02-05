@@ -9,6 +9,8 @@ import '../../core/constants/app_text_styles.dart';
 import '../../core/providers/auth_provider.dart';
 import '../../core/services/auth_service.dart';
 import '../../core/services/appointment_service.dart';
+import '../../core/services/order_service.dart';
+import '../../core/services/admin_service.dart';
 import '../../models/user_model.dart';
 import '../../models/appointment.dart';
 import '../../widgets/container/glass_container.dart';
@@ -21,23 +23,27 @@ class AdminDashboard extends StatefulWidget {
   State<AdminDashboard> createState() => _AdminDashboardState();
 }
 
-class _AdminDashboardState extends State<AdminDashboard> {
+class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   bool _isLoading = true;
-  Map<String, int> _userStats = {
-    'total': 0,
-    'patients': 0,
-    'doctors': 0,
-    'nurses': 0,
-    'pharmacy': 0,
-  };
-  List<Appointment> _appointments = [];
+  late TabController _tabController;
+  
+  // Data
+  Map<String, int> _userStats = {'total': 0, 'patients': 0, 'doctors': 0};
+  List<AdminActivityItem> _recentActivity = [];
   List<UserModel> _users = [];
 
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 3, vsync: this);
     _loadData();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   Future<void> _loadData() async {
@@ -45,22 +51,20 @@ class _AdminDashboardState extends State<AdminDashboard> {
     try {
       final stats = await AuthService.getUserStats();
       final users = await AuthService.getAllUsers();
-      final appointments = await AppointmentService.getAllAppointments();
+      final activity = await AdminService.getRecentActivity();
 
       if (mounted) {
         setState(() {
           _userStats = stats;
           _users = users;
-          _appointments = appointments;
+          _recentActivity = activity;
           _isLoading = false;
         });
       }
     } catch (e) {
       if (mounted) {
         setState(() => _isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load data: $e')),
-        );
+        // Helper to avoid context usage if unmounted, but good for debug
       }
     }
   }
@@ -68,17 +72,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
   @override
   Widget build(BuildContext context) {
     if (_currentIndex == 1) {
-      return _buildUsersList();
+      return _buildFullUserList();
     }
 
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
-      body: _isLoading 
-          ? const Center(child: CircularProgressIndicator())
-          : SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            // Header
+      body: SafeArea(
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -88,174 +89,48 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Admin Dashboard',
-                          style: AppTextStyles.h2,
-                        ),
-                        Text(
-                          'Overview & Management',
-                          style: AppTextStyles.bodyMedium.copyWith(
-                            color: AppColors.textSecondary,
-                          ),
-                        ),
+                        Text('Admin Dashboard', style: AppTextStyles.h2),
+                        Text('Operations Center', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary)),
                       ],
                     ),
-                    Container(
-                      width: 44,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                        border: Border.all(
-                          color: AppColors.primary.withValues(alpha: 0.2),
-                          width: 2,
-                        ),
-                      ),
-                      child: const Icon(Icons.admin_panel_settings, color: AppColors.primary),
-                    ),
+                    IconButton(onPressed: _loadData, icon: const Icon(Icons.refresh, color: AppColors.primary)),
                   ],
                 ),
               ),
             ),
-
-            // Stats Overview
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Platform Stats', style: AppTextStyles.h4),
-                    const SizedBox(height: 12),
-                    GridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
-                      childAspectRatio: 1.5,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        _StatsCard(
-                          title: 'Total Users', // Renamed from Patients
-                          value: '${_userStats['total']}',
-                          icon: Icons.people,
-                          color: AppColors.primary,
-                          trend: 'Active',
-                        ),
-                        _StatsCard(
-                          title: 'Appointments',
-                          value: '${_appointments.length}',
-                          icon: Icons.calendar_today,
-                          color: AppColors.accent,
-                          trend: 'Booked',
-                        ),
-                        _StatsCard(
-                          title: 'Active Doctors',
-                          value: '${_userStats['doctors']}',
-                          icon: Icons.medical_services,
-                          color: Colors.orange,
-                          trend: 'Registered',
-                        ),
-                        _StatsCard(
-                          title: 'Patients',
-                          value: '${_userStats['patients']}',
-                          icon: Icons.personal_injury, // Changed icon
-                          color: Colors.green,
-                          trend: 'Total',
-                        ),
-                      ].animate(interval: 100.ms).fadeIn(duration: 400.ms).scale(begin: const Offset(0.95, 0.95), curve: Curves.easeOut),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            // Quick Actions
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Quick Actions', style: AppTextStyles.h4),
-                    const SizedBox(height: 12),
-                    SizedBox(
-                      height: 100,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          _QuickActionCard(
-                            title: 'Refresh Data',
-                            icon: Icons.refresh,
-                            color: AppColors.primary,
-                            onTap: _loadData,
-                          ),
-                          _QuickActionCard(
-                            title: 'Reports',
-                            icon: Icons.bar_chart,
-                            color: AppColors.accent,
-                            onTap: () {},
-                          ),
-                          _QuickActionCard(
-                            title: 'Settings',
-                            icon: Icons.settings,
-                            color: Colors.grey,
-                            onTap: () {},
-                          ),
-                        ].animate(interval: 100.ms).fadeIn(duration: 400.ms).slideX(begin: 0.1, curve: Curves.easeOut),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            // Recent Activity (Real Data)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 80),
-                child: GlassContainer(
-                  padding: const EdgeInsets.all(16),
-                  color: Colors.white,
-                  borderGradient: LinearGradient(
-                    colors: [
-                      AppColors.borderLight,
-                      AppColors.borderLight.withValues(alpha: 0.5),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Recent User Registrations', style: AppTextStyles.h5),
-                      const SizedBox(height: 16),
-                      if (_users.isEmpty)
-                         const Text('No recent activity'),
-                      ..._users.take(5).map((user) => _ActivityItem(
-                        text: 'New ${user.roleDisplayName}: ${user.name}',
-                        time: 'Just now', // Ideally calculate from created_at
-                        icon: Icons.person_add_alt_1,
-                        color: Colors.green,
-                      )),
-                    ].animate(interval: 150.ms).fadeIn(duration: 500.ms),
-                  ),
-                ),
+              child: TabBar(
+                controller: _tabController,
+                labelColor: AppColors.primary,
+                unselectedLabelColor: AppColors.textSecondary,
+                indicatorColor: AppColors.primary,
+                tabs: const [
+                  Tab(text: 'Overview'),
+                  Tab(text: 'Medical'),
+                  Tab(text: 'Logistics'),
+                ],
               ),
             ),
           ],
+          body: _isLoading 
+            ? const Center(child: CircularProgressIndicator())
+            : TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildOverviewTab(),
+                  _buildMedicalTab(),
+                  _buildLogisticsTab(),
+                ],
+              ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: (index) {
-             if (index == 2) {
-                 // Settings or Profile
-             } 
-             setState(() => _currentIndex = index);
-        },
+        onTap: (index) => setState(() => _currentIndex = index),
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textSecondary,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dashboard'),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Monitor'),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Users'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
         ],
@@ -263,40 +138,188 @@ class _AdminDashboardState extends State<AdminDashboard> {
     );
   }
 
-  Widget _buildUsersList() {
-      return Scaffold(
-          appBar: AppBar(title: const Text('All Users'), leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => setState(() => _currentIndex = 0))),
-          body: _isLoading 
-            ? const Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: _users.length,
-                padding: const EdgeInsets.all(16),
-                itemBuilder: (context, index) {
-                    final user = _users[index];
-                    return Card(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        child: ListTile(
-                            leading: CircleAvatar(child: Text(user.name[0])),
-                            title: Text(user.name, style: AppTextStyles.bodyLarge),
-                            subtitle: Text('${user.email}\n${user.roleDisplayName}'),
-                            isThreeLine: true,
-                            trailing: Chip(label: Text(user.role.name)),
-                        ),
-                    );
-                },
-            ),
-             bottomNavigationBar: BottomNavigationBar(
-                currentIndex: _currentIndex,
-                onTap: (index) => setState(() => _currentIndex = index),
-                selectedItemColor: AppColors.primary,
-                unselectedItemColor: AppColors.textSecondary,
-                items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dashboard'),
-                BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Users'),
-                BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-                ],
-            ),
-      );
+  Widget _buildOverviewTab() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildStatsGrid(),
+          const SizedBox(height: 24),
+          const Text('Live Activity Feed', style: AppTextStyles.h4),
+          const SizedBox(height: 12),
+          ..._recentActivity.map((item) => _ActivityListTile(item: item)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMedicalTab() {
+    final medicalActivity = _recentActivity.where((a) => a.type == ActivityType.appointment || a.type == ActivityType.registration).toList();
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        GlassContainer(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _MiniStat(label: 'Doctors', value: '${_userStats['doctors']}'),
+              _MiniStat(label: 'Nurses', value: '${_userStats['nurses']}'),
+              _MiniStat(label: 'Patients', value: '${_userStats['patients']}'),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        const Text('Doctor & Patient Activity', style: AppTextStyles.h4),
+        const SizedBox(height: 10),
+        if (medicalActivity.isEmpty) const Text('No recent medical activity'),
+        ...medicalActivity.map((item) => _ActivityListTile(item: item)),
+      ],
+    );
+  }
+
+  Widget _buildLogisticsTab() {
+     final logisticsActivity = _recentActivity.where((a) => a.type == ActivityType.order).toList();
+     return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+         GlassContainer(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _MiniStat(label: 'Pharmacy', value: '${_userStats['pharmacy']}'),
+              _MiniStat(label: 'Drivers', value: '4'), // Mock for now or add to UserRole
+              _MiniStat(label: 'Orders', value: '${logisticsActivity.length}'), 
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        const Text('Delivery & Pharmacy Events', style: AppTextStyles.h4),
+        const SizedBox(height: 10),
+        if (logisticsActivity.isEmpty) const Text('No recent orders'),
+        ...logisticsActivity.map((item) => _ActivityListTile(item: item)),
+      ],
+     );
+  }
+
+  Widget _buildStatsGrid() {
+    return GridView.count(
+      crossAxisCount: 2,
+      childAspectRatio: 1.5,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      mainAxisSpacing: 12,
+      crossAxisSpacing: 12,
+      children: [
+        _StatsCard(
+          title: 'Total Users',
+          value: '${_userStats['total']}',
+          icon: Icons.people,
+          color: AppColors.primary,
+          trend: 'Live',
+        ),
+        _StatsCard(
+          title: 'Activity Events',
+          value: '${_recentActivity.length}',
+          icon: Icons.notifications_active,
+          color: Colors.orange,
+          trend: 'Today',
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFullUserList() {
+    return Scaffold(
+      appBar: AppBar(title: const Text('All Mobile App Users')),
+      body: ListView.builder(
+        itemCount: _users.length,
+        itemBuilder: (context, index) {
+          final user = _users[index];
+          return ListTile(
+            leading: CircleAvatar(child: Text(user.name[0])),
+            title: Text(user.name),
+            subtitle: Text(user.roleDisplayName),
+            trailing: Icon(Icons.chevron_right),
+          );
+        },
+      ),
+       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) => setState(() => _currentIndex = index),
+        selectedItemColor: AppColors.primary,
+        unselectedItemColor: AppColors.textSecondary,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Monitor'),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Users'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+        ],
+      ),
+    );
+  }
+}
+
+class _ActivityListTile extends StatelessWidget {
+  final AdminActivityItem item;
+  const _ActivityListTile({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    IconData icon;
+    Color color;
+    switch (item.type) {
+      case ActivityType.registration:
+        icon = Icons.person_add;
+        color = Colors.blue;
+        break;
+      case ActivityType.appointment:
+        icon = Icons.calendar_month;
+        color = Colors.purple;
+        break;
+      case ActivityType.order:
+        icon = Icons.local_shipping;
+        color = Colors.green;
+        break;
+    }
+
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: AppColors.borderLight),
+      ),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: color.withValues(alpha: 0.1),
+          child: Icon(icon, color: color, size: 20),
+        ),
+        title: Text(item.title, style: AppTextStyles.bodyMedium.copyWith(fontWeight: FontWeight.bold)),
+        subtitle: Text(item.description, style: AppTextStyles.caption),
+        trailing: Text(
+          '${item.timestamp.hour}:${item.timestamp.minute.toString().padLeft(2, '0')}',
+          style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+        ),
+      ),
+    );
+  }
+}
+
+class _MiniStat extends StatelessWidget {
+  final String label;
+  final String value;
+  const _MiniStat({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(value, style: AppTextStyles.h4.copyWith(color: AppColors.primary)),
+        Text(label, style: AppTextStyles.caption),
+      ],
+    );
   }
 }
 
@@ -323,141 +346,22 @@ class _StatsCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: AppSpacing.borderRadiusMd,
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Icon(icon, size: 20, color: color),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.green.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  trend,
-                  style: AppTextStyles.caption.copyWith(
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              Icon(icon, color: color),
+              Text(trend, style: TextStyle(color: Colors.green, fontSize: 12)),
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                value,
-                style: AppTextStyles.h4.copyWith(fontSize: 22),
-              ),
-              Text(
-                title,
-                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
-              ),
-            ],
-          ),
+          const Spacer(),
+          Text(value, style: AppTextStyles.h3),
+          Text(title, style: AppTextStyles.caption),
         ],
       ),
-    );
-  }
-}
-
-class _QuickActionCard extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color color;
-  final VoidCallback onTap;
-
-  const _QuickActionCard({
-    required this.title,
-    required this.icon,
-    required this.color,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 100,
-        margin: const EdgeInsets.only(right: 12),
-        decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.05),
-          borderRadius: AppSpacing.borderRadiusMd,
-          border: Border.all(color: color.withValues(alpha: 0.2)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 28, color: color),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: AppTextStyles.labelMedium.copyWith(
-                color: color,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ActivityItem extends StatelessWidget {
-  final String text;
-  final String time;
-  final IconData icon;
-  final Color color;
-
-  const _ActivityItem({
-    required this.text,
-    required this.time,
-    required this.icon,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 16,
-          backgroundColor: color.withValues(alpha: 0.1),
-          child: Icon(icon, size: 16, color: color),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(text, style: AppTextStyles.bodyMedium),
-              Text(time, style: AppTextStyles.caption),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
