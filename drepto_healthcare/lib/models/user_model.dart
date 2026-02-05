@@ -3,6 +3,7 @@ enum UserRole {
   doctor,
   nurse,
   pharmacy,
+  admin,
 }
 
 class UserModel {
@@ -139,6 +140,8 @@ class UserModel {
         return 'Nurse';
       case UserRole.pharmacy:
         return 'Pharmacy Staff';
+      case UserRole.admin:
+        return 'Administrator';
     }
   }
 }

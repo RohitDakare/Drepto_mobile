@@ -34,6 +34,20 @@ class AuthService {
         'bloodType': 'O+',
       }
     },
+    'admin@drepto.com': {
+      'password': _hashPassword('Admin@123'),
+      'user': {
+        'id': 'admin_1',
+        'email': 'admin@drepto.com',
+        'name': 'Super Admin',
+        'role': 'admin',
+        'phoneNumber': '+91 0000000000',
+        'isEmailVerified': true,
+        'isPhoneVerified': true,
+        'createdAt': DateTime.now().subtract(const Duration(days: 365)).toIso8601String(),
+        'lastLoginAt': DateTime.now().toIso8601String(),
+      }
+    },
   };
 
   // Hash password for mock authentication
@@ -314,5 +328,60 @@ class AuthService {
       // Don't reveal if email exists for security
       // Just return success
     }
+  }
+  /// Change password
+  static Future<void> changePassword({
+    required String email,
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    // Simulate network delay
+    await Future.delayed(const Duration(seconds: 1));
+
+    final normalizedEmail = email.toLowerCase().trim();
+
+    // In production: await ApiService.post('/auth/change-password', data: {...});
+    
+    if (!_mockUsers.containsKey(normalizedEmail)) {
+      throw AuthException('User not found', code: 'USER_NOT_FOUND');
+    }
+
+    final userData = _mockUsers[normalizedEmail]!;
+    final oldPasswordHash = _hashPassword(oldPassword);
+
+    if (userData['password'] != oldPasswordHash) {
+      throw AuthException('Incorrect old password', code: 'INVALID_CREDENTIALS');
+    }
+
+    if (newPassword.length < 8) {
+      throw AuthException('New password must be at least 8 characters', code: 'WEAK_PASSWORD');
+    }
+    
+    // Update password
+    _mockUsers[normalizedEmail]!['password'] = _hashPassword(newPassword);
+  }
+
+  /// Get all users (for Admin Dashboard)
+  static Future<List<UserModel>> getAllUsers() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return _mockUsers.values
+        .map((data) => UserModel.fromJson(data['user'] as Map<String, dynamic>))
+        .toList();
+  }
+
+  /// Get user statistics (for Admin Dashboard)
+  static Future<Map<String, int>> getUserStats() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    final users = _mockUsers.values
+        .map((data) => UserModel.fromJson(data['user'] as Map<String, dynamic>))
+        .toList();
+
+    return {
+      'total': users.length,
+      'patients': users.where((u) => u.role == UserRole.patient).length,
+      'doctors': users.where((u) => u.role == UserRole.doctor).length,
+      'nurses': users.where((u) => u.role == UserRole.nurse).length,
+      'pharmacy': users.where((u) => u.role == UserRole.pharmacy).length,
+    };
   }
 }

@@ -89,4 +89,10 @@ class AppointmentService {
       _appointments[index] = cancelled;
     }
   }
+
+  /// Get all appointments (for Admin Dashboard)
+  static Future<List<Appointment>> getAllAppointments() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return List.from(_appointments);
+  }
 }

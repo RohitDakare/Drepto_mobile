@@ -203,16 +203,11 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     const Text('Account', style: AppTextStyles.h4),
                     const SizedBox(height: 16),
-                    _SettingsSection(
+                      _SettingsSection(
                       children: [
                         _SettingsItem(
                           icon: Icons.person_outline,
                           title: 'Personal Information',
-                          onTap: () {},
-                        ),
-                        _SettingsItem(
-                          icon: Icons.location_on_outlined,
-                          title: 'Saved Addresses',
                           onTap: () {},
                         ),
                         _SettingsItem(
@@ -233,12 +228,16 @@ class ProfilePage extends StatelessWidget {
                         _SettingsItem(
                           icon: Icons.lock_outline,
                           title: 'Change Password',
-                          onTap: () {},
+                          onTap: () {
+                             context.push('/profile/change-password');
+                          },
                         ),
                         _SettingsItem(
                           icon: Icons.security,
-                          title: 'Privacy Settings',
-                          onTap: () {},
+                          title: 'Privacy Policy',
+                          onTap: () {
+                             context.push('/profile/privacy-policy');
+                          },
                         ),
                       ],
                     ),

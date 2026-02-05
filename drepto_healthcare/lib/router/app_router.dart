@@ -20,6 +20,8 @@ import '../screens/patient/doctor_selection_page.dart';
 import '../screens/notifications/notifications_page.dart';
 import '../screens/onboarding/forgot_password_page.dart';
 import '../screens/profile/edit_profile_page.dart';
+import '../screens/profile/change_password_page.dart';
+import '../screens/profile/privacy_policy_page.dart';
 import '../screens/pharmacy/staff/pharmacy_inventory_page.dart';
 import '../screens/pharmacy/staff/pharmacy_orders_page.dart';
 import '../screens/pharmacy/admin/pharmacy_admin_dashboard.dart';
@@ -201,6 +203,16 @@ class AppRouter {
           path: '/profile/edit',
           name: 'edit_profile',
           builder: (context, state) => const EditProfilePage(),
+        ),
+        GoRoute(
+          path: '/profile/change-password',
+          name: 'change_password',
+          builder: (context, state) => const ChangePasswordPage(),
+        ),
+        GoRoute(
+          path: '/profile/privacy-policy',
+          name: 'privacy_policy',
+          builder: (context, state) => const PrivacyPolicyPage(),
         ),
       ],
     );

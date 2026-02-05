@@ -205,6 +205,39 @@ class AuthProvider extends ChangeNotifier {
         return '/dashboard';
       case UserRole.pharmacy:
         return '/pharmacy/admin';
+      case UserRole.admin:
+        return '/dashboard/admin';
+    }
+  }
+  /// Change password
+  Future<bool> changePassword(String oldPassword, String newPassword) async {
+    try {
+      if (_currentUser == null) {
+        _errorMessage = 'No user session found';
+        notifyListeners();
+        return false;
+      }
+
+      _errorMessage = null;
+      notifyListeners();
+
+      await AuthService.changePassword(
+        email: _currentUser!.email,
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+      );
+
+      _errorMessage = null;
+      notifyListeners();
+      return true;
+    } on AuthException catch (e) {
+      _errorMessage = e.message;
+      notifyListeners();
+      return false;
+    } catch (e) {
+      _errorMessage = 'Failed to change password. Please try again.';
+      notifyListeners();
+      return false;
     }
   }
 }

@@ -7,6 +7,10 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/providers/auth_provider.dart';
+import '../../core/services/auth_service.dart';
+import '../../core/services/appointment_service.dart';
+import '../../models/user_model.dart';
+import '../../models/appointment.dart';
 import '../../widgets/container/glass_container.dart';
 import '../../widgets/navigation/bottom_nav_bars.dart';
 
@@ -19,12 +23,59 @@ class AdminDashboard extends StatefulWidget {
 
 class _AdminDashboardState extends State<AdminDashboard> {
   int _currentIndex = 0;
+  bool _isLoading = true;
+  Map<String, int> _userStats = {
+    'total': 0,
+    'patients': 0,
+    'doctors': 0,
+    'nurses': 0,
+    'pharmacy': 0,
+  };
+  List<Appointment> _appointments = [];
+  List<UserModel> _users = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    setState(() => _isLoading = true);
+    try {
+      final stats = await AuthService.getUserStats();
+      final users = await AuthService.getAllUsers();
+      final appointments = await AppointmentService.getAllAppointments();
+
+      if (mounted) {
+        setState(() {
+          _userStats = stats;
+          _users = users;
+          _appointments = appointments;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to load data: $e')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_currentIndex == 1) {
+      return _buildUsersList();
+    }
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
-      body: SafeArea(
+      body: _isLoading 
+          ? const Center(child: CircularProgressIndicator())
+          : SafeArea(
         child: CustomScrollView(
           slivers: [
             // Header
@@ -85,32 +136,32 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         _StatsCard(
-                          title: 'Total Patients',
-                          value: '1,248',
+                          title: 'Total Users', // Renamed from Patients
+                          value: '${_userStats['total']}',
                           icon: Icons.people,
                           color: AppColors.primary,
-                          trend: '+12%',
+                          trend: 'Active',
                         ),
                         _StatsCard(
                           title: 'Appointments',
-                          value: '84',
+                          value: '${_appointments.length}',
                           icon: Icons.calendar_today,
                           color: AppColors.accent,
-                          trend: '+5%',
+                          trend: 'Booked',
                         ),
                         _StatsCard(
                           title: 'Active Doctors',
-                          value: '42',
+                          value: '${_userStats['doctors']}',
                           icon: Icons.medical_services,
                           color: Colors.orange,
-                          trend: 'stable',
+                          trend: 'Registered',
                         ),
                         _StatsCard(
-                          title: 'Revenue',
-                          value: '\$14k',
-                          icon: Icons.attach_money,
+                          title: 'Patients',
+                          value: '${_userStats['patients']}',
+                          icon: Icons.personal_injury, // Changed icon
                           color: Colors.green,
-                          trend: '+18%',
+                          trend: 'Total',
                         ),
                       ].animate(interval: 100.ms).fadeIn(duration: 400.ms).scale(begin: const Offset(0.95, 0.95), curve: Curves.easeOut),
                     ),
@@ -134,10 +185,10 @@ class _AdminDashboardState extends State<AdminDashboard> {
                         scrollDirection: Axis.horizontal,
                         children: [
                           _QuickActionCard(
-                            title: 'Add Doctor',
-                            icon: Icons.person_add,
+                            title: 'Refresh Data',
+                            icon: Icons.refresh,
                             color: AppColors.primary,
-                            onTap: () {},
+                            onTap: _loadData,
                           ),
                           _QuickActionCard(
                             title: 'Reports',
@@ -159,7 +210,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
               ),
             ),
 
-            // Recent Activity (Placeholder for now)
+            // Recent Activity (Real Data)
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 80),
@@ -175,28 +226,16 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Recent System Activity', style: AppTextStyles.h5),
+                      const Text('Recent User Registrations', style: AppTextStyles.h5),
                       const SizedBox(height: 16),
-                      _ActivityItem(
-                        text: 'New doctor registration: Dr. Smith',
-                        time: '2 mins ago',
+                      if (_users.isEmpty)
+                         const Text('No recent activity'),
+                      ..._users.take(5).map((user) => _ActivityItem(
+                        text: 'New ${user.roleDisplayName}: ${user.name}',
+                        time: 'Just now', // Ideally calculate from created_at
                         icon: Icons.person_add_alt_1,
                         color: Colors.green,
-                      ),
-                      const SizedBox(height: 12),
-                      _ActivityItem(
-                        text: 'System maintenance scheduled',
-                        time: '1 hour ago',
-                        icon: Icons.build,
-                        color: Colors.orange,
-                      ),
-                      const SizedBox(height: 12),
-                      _ActivityItem(
-                        text: 'Pharmacy inventory alert',
-                        time: '3 hours ago',
-                        icon: Icons.warning_amber,
-                        color: Colors.red,
-                      ),
+                      )),
                     ].animate(interval: 150.ms).fadeIn(duration: 500.ms),
                   ),
                 ),
@@ -207,7 +246,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) {
+             if (index == 2) {
+                 // Settings or Profile
+             } 
+             setState(() => _currentIndex = index);
+        },
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textSecondary,
         items: const [
@@ -217,6 +261,42 @@ class _AdminDashboardState extends State<AdminDashboard> {
         ],
       ),
     );
+  }
+
+  Widget _buildUsersList() {
+      return Scaffold(
+          appBar: AppBar(title: const Text('All Users'), leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => setState(() => _currentIndex = 0))),
+          body: _isLoading 
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                itemCount: _users.length,
+                padding: const EdgeInsets.all(16),
+                itemBuilder: (context, index) {
+                    final user = _users[index];
+                    return Card(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        child: ListTile(
+                            leading: CircleAvatar(child: Text(user.name[0])),
+                            title: Text(user.name, style: AppTextStyles.bodyLarge),
+                            subtitle: Text('${user.email}\n${user.roleDisplayName}'),
+                            isThreeLine: true,
+                            trailing: Chip(label: Text(user.role.name)),
+                        ),
+                    );
+                },
+            ),
+             bottomNavigationBar: BottomNavigationBar(
+                currentIndex: _currentIndex,
+                onTap: (index) => setState(() => _currentIndex = index),
+                selectedItemColor: AppColors.primary,
+                unselectedItemColor: AppColors.textSecondary,
+                items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dashboard'),
+                BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Users'),
+                BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+                ],
+            ),
+      );
   }
 }
 
