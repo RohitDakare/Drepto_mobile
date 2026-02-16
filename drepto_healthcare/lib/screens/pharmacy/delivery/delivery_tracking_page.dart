@@ -113,7 +113,7 @@ class _DeliveryTrackingPageState extends State<DeliveryTrackingPage> {
                             Text('15 Mins', style: AppTextStyles.h3),
                           ],
                         ),
-                        _TimeStatusBadge(),
+                        const _TimeStatusBadge(),
                       ],
                     ),
                     const SizedBox(height: 32),
@@ -281,7 +281,7 @@ class _DriverInfoCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Mike Ross',
+                const Text('Mike Ross',
                     style: TextStyle(fontWeight: FontWeight.w600)),
                 Text('Delivery Agent', style: AppTextStyles.caption),
               ],

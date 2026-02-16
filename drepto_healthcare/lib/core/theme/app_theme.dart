@@ -28,12 +28,12 @@ class AppTheme {
     ),
 
     // AppBar Theme
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: true,
       backgroundColor: AppColors.surfaceLight,
       surfaceTintColor: Colors.transparent,
-      iconTheme: const IconThemeData(color: AppColors.textPrimary),
+      iconTheme: IconThemeData(color: AppColors.textPrimary),
       titleTextStyle: TextStyle(
         fontFamily: AppTextStyles.fontFamily,
         fontSize: 18,

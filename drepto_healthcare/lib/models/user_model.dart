@@ -19,13 +19,13 @@ class UserModel {
   final bool isPhoneVerified;
   final DateTime createdAt;
   final DateTime? lastLoginAt;
-  
+
   // Health stats
   final String? weight; // in kg
   final String? height; // in cm
   final String? bloodType; // e.g., "O+", "A-"
 
-  UserModel({
+  const UserModel({
     required this.id,
     required this.email,
     required this.name,

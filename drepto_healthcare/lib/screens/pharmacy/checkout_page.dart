@@ -45,7 +45,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
+        title: const Text(
           'Checkout',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -57,7 +57,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: Column(
         children: [
           // Progress Steps
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(16),
             child: Row(
               children: [

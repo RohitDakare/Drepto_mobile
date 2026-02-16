@@ -424,7 +424,7 @@ class _LabTestCard extends StatelessWidget {
                     borderRadius: AppSpacing.borderRadiusFull,
                   ),
                 ),
-                child: Text('Book Now'),
+                child: const Text('Book Now'),
               ),
             ],
           ),

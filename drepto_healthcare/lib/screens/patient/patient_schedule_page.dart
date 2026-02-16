@@ -22,10 +22,12 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
     final status = _tabs[_selectedTab].toLowerCase();
     return _appointments.where((apt) {
       if (status == 'upcoming') return apt.status == AppointmentStatus.upcoming;
-      if (status == 'completed')
+      if (status == 'completed') {
         return apt.status == AppointmentStatus.completed;
-      if (status == 'cancelled')
+      }
+      if (status == 'cancelled') {
         return apt.status == AppointmentStatus.cancelled;
+      }
       return true;
     }).toList();
   }
