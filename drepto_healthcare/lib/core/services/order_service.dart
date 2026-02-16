@@ -15,10 +15,11 @@ class OrderService {
   // Get recent orders
   static Future<List<Order>> getRecentOrders() async {
     await Future.delayed(const Duration(milliseconds: 800));
-    
+
     // Sort by date newest first
     _orders.sort((a, b) => b.date.compareTo(a.date));
-    
+
+    return List.from(_orders);
   }
 
   /// Get all orders (for Admin Dashboard)

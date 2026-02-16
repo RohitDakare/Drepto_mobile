@@ -40,14 +40,6 @@ class AppRouter {
         final isAuthenticated = authProvider.isAuthenticated;
         final currentPath = state.uri.path;
 
-        // List of public routes that don't require authentication
-        final publicRoutes = [
-          '/',
-          '/login',
-          '/register',
-          '/forgot-password',
-        ];
-
         // List of protected routes that require authentication
         final protectedRoutes = [
           '/dashboard',
@@ -75,12 +67,16 @@ class AppRouter {
         }
 
         // If user is not authenticated and trying to access protected route
-        if (!isAuthenticated && protectedRoutes.any((route) => currentPath.startsWith(route))) {
+        if (!isAuthenticated &&
+            protectedRoutes.any((route) => currentPath.startsWith(route))) {
           return '/login';
         }
 
         // If user is authenticated and trying to access login/onboarding
-        if (isAuthenticated && (currentPath == '/login' || currentPath == '/' || currentPath == '/register')) {
+        if (isAuthenticated &&
+            (currentPath == '/login' ||
+                currentPath == '/' ||
+                currentPath == '/register')) {
           return authProvider.getDashboardRoute();
         }
 

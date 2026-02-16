@@ -1,9 +1,6 @@
 import 'package:drepto_healthcare/core/services/appointment_service.dart';
 import 'package:drepto_healthcare/core/services/auth_service.dart';
 import 'package:drepto_healthcare/core/services/order_service.dart';
-import 'package:drepto_healthcare/models/appointment.dart';
-import 'package:drepto_healthcare/models/order.dart';
-import 'package:drepto_healthcare/models/user_model.dart';
 
 class AdminService {
   /// aggregated activity item
@@ -13,7 +10,8 @@ class AdminService {
     // 1. Get New Users
     final users = await AuthService.getAllUsers();
     for (var user in users) {
-      if (user.createdAt.isAfter(DateTime.now().subtract(const Duration(days: 7)))) {
+      if (user.createdAt
+          .isAfter(DateTime.now().subtract(const Duration(days: 7)))) {
         activity.add(AdminActivityItem(
           title: 'New User Registration',
           description: '${user.name} joined as ${user.roleDisplayName}',
@@ -41,7 +39,7 @@ class AdminService {
     for (var order in orders) {
       activity.add(AdminActivityItem(
         title: 'Order Placed',
-        description: 'Order #${order.id.substring(0, 8)} - \₹${order.totalAmount}',
+        description: 'Order #${order.id.substring(0, 8)} - \₹${order.total}',
         timestamp: order.date,
         type: ActivityType.order,
         relatedId: order.id,

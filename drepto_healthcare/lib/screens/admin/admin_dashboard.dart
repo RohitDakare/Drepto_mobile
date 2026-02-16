@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
-import '../../core/providers/auth_provider.dart';
 import '../../core/services/auth_service.dart';
-import '../../core/services/appointment_service.dart';
-import '../../core/services/order_service.dart';
 import '../../core/services/admin_service.dart';
 import '../../models/user_model.dart';
-import '../../models/appointment.dart';
 import '../../widgets/container/glass_container.dart';
-import '../../widgets/navigation/bottom_nav_bars.dart';
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -23,11 +14,12 @@ class AdminDashboard extends StatefulWidget {
   State<AdminDashboard> createState() => _AdminDashboardState();
 }
 
-class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProviderStateMixin {
+class _AdminDashboardState extends State<AdminDashboard>
+    with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   bool _isLoading = true;
   late TabController _tabController;
-  
+
   // Data
   Map<String, int> _userStats = {'total': 0, 'patients': 0, 'doctors': 0};
   List<AdminActivityItem> _recentActivity = [];
@@ -90,10 +82,15 @@ class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProvid
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Admin Dashboard', style: AppTextStyles.h2),
-                        Text('Operations Center', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary)),
+                        Text('Operations Center',
+                            style: AppTextStyles.bodyMedium
+                                .copyWith(color: AppColors.textSecondary)),
                       ],
                     ),
-                    IconButton(onPressed: _loadData, icon: const Icon(Icons.refresh, color: AppColors.primary)),
+                    IconButton(
+                        onPressed: _loadData,
+                        icon: const Icon(Icons.refresh,
+                            color: AppColors.primary)),
                   ],
                 ),
               ),
@@ -112,16 +109,16 @@ class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProvid
               ),
             ),
           ],
-          body: _isLoading 
-            ? const Center(child: CircularProgressIndicator())
-            : TabBarView(
-                controller: _tabController,
-                children: [
-                  _buildOverviewTab(),
-                  _buildMedicalTab(),
-                  _buildLogisticsTab(),
-                ],
-              ),
+          body: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _buildOverviewTab(),
+                    _buildMedicalTab(),
+                    _buildLogisticsTab(),
+                  ],
+                ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -130,9 +127,11 @@ class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProvid
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textSecondary,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Monitor'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.dashboard), label: 'Monitor'),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Users'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
     );
@@ -155,7 +154,11 @@ class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProvid
   }
 
   Widget _buildMedicalTab() {
-    final medicalActivity = _recentActivity.where((a) => a.type == ActivityType.appointment || a.type == ActivityType.registration).toList();
+    final medicalActivity = _recentActivity
+        .where((a) =>
+            a.type == ActivityType.appointment ||
+            a.type == ActivityType.registration)
+        .toList();
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -180,18 +183,21 @@ class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProvid
   }
 
   Widget _buildLogisticsTab() {
-     final logisticsActivity = _recentActivity.where((a) => a.type == ActivityType.order).toList();
-     return ListView(
+    final logisticsActivity =
+        _recentActivity.where((a) => a.type == ActivityType.order).toList();
+    return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-         GlassContainer(
+        GlassContainer(
           padding: const EdgeInsets.all(16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _MiniStat(label: 'Pharmacy', value: '${_userStats['pharmacy']}'),
-              _MiniStat(label: 'Drivers', value: '4'), // Mock for now or add to UserRole
-              _MiniStat(label: 'Orders', value: '${logisticsActivity.length}'), 
+              _MiniStat(
+                  label: 'Drivers',
+                  value: '4'), // Mock for now or add to UserRole
+              _MiniStat(label: 'Orders', value: '${logisticsActivity.length}'),
             ],
           ),
         ),
@@ -201,7 +207,7 @@ class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProvid
         if (logisticsActivity.isEmpty) const Text('No recent orders'),
         ...logisticsActivity.map((item) => _ActivityListTile(item: item)),
       ],
-     );
+    );
   }
 
   Widget _buildStatsGrid() {
@@ -246,15 +252,17 @@ class _AdminDashboardState extends State<AdminDashboard> with SingleTickerProvid
           );
         },
       ),
-       bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textSecondary,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Monitor'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.dashboard), label: 'Monitor'),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Users'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
     );
@@ -296,7 +304,9 @@ class _ActivityListTile extends StatelessWidget {
           backgroundColor: color.withValues(alpha: 0.1),
           child: Icon(icon, color: color, size: 20),
         ),
-        title: Text(item.title, style: AppTextStyles.bodyMedium.copyWith(fontWeight: FontWeight.bold)),
+        title: Text(item.title,
+            style:
+                AppTextStyles.bodyMedium.copyWith(fontWeight: FontWeight.bold)),
         subtitle: Text(item.description, style: AppTextStyles.caption),
         trailing: Text(
           '${item.timestamp.hour}:${item.timestamp.minute.toString().padLeft(2, '0')}',
