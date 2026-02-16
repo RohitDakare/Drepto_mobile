@@ -28,12 +28,12 @@ class AppTheme {
     ),
 
     // AppBar Theme
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: true,
       backgroundColor: AppColors.surfaceLight,
       surfaceTintColor: Colors.transparent,
-      iconTheme: IconThemeData(color: AppColors.textPrimary),
+      iconTheme: const IconThemeData(color: AppColors.textPrimary),
       titleTextStyle: TextStyle(
         fontFamily: AppTextStyles.fontFamily,
         fontSize: 18,
@@ -50,16 +50,6 @@ class AppTheme {
       unselectedItemColor: AppColors.gray400,
       type: BottomNavigationBarType.fixed,
       elevation: 0,
-      selectedLabelStyle: TextStyle(
-        fontFamily: AppTextStyles.fontFamily,
-        fontSize: 10,
-        fontWeight: FontWeight.w500,
-      ),
-      unselectedLabelStyle: TextStyle(
-        fontFamily: AppTextStyles.fontFamily,
-        fontSize: 10,
-        fontWeight: FontWeight.w500,
-      ),
     ),
 
     // Elevated Button Theme
@@ -68,9 +58,8 @@ class AppTheme {
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.textLight,
         elevation: 0,
-        minimumSize: const Size(double.infinity, AppSpacing.buttonHeightLg),
-        shape: const RoundedRectangleBorder(
-            borderRadius: AppSpacing.borderRadiusXl),
+        minimumSize: Size(double.infinity, AppSpacing.buttonHeightLg),
+        shape: RoundedRectangleBorder(borderRadius: AppSpacing.borderRadiusXl),
         textStyle: AppTextStyles.buttonLarge,
       ),
     ),
@@ -80,10 +69,9 @@ class AppTheme {
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.primary,
         elevation: 0,
-        minimumSize: const Size(double.infinity, AppSpacing.buttonHeightLg),
+        minimumSize: Size(double.infinity, AppSpacing.buttonHeightLg),
         side: const BorderSide(color: AppColors.primary, width: 1.5),
-        shape: const RoundedRectangleBorder(
-            borderRadius: AppSpacing.borderRadiusXl),
+        shape: RoundedRectangleBorder(borderRadius: AppSpacing.borderRadiusXl),
         textStyle: AppTextStyles.buttonLarge.copyWith(color: AppColors.primary),
       ),
     ),
@@ -103,21 +91,21 @@ class AppTheme {
       filled: true,
       fillColor: AppColors.surfaceLight,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      border: const OutlineInputBorder(
+      border: OutlineInputBorder(
         borderRadius: AppSpacing.borderRadiusMd,
-        borderSide: BorderSide(color: AppColors.borderLight),
+        borderSide: const BorderSide(color: AppColors.borderLight),
       ),
-      enabledBorder: const OutlineInputBorder(
+      enabledBorder: OutlineInputBorder(
         borderRadius: AppSpacing.borderRadiusMd,
-        borderSide: BorderSide(color: AppColors.borderLight),
+        borderSide: const BorderSide(color: AppColors.borderLight),
       ),
-      focusedBorder: const OutlineInputBorder(
+      focusedBorder: OutlineInputBorder(
         borderRadius: AppSpacing.borderRadiusMd,
-        borderSide: BorderSide(color: AppColors.primary, width: 1.5),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
       ),
-      errorBorder: const OutlineInputBorder(
+      errorBorder: OutlineInputBorder(
         borderRadius: AppSpacing.borderRadiusMd,
-        borderSide: BorderSide(color: AppColors.error),
+        borderSide: const BorderSide(color: AppColors.error),
       ),
       hintStyle: AppTextStyles.bodyMedium.copyWith(color: AppColors.textMuted),
       labelStyle: AppTextStyles.labelMedium,
@@ -129,8 +117,7 @@ class AppTheme {
       selectedColor: AppColors.primary.withValues(alpha: 0.1),
       labelStyle: AppTextStyles.labelSmall,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      shape: const RoundedRectangleBorder(
-          borderRadius: AppSpacing.borderRadiusFull),
+      shape: RoundedRectangleBorder(borderRadius: AppSpacing.borderRadiusFull),
     ),
 
     // Icon Theme
@@ -193,9 +180,8 @@ class AppTheme {
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.textLight,
         elevation: 0,
-        minimumSize: const Size(double.infinity, AppSpacing.buttonHeightLg),
-        shape: const RoundedRectangleBorder(
-            borderRadius: AppSpacing.borderRadiusXl),
+        minimumSize: Size(double.infinity, AppSpacing.buttonHeightLg),
+        shape: RoundedRectangleBorder(borderRadius: AppSpacing.borderRadiusXl),
         textStyle: AppTextStyles.buttonLarge,
       ),
     ),
@@ -205,17 +191,17 @@ class AppTheme {
       filled: true,
       fillColor: AppColors.surfaceDark,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      border: const OutlineInputBorder(
+      border: OutlineInputBorder(
         borderRadius: AppSpacing.borderRadiusMd,
-        borderSide: BorderSide(color: AppColors.borderDark),
+        borderSide: const BorderSide(color: AppColors.borderDark),
       ),
-      enabledBorder: const OutlineInputBorder(
+      enabledBorder: OutlineInputBorder(
         borderRadius: AppSpacing.borderRadiusMd,
-        borderSide: BorderSide(color: AppColors.borderDark),
+        borderSide: const BorderSide(color: AppColors.borderDark),
       ),
-      focusedBorder: const OutlineInputBorder(
+      focusedBorder: OutlineInputBorder(
         borderRadius: AppSpacing.borderRadiusMd,
-        borderSide: BorderSide(color: AppColors.primary, width: 1.5),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
       ),
       hintStyle: AppTextStyles.bodyMedium.copyWith(color: AppColors.gray500),
     ),

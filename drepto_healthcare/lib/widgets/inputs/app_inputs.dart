@@ -99,24 +99,24 @@ class _AppTextFieldState extends State<AppTextField> {
                 : widget.suffixIcon,
             filled: true,
             fillColor: AppColors.surfaceLight,
-            border: const OutlineInputBorder(
+            border: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(color: AppColors.borderLight),
+              borderSide: const BorderSide(color: AppColors.borderLight),
             ),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(color: AppColors.borderLight),
+              borderSide: const BorderSide(color: AppColors.borderLight),
             ),
-            focusedBorder: const OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: AppColors.primary,
                 width: 1.5,
               ),
             ),
-            errorBorder: const OutlineInputBorder(
+            errorBorder: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(color: AppColors.error),
+              borderSide: const BorderSide(color: AppColors.error),
             ),
           ),
         ),

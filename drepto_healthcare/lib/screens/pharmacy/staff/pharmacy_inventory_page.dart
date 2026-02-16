@@ -126,7 +126,7 @@ class PharmacyInventoryPage extends StatelessWidget {
                               style: AppTextStyles.labelLarge
                                   .copyWith(fontWeight: FontWeight.w600),
                             ),
-                            const Text(
+                            Text(
                               'Batch: #88392 • Exp: 12/24',
                               style: AppTextStyles.caption,
                             ),

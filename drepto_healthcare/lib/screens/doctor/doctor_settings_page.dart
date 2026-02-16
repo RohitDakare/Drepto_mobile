@@ -17,7 +17,7 @@ class DoctorSettingsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Settings', style: AppTextStyles.h2),
+              Text('Settings', style: AppTextStyles.h2),
               const SizedBox(height: 24),
 
               // Profile Section
@@ -47,7 +47,7 @@ class DoctorSettingsPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Dr. Smith', style: AppTextStyles.h4),
+                          Text('Dr. Smith', style: AppTextStyles.h4),
                           Text('Cardiologist',
                               style: AppTextStyles.bodyMedium
                                   .copyWith(color: AppColors.textSecondary)),
@@ -64,7 +64,7 @@ class DoctorSettingsPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
-              const Text('General', style: AppTextStyles.h5),
+              Text('General', style: AppTextStyles.h5),
               const SizedBox(height: 8),
               _SettingsTile(
                   icon: Icons.person_outline,
@@ -80,7 +80,7 @@ class DoctorSettingsPage extends StatelessWidget {
                   onTap: () {}),
 
               const SizedBox(height: 24),
-              const Text('Practice', style: AppTextStyles.h5),
+              Text('Practice', style: AppTextStyles.h5),
               const SizedBox(height: 8),
               _SettingsTile(
                   icon: Icons.medical_services_outlined,
@@ -96,7 +96,7 @@ class DoctorSettingsPage extends StatelessWidget {
                   onTap: () {}),
 
               const SizedBox(height: 24),
-              const Text('Support', style: AppTextStyles.h5),
+              Text('Support', style: AppTextStyles.h5),
               const SizedBox(height: 8),
               _SettingsTile(
                   icon: Icons.help_outline,

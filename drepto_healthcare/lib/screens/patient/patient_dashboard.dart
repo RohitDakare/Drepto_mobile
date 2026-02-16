@@ -104,7 +104,7 @@ class _PatientHomePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(greeting, style: AppTextStyles.h4),
-                            const Text(
+                            Text(
                               'How are you feeling today?',
                               style: AppTextStyles.caption,
                             ),
@@ -157,7 +157,7 @@ class _PatientHomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Our Services', style: AppTextStyles.h4),
+                  Text('Our Services', style: AppTextStyles.h4),
                   const SizedBox(height: 12),
                   GridView.count(
                     crossAxisCount: (MediaQuery.of(context).size.width / 180)
@@ -249,8 +249,7 @@ class _PatientHomePage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Upcoming Appointments',
-                          style: AppTextStyles.h4),
+                      Text('Upcoming Appointments', style: AppTextStyles.h4),
                       TextButton(
                         onPressed: () {},
                         child: Text(
@@ -326,7 +325,7 @@ class _PatientHomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Recent Orders', style: AppTextStyles.h4),
+                  Text('Recent Orders', style: AppTextStyles.h4),
                   const SizedBox(height: 12),
                   // Empty State for Orders
                   Container(

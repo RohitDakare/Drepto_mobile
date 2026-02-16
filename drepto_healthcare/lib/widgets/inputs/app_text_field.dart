@@ -41,27 +41,31 @@ class AppTextField extends StatelessWidget {
           style: AppTextStyles.bodyMedium,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary),
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: AppColors.primary) : null,
+            hintStyle: AppTextStyles.bodyMedium
+                .copyWith(color: AppColors.textSecondary),
+            prefixIcon: prefixIcon != null
+                ? Icon(prefixIcon, color: AppColors.primary)
+                : null,
             filled: true,
             fillColor: AppColors.surfaceLight,
-            border: const OutlineInputBorder(
+            border: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(color: AppColors.borderLight),
+              borderSide: const BorderSide(color: AppColors.borderLight),
             ),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(color: AppColors.borderLight),
+              borderSide: const BorderSide(color: AppColors.borderLight),
             ),
-            focusedBorder: const OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(color: AppColors.primary, width: 2),
+              borderSide: const BorderSide(color: AppColors.primary, width: 2),
             ),
-            errorBorder: const OutlineInputBorder(
+            errorBorder: OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: BorderSide(color: AppColors.error),
+              borderSide: const BorderSide(color: AppColors.error),
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           ),
         ),
       ],

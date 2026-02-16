@@ -153,8 +153,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Select Ambulance Type',
-                        style: AppTextStyles.h5),
+                    Text('Select Ambulance Type', style: AppTextStyles.h5),
                     const SizedBox(height: 16),
                     ..._types.asMap().entries.map((entry) {
                       final index = entry.key;
@@ -175,7 +174,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                       icon: Icons.emergency,
                     ),
                     const SizedBox(height: 12),
-                    const Center(
+                    Center(
                       child: Text(
                         'By confirming, you agree to emergency service dispatch terms.',
                         style: AppTextStyles.caption,
@@ -314,7 +313,7 @@ class _AmbulanceTypeCard extends StatelessWidget {
             Container(
               width: 60,
               height: 40,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: AppColors.gray100,
                 borderRadius: AppSpacing.borderRadiusSm,
               ),

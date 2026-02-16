@@ -19,7 +19,7 @@ class DoctorPatientsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Patients Directory', style: AppTextStyles.h2),
+                  Text('Patients Directory', style: AppTextStyles.h2),
                   const SizedBox(height: 16),
                   AppSearchField(
                     hint: 'Search patients by name or ID...',

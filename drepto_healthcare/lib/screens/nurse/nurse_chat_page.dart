@@ -17,7 +17,7 @@ class NurseChatPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Team Chat', style: AppTextStyles.h2),
+                  Text('Team Chat', style: AppTextStyles.h2),
                   IconButton(
                     icon:
                         const Icon(Icons.add_comment, color: AppColors.primary),
@@ -65,8 +65,7 @@ class NurseChatPage extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    trailing:
-                        const Text('10:30 AM', style: AppTextStyles.caption),
+                    trailing: Text('10:30 AM', style: AppTextStyles.caption),
                     onTap: () {},
                   );
                 },

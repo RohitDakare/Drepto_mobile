@@ -21,7 +21,7 @@ class NurseAgendaPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Weekly Agenda', style: AppTextStyles.h2),
+                      Text('Weekly Agenda', style: AppTextStyles.h2),
                       Text('Oct 23 - Oct 29',
                           style: AppTextStyles.bodyMedium
                               .copyWith(color: AppColors.textSecondary)),

@@ -17,7 +17,7 @@ class DoctorMessagesPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Messages', style: AppTextStyles.h2),
+                  Text('Messages', style: AppTextStyles.h2),
                   IconButton(
                     icon:
                         const Icon(Icons.edit_square, color: AppColors.primary),

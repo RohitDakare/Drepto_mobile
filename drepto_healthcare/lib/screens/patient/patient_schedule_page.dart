@@ -14,7 +14,7 @@ class PatientSchedulePage extends StatefulWidget {
 
 class _PatientSchedulePageState extends State<PatientSchedulePage> {
   // Use mock data from the model for now
-  final List<Appointment> _appointments = Appointment.getMockAppointments(); 
+  final List<Appointment> _appointments = Appointment.getMockAppointments();
   int _selectedTab = 0;
   final List<String> _tabs = ['Upcoming', 'Completed', 'Cancelled'];
 
@@ -22,8 +22,10 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
     final status = _tabs[_selectedTab].toLowerCase();
     return _appointments.where((apt) {
       if (status == 'upcoming') return apt.status == AppointmentStatus.upcoming;
-      if (status == 'completed') return apt.status == AppointmentStatus.completed;
-      if (status == 'cancelled') return apt.status == AppointmentStatus.cancelled;
+      if (status == 'completed')
+        return apt.status == AppointmentStatus.completed;
+      if (status == 'cancelled')
+        return apt.status == AppointmentStatus.cancelled;
       return true;
     }).toList();
   }
@@ -41,7 +43,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('My Schedule', style: AppTextStyles.h2),
+                  Text('My Schedule', style: AppTextStyles.h2),
                   IconButton(
                     icon: const Icon(Icons.calendar_month,
                         color: AppColors.primary),
@@ -62,9 +64,8 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
                       child: GestureDetector(
                         onTap: () => setState(() => _selectedTab = index),
                         child: _StatusTab(
-                          label: _tabs[index], 
-                          isActive: _selectedTab == index
-                        ),
+                            label: _tabs[index],
+                            isActive: _selectedTab == index),
                       ),
                     );
                   }),
@@ -74,32 +75,36 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
             const SizedBox(height: 16),
 
             Expanded(
-              child: _appointments.isEmpty 
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.event_busy, size: 64, color: AppColors.gray400),
-                      const SizedBox(height: 16),
-                      Text(
-                        'No appointments yet',
-                        style: AppTextStyles.h5.copyWith(color: AppColors.gray500),
+              child: _appointments.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.event_busy,
+                              size: 64, color: AppColors.gray400),
+                          const SizedBox(height: 16),
+                          Text(
+                            'No appointments yet',
+                            style: AppTextStyles.h5
+                                .copyWith(color: AppColors.gray500),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Your upcoming appointments will appear here',
+                            style: AppTextStyles.bodyMedium
+                                .copyWith(color: AppColors.gray400),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Your upcoming appointments will appear here',
-                        style: AppTextStyles.bodyMedium.copyWith(color: AppColors.gray400),
-                      ),
-                    ],
-                  ),
-                )
-              : ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: _filteredAppointments.length,
-                itemBuilder: (context, index) {
-                  return AppointmentCard(appointment: _filteredAppointments[index]);
-                },
-              ),
+                    )
+                  : ListView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: _filteredAppointments.length,
+                      itemBuilder: (context, index) {
+                        return AppointmentCard(
+                            appointment: _filteredAppointments[index]);
+                      },
+                    ),
             ),
           ],
         ),

@@ -166,23 +166,25 @@ class _OnboardingContent extends StatelessWidget {
                 width: double.infinity,
                 height: 280,
                 margin: const EdgeInsets.only(bottom: 40),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.transparent, // Changed to transparent for image
                   borderRadius: AppSpacing.borderRadiusLg,
                   // Shadow removed/optional depending on design
                 ),
                 child: ClipRRect(
-                   borderRadius: AppSpacing.borderRadiusLg,
-                   child: Image.asset(
-                     item.imagePath,
-                     fit: BoxFit.contain, // or cover depending on the image aspect ratio
-                     errorBuilder: (context, error, stackTrace) {
-                       return Container(
-                         color: AppColors.gray100,
-                         child: const Icon(Icons.image_not_supported, size: 50, color: AppColors.gray400),
-                       );
-                     },
-                   ),
+                  borderRadius: AppSpacing.borderRadiusLg,
+                  child: Image.asset(
+                    item.imagePath,
+                    fit: BoxFit
+                        .contain, // or cover depending on the image aspect ratio
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: AppColors.gray100,
+                        child: const Icon(Icons.image_not_supported,
+                            size: 50, color: AppColors.gray400),
+                      );
+                    },
+                  ),
                 ),
               ),
 
@@ -222,4 +224,3 @@ class OnboardingItem {
     required this.imagePath,
   });
 }
-

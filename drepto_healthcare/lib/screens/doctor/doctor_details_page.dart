@@ -39,7 +39,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Doctor Details', style: AppTextStyles.h4),
+        title: Text('Doctor Details', style: AppTextStyles.h4),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -99,7 +99,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
             const SizedBox(height: 32),
 
             // About
-            const Text('About Doctor', style: AppTextStyles.h4),
+            Text('About Doctor', style: AppTextStyles.h4),
             const SizedBox(height: 8),
             Text(
               widget.doctor.about,
@@ -109,7 +109,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
             const SizedBox(height: 32),
 
             // Schedules
-            const Text('Schedules', style: AppTextStyles.h4),
+            Text('Schedules', style: AppTextStyles.h4),
             const SizedBox(height: 16),
             SizedBox(
               height: 350,
@@ -126,7 +126,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text('Available Slots', style: AppTextStyles.labelLarge),
+            Text('Available Slots', style: AppTextStyles.labelLarge),
             const SizedBox(height: 12),
             Wrap(
               spacing: 12,

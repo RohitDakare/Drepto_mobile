@@ -96,8 +96,6 @@ class ServiceCard extends StatelessWidget {
   }
 }
 
-
-
 /// Order card
 class OrderCard extends StatelessWidget {
   final String title;
@@ -153,7 +151,7 @@ class OrderCard extends StatelessWidget {
           Container(
             width: 48,
             height: 48,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: AppColors.gray50,
               borderRadius: AppSpacing.borderRadiusSm,
             ),
@@ -290,7 +288,7 @@ class ProductCard extends StatelessWidget {
                           horizontal: 8,
                           vertical: 4,
                         ),
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: AppColors.primary,
                           borderRadius: AppSpacing.borderRadiusFull,
                         ),
@@ -357,7 +355,7 @@ class ProductCard extends StatelessWidget {
                           backgroundColor: AppColors.primary,
                           foregroundColor: Colors.white,
                           padding: EdgeInsets.zero,
-                          shape: const RoundedRectangleBorder(
+                          shape: RoundedRectangleBorder(
                             borderRadius: AppSpacing.borderRadiusSm,
                           ),
                         ),

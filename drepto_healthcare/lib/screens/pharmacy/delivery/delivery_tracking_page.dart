@@ -102,7 +102,7 @@ class _DeliveryTrackingPageState extends State<DeliveryTrackingPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
@@ -277,7 +277,7 @@ class _DriverInfoCard extends StatelessWidget {
             child: const Icon(Icons.person, color: AppColors.primary),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

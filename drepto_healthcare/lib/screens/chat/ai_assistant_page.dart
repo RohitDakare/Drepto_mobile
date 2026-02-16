@@ -232,7 +232,7 @@ class _AIAssistantPageState extends State<AIAssistantPage> {
                   ),
                   Expanded(
                     child: Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: AppColors.gray50,
                         borderRadius: AppSpacing.borderRadiusFull,
                       ),
@@ -345,7 +345,8 @@ class _ChatBubble extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: AppColors.primary.withValues(alpha: 0.1),
               ),
-              child: const Icon(Icons.person, size: 20, color: AppColors.primary),
+              child:
+                  const Icon(Icons.person, size: 20, color: AppColors.primary),
             ),
           ],
         ],

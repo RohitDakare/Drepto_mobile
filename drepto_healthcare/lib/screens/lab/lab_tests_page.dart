@@ -124,7 +124,7 @@ class _LabTestsPageState extends State<LabTestsPage>
                   size: 18,
                 ),
                 const SizedBox(width: 8),
-                const Text('Delivering to ', style: AppTextStyles.caption),
+                Text('Delivering to ', style: AppTextStyles.caption),
                 Text(
                   'Home - Upper West Side, NY',
                   style: AppTextStyles.labelSmall.copyWith(
@@ -148,7 +148,7 @@ class _LabTestsPageState extends State<LabTestsPage>
           // Tab bar
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: AppColors.gray100,
               borderRadius: AppSpacing.borderRadiusFull,
             ),
@@ -259,7 +259,7 @@ class _LabTestsPageState extends State<LabTestsPage>
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const Text(
+                      Text(
                         'Free for orders above \$50. Certified phlebotomists.',
                         style: AppTextStyles.caption,
                       ),
@@ -420,11 +420,11 @@ class _LabTestCard extends StatelessWidget {
                     horizontal: 24,
                     vertical: 12,
                   ),
-                  shape: const RoundedRectangleBorder(
+                  shape: RoundedRectangleBorder(
                     borderRadius: AppSpacing.borderRadiusFull,
                   ),
                 ),
-                child: const Text('Book Now'),
+                child: Text('Book Now'),
               ),
             ],
           ),

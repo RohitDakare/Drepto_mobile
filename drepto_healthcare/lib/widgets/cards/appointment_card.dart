@@ -32,7 +32,7 @@ class AppointmentCard extends StatelessWidget {
         borderRadius: AppSpacing.borderRadiusMd,
         boxShadow: [
           BoxShadow(
-             color: Colors.black.withValues(alpha: 0.03),
+            color: Colors.black.withValues(alpha: 0.03),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -46,7 +46,7 @@ class AppointmentCard extends StatelessWidget {
               Container(
                 width: 60,
                 height: 60,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: AppSpacing.borderRadiusSm,
                   color: AppColors.gray100,
                   // Placeholder for image logic since model lacks imageUrl currently
@@ -118,7 +118,7 @@ class AppointmentCard extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
-                  shape: const RoundedRectangleBorder(
+                  shape: RoundedRectangleBorder(
                       borderRadius: AppSpacing.borderRadiusSm),
                 ),
                 child: const Text('Join Call'),

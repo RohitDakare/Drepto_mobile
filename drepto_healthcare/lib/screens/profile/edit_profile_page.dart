@@ -23,7 +23,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _weightController = TextEditingController();
   final _heightController = TextEditingController();
   final _bloodTypeController = TextEditingController();
-  
+
   DateTime? _selectedDateOfBirth;
   bool _isLoading = false;
 
@@ -34,7 +34,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final authProvider = context.read<AuthProvider>();
       final user = authProvider.currentUser;
-      
+
       if (user != null) {
         _nameController.text = user.name;
         _phoneController.text = user.phoneNumber ?? '';
@@ -98,12 +98,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
     final authProvider = context.read<AuthProvider>();
     final success = await authProvider.updateUserProfile(
       name: _nameController.text.trim(),
-      phoneNumber: _phoneController.text.trim().isEmpty ? null : _phoneController.text.trim(),
-      address: _addressController.text.trim().isEmpty ? null : _addressController.text.trim(),
+      phoneNumber: _phoneController.text.trim().isEmpty
+          ? null
+          : _phoneController.text.trim(),
+      address: _addressController.text.trim().isEmpty
+          ? null
+          : _addressController.text.trim(),
       dateOfBirth: _selectedDateOfBirth,
-      weight: _weightController.text.trim().isEmpty ? null : _weightController.text.trim(),
-      height: _heightController.text.trim().isEmpty ? null : _heightController.text.trim(),
-      bloodType: _bloodTypeController.text.trim().isEmpty ? null : _bloodTypeController.text.trim(),
+      weight: _weightController.text.trim().isEmpty
+          ? null
+          : _weightController.text.trim(),
+      height: _heightController.text.trim().isEmpty
+          ? null
+          : _heightController.text.trim(),
+      bloodType: _bloodTypeController.text.trim().isEmpty
+          ? null
+          : _bloodTypeController.text.trim(),
     );
 
     setState(() {
@@ -122,7 +132,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(authProvider.errorMessage ?? 'Failed to update profile'),
+            content:
+                Text(authProvider.errorMessage ?? 'Failed to update profile'),
             backgroundColor: AppColors.error,
           ),
         );
@@ -141,7 +152,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => context.pop(),
         ),
-        title: const Text(
+        title: Text(
           'Edit Profile',
           style: AppTextStyles.h3,
         ),
@@ -167,9 +178,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Personal Information Section
-              const Text('Personal Information', style: AppTextStyles.h4),
+              Text('Personal Information', style: AppTextStyles.h4),
               const SizedBox(height: 16),
-              
+
               _buildTextField(
                 controller: _nameController,
                 label: 'Full Name',
@@ -182,7 +193,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 },
               ),
               const SizedBox(height: 16),
-              
+
               _buildTextField(
                 controller: _phoneController,
                 label: 'Phone Number',
@@ -190,7 +201,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 keyboardType: TextInputType.phone,
               ),
               const SizedBox(height: 16),
-              
+
               _buildTextField(
                 controller: _addressController,
                 label: 'Address',
@@ -198,7 +209,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 maxLines: 2,
               ),
               const SizedBox(height: 16),
-              
+
               // Date of Birth
               InkWell(
                 onTap: _selectDateOfBirth,
@@ -211,7 +222,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.calendar_today_outlined, color: AppColors.primary),
+                      const Icon(Icons.calendar_today_outlined,
+                          color: AppColors.primary),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(
@@ -226,7 +238,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             const SizedBox(height: 4),
                             Text(
                               _selectedDateOfBirth != null
-                                  ? DateFormat('MMM dd, yyyy').format(_selectedDateOfBirth!)
+                                  ? DateFormat('MMM dd, yyyy')
+                                      .format(_selectedDateOfBirth!)
                                   : 'Select date',
                               style: AppTextStyles.bodyMedium,
                             ),
@@ -238,13 +251,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 32),
-              
+
               // Health Stats Section
-              const Text('Health Information', style: AppTextStyles.h4),
+              Text('Health Information', style: AppTextStyles.h4),
               const SizedBox(height: 16),
-              
+
               Row(
                 children: [
                   Expanded(
@@ -267,16 +280,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ],
               ),
               const SizedBox(height: 16),
-              
+
               _buildTextField(
                 controller: _bloodTypeController,
                 label: 'Blood Type',
                 icon: Icons.bloodtype_outlined,
                 hint: 'e.g., O+, A-, B+',
               ),
-              
+
               const SizedBox(height: 32),
-              
+
               // Save Button
               SizedBox(
                 width: double.infinity,
@@ -313,23 +326,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
         prefixIcon: Icon(icon, color: AppColors.primary),
         filled: true,
         fillColor: AppColors.surfaceLight,
-        border: const OutlineInputBorder(
+        border: OutlineInputBorder(
           borderRadius: AppSpacing.borderRadiusMd,
           borderSide: BorderSide(color: AppColors.borderLight),
         ),
-        enabledBorder: const OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderRadius: AppSpacing.borderRadiusMd,
           borderSide: BorderSide(color: AppColors.borderLight),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: AppSpacing.borderRadiusMd,
           borderSide: BorderSide(color: AppColors.primary, width: 2),
         ),
-        errorBorder: const OutlineInputBorder(
+        errorBorder: OutlineInputBorder(
           borderRadius: AppSpacing.borderRadiusMd,
           borderSide: BorderSide(color: AppColors.error),
         ),
-        focusedErrorBorder: const OutlineInputBorder(
+        focusedErrorBorder: OutlineInputBorder(
           borderRadius: AppSpacing.borderRadiusMd,
           borderSide: BorderSide(color: AppColors.error, width: 2),
         ),

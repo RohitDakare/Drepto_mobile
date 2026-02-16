@@ -37,7 +37,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Forgot Password?', style: AppTextStyles.h2),
+            Text('Forgot Password?', style: AppTextStyles.h2),
             const SizedBox(height: 12),
             Text(
               'Enter your email address associated with your account and we will send you a link to reset your password.',

@@ -20,11 +20,12 @@ class ProfilePage extends StatelessWidget {
             children: [
               // Modern Header
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('My Profile', style: AppTextStyles.h2),
+                    Text('My Profile', style: AppTextStyles.h2),
                     Container(
                       decoration: const BoxDecoration(
                         color: AppColors.surfaceLight,
@@ -44,7 +45,7 @@ class ProfilePage extends StatelessWidget {
               Consumer<AuthProvider>(
                 builder: (context, authProvider, child) {
                   final user = authProvider.currentUser;
-                  
+
                   return ScaleButton(
                     onPressed: () {
                       context.pushNamed('edit_profile');
@@ -109,7 +110,8 @@ class ProfilePage extends StatelessWidget {
                                     user!.phoneNumber!,
                                     style: TextStyle(
                                       fontSize: 13,
-                                      color: Colors.white.withValues(alpha: 0.7),
+                                      color:
+                                          Colors.white.withValues(alpha: 0.7),
                                     ),
                                   ),
                                 ],
@@ -153,7 +155,7 @@ class ProfilePage extends StatelessWidget {
               Consumer<AuthProvider>(
                 builder: (context, authProvider, child) {
                   final user = authProvider.currentUser;
-                  
+
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Row(
@@ -200,9 +202,9 @@ class ProfilePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Account', style: AppTextStyles.h4),
+                    Text('Account', style: AppTextStyles.h4),
                     const SizedBox(height: 16),
-                      _SettingsSection(
+                    _SettingsSection(
                       children: [
                         _SettingsItem(
                           icon: Icons.person_outline,
@@ -219,8 +221,7 @@ class ProfilePage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    
-                    const Text('Security', style: AppTextStyles.h4),
+                    Text('Security', style: AppTextStyles.h4),
                     const SizedBox(height: 16),
                     _SettingsSection(
                       children: [
@@ -228,20 +229,19 @@ class ProfilePage extends StatelessWidget {
                           icon: Icons.lock_outline,
                           title: 'Change Password',
                           onTap: () {
-                             context.push('/profile/change-password');
+                            context.push('/profile/change-password');
                           },
                         ),
                         _SettingsItem(
                           icon: Icons.security,
                           title: 'Privacy Policy',
                           onTap: () {
-                             context.push('/profile/privacy-policy');
+                            context.push('/profile/privacy-policy');
                           },
                         ),
                       ],
                     ),
                     const SizedBox(height: 24),
-                    
                     _SettingsSection(
                       children: [
                         _SettingsItem(
@@ -403,10 +403,12 @@ class _SettingsItem extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: (iconColor ?? AppColors.primary).withValues(alpha: 0.1),
+                  color:
+                      (iconColor ?? AppColors.primary).withValues(alpha: 0.1),
                   borderRadius: AppSpacing.borderRadiusSm,
                 ),
-                child: Icon(icon, color: iconColor ?? AppColors.primary, size: 20),
+                child:
+                    Icon(icon, color: iconColor ?? AppColors.primary, size: 20),
               ),
               const SizedBox(width: 16),
               Expanded(

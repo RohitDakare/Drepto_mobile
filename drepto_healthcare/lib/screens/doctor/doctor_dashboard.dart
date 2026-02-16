@@ -74,7 +74,7 @@ class _DoctorHomePage extends StatelessWidget {
                     child: const Icon(Icons.person, color: AppColors.primary),
                   ),
                   const SizedBox(width: 12),
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -149,7 +149,7 @@ class _DoctorHomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("Today's Schedule", style: AppTextStyles.h4),
+                  Text("Today's Schedule", style: AppTextStyles.h4),
                   TextButton(
                     onPressed: () {},
                     child: Text(

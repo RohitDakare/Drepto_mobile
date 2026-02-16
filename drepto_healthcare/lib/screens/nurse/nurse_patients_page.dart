@@ -19,7 +19,7 @@ class NursePatientsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Assigned Patients', style: AppTextStyles.h2),
+                  Text('Assigned Patients', style: AppTextStyles.h2),
                   const SizedBox(height: 16),
                   AppSearchField(
                     hint: 'Filter by name or location...',

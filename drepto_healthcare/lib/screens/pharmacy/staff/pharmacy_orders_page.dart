@@ -128,7 +128,7 @@ class _OrdersList extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Total: \$45.00', style: AppTextStyles.labelLarge),
+                  Text('Total: \$45.00', style: AppTextStyles.labelLarge),
                   if (status == 'new')
                     ElevatedButton(
                       onPressed: () {},

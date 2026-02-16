@@ -5,7 +5,7 @@ import '../../core/constants/app_spacing.dart';
 class SkeletonLoader extends StatefulWidget {
   final double width;
   final double height;
-  final double borderRadius;
+  final double? borderRadius;
   final Color baseColor;
   final Color highlightColor;
 
@@ -13,7 +13,7 @@ class SkeletonLoader extends StatefulWidget {
     super.key,
     required this.width,
     required this.height,
-    this.borderRadius = AppSpacing.radiusMd,
+    this.borderRadius,
     this.baseColor = const Color(0xFFE0E0E0),
     this.highlightColor = const Color(0xFFF5F5F5),
   });
@@ -53,7 +53,8 @@ class _SkeletonLoaderState extends State<SkeletonLoader>
       height: widget.height,
       decoration: BoxDecoration(
         color: widget.baseColor,
-        borderRadius: BorderRadius.circular(widget.borderRadius),
+        borderRadius:
+            BorderRadius.circular(widget.borderRadius ?? AppSpacing.radiusMd),
       ),
       clipBehavior: Clip.hardEdge,
       child: AnimatedBuilder(

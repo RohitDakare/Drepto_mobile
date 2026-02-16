@@ -46,7 +46,7 @@ class HealthRecordsPage extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Categories
-            const Text('Categories', style: AppTextStyles.h5),
+            Text('Categories', style: AppTextStyles.h5),
             const SizedBox(height: 16),
             GridView.count(
               crossAxisCount: 2,
@@ -88,7 +88,7 @@ class HealthRecordsPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Recent Documents', style: AppTextStyles.h5),
+                Text('Recent Documents', style: AppTextStyles.h5),
                 TextButton(
                   onPressed: () {},
                   child: Text(

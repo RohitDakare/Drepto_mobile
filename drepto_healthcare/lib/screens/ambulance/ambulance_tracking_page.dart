@@ -67,7 +67,7 @@ class AmbulanceTrackingPage extends StatelessWidget {
                               horizontal: 12,
                               vertical: 6,
                             ),
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: AppColors.accent,
                               borderRadius: AppSpacing.borderRadiusFull,
                             ),
@@ -152,7 +152,8 @@ class AmbulanceTrackingPage extends StatelessWidget {
                               ),
                               color: AppColors.primary.withValues(alpha: 0.1),
                             ),
-                            child: const Icon(Icons.person, color: Colors.white),
+                            child:
+                                const Icon(Icons.person, color: Colors.white),
                           ),
                           const SizedBox(width: 16),
                           Expanded(

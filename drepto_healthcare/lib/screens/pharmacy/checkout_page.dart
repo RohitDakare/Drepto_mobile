@@ -22,7 +22,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   // TODO: Determine supported methods
   final List<PaymentMethod> _paymentMethods = [
     // Temporarily keeping hardcoded structural options as they are UI choices rather than 'user data' per se,
-    // but the request said remove mock data. 
+    // but the request said remove mock data.
     // Usually Payment Methods are static config, but Addresses are definitely user data.
   ];
 
@@ -45,7 +45,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
+        title: Text(
           'Checkout',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -57,7 +57,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: Column(
         children: [
           // Progress Steps
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(16),
             child: Row(
               children: [
@@ -77,8 +77,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Address Section
-                  const Text('Select Delivery Address',
-                      style: AppTextStyles.h5),
+                  Text('Select Delivery Address', style: AppTextStyles.h5),
                   const SizedBox(height: 12),
                   ..._addresses.asMap().entries.map((entry) {
                     final index = entry.key;
@@ -107,7 +106,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   const SizedBox(height: 24),
 
                   // Payment Section
-                  const Text('Payment Method', style: AppTextStyles.h5),
+                  Text('Payment Method', style: AppTextStyles.h5),
                   const SizedBox(height: 12),
                   ..._paymentMethods.asMap().entries.map((entry) {
                     final index = entry.key;
@@ -186,7 +185,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          const Text('\$124.50', style: AppTextStyles.h3),
+                          Text('\$124.50', style: AppTextStyles.h3),
                         ],
                       ),
                       TextButton(
@@ -322,7 +321,7 @@ class _AddressCard extends StatelessWidget {
                             horizontal: 8,
                             vertical: 2,
                           ),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: AppColors.primary,
                             borderRadius: AppSpacing.borderRadiusFull,
                           ),
@@ -387,7 +386,7 @@ class _PaymentMethodCard extends StatelessWidget {
             Container(
               width: 40,
               height: 40,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: AppColors.primary,
                 borderRadius: AppSpacing.borderRadiusSm,
               ),

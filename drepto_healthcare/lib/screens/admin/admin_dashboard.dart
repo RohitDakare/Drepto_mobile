@@ -81,7 +81,7 @@ class _AdminDashboardState extends State<AdminDashboard>
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Admin Dashboard', style: AppTextStyles.h2),
+                        Text('Admin Dashboard', style: AppTextStyles.h2),
                         Text('Operations Center',
                             style: AppTextStyles.bodyMedium
                                 .copyWith(color: AppColors.textSecondary)),
@@ -145,7 +145,7 @@ class _AdminDashboardState extends State<AdminDashboard>
         children: [
           _buildStatsGrid(),
           const SizedBox(height: 24),
-          const Text('Live Activity Feed', style: AppTextStyles.h4),
+          Text('Live Activity Feed', style: AppTextStyles.h4),
           const SizedBox(height: 12),
           ..._recentActivity.map((item) => _ActivityListTile(item: item)),
         ],
@@ -174,7 +174,7 @@ class _AdminDashboardState extends State<AdminDashboard>
           ),
         ),
         const SizedBox(height: 20),
-        const Text('Doctor & Patient Activity', style: AppTextStyles.h4),
+        Text('Doctor & Patient Activity', style: AppTextStyles.h4),
         const SizedBox(height: 10),
         if (medicalActivity.isEmpty) const Text('No recent medical activity'),
         ...medicalActivity.map((item) => _ActivityListTile(item: item)),
@@ -202,7 +202,7 @@ class _AdminDashboardState extends State<AdminDashboard>
           ),
         ),
         const SizedBox(height: 20),
-        const Text('Delivery & Pharmacy Events', style: AppTextStyles.h4),
+        Text('Delivery & Pharmacy Events', style: AppTextStyles.h4),
         const SizedBox(height: 10),
         if (logisticsActivity.isEmpty) const Text('No recent orders'),
         ...logisticsActivity.map((item) => _ActivityListTile(item: item)),
@@ -364,7 +364,8 @@ class _StatsCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(icon, color: color),
-              Text(trend, style: const TextStyle(color: Colors.green, fontSize: 12)),
+              Text(trend,
+                  style: const TextStyle(color: Colors.green, fontSize: 12)),
             ],
           ),
           const Spacer(),

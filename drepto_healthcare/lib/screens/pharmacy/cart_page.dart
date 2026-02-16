@@ -79,7 +79,7 @@ class _CartPageState extends State<CartPage> {
                         const SizedBox(height: 24),
                         PrimaryButton(
                           text: 'Browse Store',
-                          onPressed: () => Navigator.pop(context), 
+                          onPressed: () => Navigator.pop(context),
                         ),
                       ],
                     ),
@@ -174,7 +174,7 @@ class _CartPageState extends State<CartPage> {
                         // Price Details
                         Container(
                           padding: const EdgeInsets.all(16),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: AppColors.gray50,
                             borderRadius: AppSpacing.borderRadiusMd,
                           ),
@@ -205,7 +205,8 @@ class _CartPageState extends State<CartPage> {
                               ),
                               const Divider(height: 24),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Total Amount',
@@ -307,7 +308,7 @@ class _CartItemCard extends StatelessWidget {
           Container(
             width: 64,
             height: 64,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: AppColors.gray100,
               borderRadius: AppSpacing.borderRadiusSm,
             ),

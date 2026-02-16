@@ -16,7 +16,7 @@ class NurseProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('My Profile', style: AppTextStyles.h2),
+              Text('My Profile', style: AppTextStyles.h2),
               const SizedBox(height: 24),
               Center(
                 child: Column(
@@ -28,7 +28,7 @@ class NurseProfilePage extends StatelessWidget {
                           size: 50, color: AppColors.primary),
                     ),
                     const SizedBox(height: 16),
-                    const Text('Sarah Williams', style: AppTextStyles.h3),
+                    Text('Sarah Williams', style: AppTextStyles.h3),
                     Text('Senior Nurse • RN',
                         style: AppTextStyles.bodyMedium
                             .copyWith(color: AppColors.textSecondary)),

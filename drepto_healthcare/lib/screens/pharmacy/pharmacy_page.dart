@@ -87,7 +87,7 @@ class _PharmacyPageState extends State<PharmacyPage> {
             const SizedBox(height: 24),
 
             // Categories
-            const Text('Shop by Category', style: AppTextStyles.h4),
+            Text('Shop by Category', style: AppTextStyles.h4),
             const SizedBox(height: 16),
             SizedBox(
               height: 100,
@@ -135,7 +135,7 @@ class _PharmacyPageState extends State<PharmacyPage> {
             const SizedBox(height: 32),
 
             // Special Offers
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Special Offers', style: AppTextStyles.h4),
@@ -165,7 +165,7 @@ class _PharmacyPageState extends State<PharmacyPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Popular in Pain Relief', style: AppTextStyles.h4),
+                Text('Popular in Pain Relief', style: AppTextStyles.h4),
                 IconButton(
                     icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
@@ -188,7 +188,7 @@ class _PharmacyPageState extends State<PharmacyPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Vitamins & Supplements', style: AppTextStyles.h4),
+                Text('Vitamins & Supplements', style: AppTextStyles.h4),
                 IconButton(
                     icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
@@ -210,7 +210,7 @@ class _PharmacyPageState extends State<PharmacyPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Antibiotics', style: AppTextStyles.h4),
+                Text('Antibiotics', style: AppTextStyles.h4),
                 IconButton(
                     icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],

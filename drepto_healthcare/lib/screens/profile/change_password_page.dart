@@ -19,7 +19,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final _oldPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  
+
   bool _isLoading = false;
 
   @override
@@ -55,7 +55,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(authProvider.errorMessage ?? 'Failed to change password'),
+            content:
+                Text(authProvider.errorMessage ?? 'Failed to change password'),
             backgroundColor: AppColors.error,
           ),
         );
@@ -74,7 +75,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Change Password', style: AppTextStyles.h4),
+        title: Text('Change Password', style: AppTextStyles.h4),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -85,12 +86,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Create a new password for your account. Ensure it is strong and secure.',
                   style: AppTextStyles.bodyMedium,
                 ),
                 const SizedBox(height: 32),
-                
                 AppTextField(
                   label: 'Current Password',
                   hint: 'Enter your current password',
@@ -105,7 +105,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   },
                 ),
                 const SizedBox(height: 24),
-                
                 AppTextField(
                   label: 'New Password',
                   hint: 'Enter new password',
@@ -123,7 +122,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   },
                 ),
                 const SizedBox(height: 24),
-                
                 AppTextField(
                   label: 'Confirm New Password',
                   hint: 'Re-enter new password',
@@ -138,7 +136,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   },
                 ),
                 const SizedBox(height: 48),
-                
                 PrimaryButton(
                   text: 'Update Password',
                   onPressed: _handleChangePassword,

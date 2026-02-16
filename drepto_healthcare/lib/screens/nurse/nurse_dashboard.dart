@@ -75,7 +75,7 @@ class _NurseHomePage extends StatelessWidget {
                     child: const Icon(Icons.person, color: AppColors.primary),
                   ),
                   const SizedBox(width: 12),
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -87,7 +87,7 @@ class _NurseHomePage extends StatelessWidget {
                   Container(
                     width: 40,
                     height: 40,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: AppColors.gray50,
                       borderRadius: AppSpacing.borderRadiusSm,
                     ),
@@ -127,7 +127,7 @@ class _NurseHomePage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          const Text('3 of 5 Visits', style: AppTextStyles.h3),
+                          Text('3 of 5 Visits', style: AppTextStyles.h3),
                           const SizedBox(height: 4),
                           Text(
                             '60% completed',
@@ -185,7 +185,7 @@ class _NurseHomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Upcoming Tasks', style: AppTextStyles.h4),
+                  Text('Upcoming Tasks', style: AppTextStyles.h4),
                   TextButton(
                     onPressed: () {},
                     child: Text(
@@ -353,7 +353,8 @@ class _TaskCard extends StatelessWidget {
                   color: AppColors.primary.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.person, size: 20, color: AppColors.primary),
+                child: const Icon(Icons.person,
+                    size: 20, color: AppColors.primary),
               ),
               const SizedBox(width: 12),
               Expanded(

@@ -49,5 +49,11 @@
     <string>We need your location to show available ambulances near you.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>We need your location to track ambulance requests.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>We need camera access for video consultations and prescription scanning.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>We need microphone access for video consultations.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>We need photo library access to upload medical reports.</string>
 </dict>
 </plist>

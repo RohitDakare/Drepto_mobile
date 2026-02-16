@@ -95,7 +95,7 @@ class _PrescriptionCreationPageState extends State<PrescriptionCreationPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Diagnosis', style: AppTextStyles.h5),
+                  Text('Diagnosis', style: AppTextStyles.h5),
                   const SizedBox(height: 8),
                   const AppTextField(
                     hint: 'Enter diagnosis...',
@@ -103,7 +103,7 @@ class _PrescriptionCreationPageState extends State<PrescriptionCreationPage> {
                   ),
                   const SizedBox(height: 24),
 
-                  const Text('Medicines', style: AppTextStyles.h5),
+                  Text('Medicines', style: AppTextStyles.h5),
                   const SizedBox(height: 12),
 
                   // Add Medicine Form
@@ -204,7 +204,7 @@ class _PrescriptionCreationPageState extends State<PrescriptionCreationPage> {
                   ],
 
                   const SizedBox(height: 24),
-                  const Text('Additional Notes', style: AppTextStyles.h5),
+                  Text('Additional Notes', style: AppTextStyles.h5),
                   const SizedBox(height: 8),
                   const AppTextField(
                     hint: 'Advice, diet instructions, etc.',

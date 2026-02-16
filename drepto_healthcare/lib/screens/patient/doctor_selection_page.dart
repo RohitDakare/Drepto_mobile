@@ -39,13 +39,12 @@ class _DoctorSelectionPageState extends State<DoctorSelectionPage> {
   void _filterDoctors() {
     setState(() {
       _filteredDoctors = _allDoctors.where((doctor) {
-        final matchesSearch =
-            doctor.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-                doctor.specialty
-                    .toLowerCase()
-                    .contains(_searchQuery.toLowerCase());
-        final matchesSpecialty =
-            _selectedSpecialty == 'All' || doctor.specialty == _selectedSpecialty;
+        final matchesSearch = doctor.name
+                .toLowerCase()
+                .contains(_searchQuery.toLowerCase()) ||
+            doctor.specialty.toLowerCase().contains(_searchQuery.toLowerCase());
+        final matchesSpecialty = _selectedSpecialty == 'All' ||
+            doctor.specialty == _selectedSpecialty;
         return matchesSearch && matchesSpecialty;
       }).toList();
     });
@@ -62,7 +61,7 @@ class _DoctorSelectionPageState extends State<DoctorSelectionPage> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Find a Doctor', style: AppTextStyles.h4),
+        title: Text('Find a Doctor', style: AppTextStyles.h4),
         centerTitle: true,
       ),
       body: Column(
@@ -150,8 +149,8 @@ class _DoctorSelectionPageState extends State<DoctorSelectionPage> {
                           context.pushNamed(
                             'doctor_details',
                             extra: {
-                                'doctor': doctor,
-                            }, 
+                              'doctor': doctor,
+                            },
                           );
                         },
                       );
@@ -194,15 +193,17 @@ class _DoctorCard extends StatelessWidget {
             Container(
               width: 80,
               height: 80,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: AppSpacing.borderRadiusMd,
                 color: AppColors.gray50,
-                 image: DecorationImage(
-                  image: AssetImage('assets/images/doctor_placeholder.png'), // Placeholder
+                image: const DecorationImage(
+                  image: AssetImage(
+                      'assets/images/doctor_placeholder.png'), // Placeholder
                   fit: BoxFit.cover,
                 ),
               ),
-               child: const Icon(Icons.person, size: 40, color: AppColors.primary),
+              child:
+                  const Icon(Icons.person, size: 40, color: AppColors.primary),
             ),
             const SizedBox(width: 16),
             // Info
@@ -210,45 +211,50 @@ class _DoctorCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     children: [
-                       Expanded(
-                         child: Text(
+                    children: [
+                      Expanded(
+                        child: Text(
                           doctor.name,
                           style: AppTextStyles.h4.copyWith(fontSize: 16),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                                             ),
-                       ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                           decoration: BoxDecoration(
-                             color: AppColors.success.withValues(alpha: 0.1),
-                             borderRadius: BorderRadius.circular(4),
-                           ),
-                           child: Row(
-                             children: [
-                               const Icon(Icons.star, size: 12, color: AppColors.success),
-                                const SizedBox(width: 4),
-                               Text(
-                                 doctor.rating.toString(),
-                                  style: AppTextStyles.labelSmall.copyWith(color: AppColors.success, fontWeight: FontWeight.bold),
-                               )
-                             ],
-                           )
-                        )
-                     ],
-                   ),
+                        ),
+                      ),
+                      Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: AppColors.success.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.star,
+                                  size: 12, color: AppColors.success),
+                              const SizedBox(width: 4),
+                              Text(
+                                doctor.rating.toString(),
+                                style: AppTextStyles.labelSmall.copyWith(
+                                    color: AppColors.success,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ))
+                    ],
+                  ),
                   const SizedBox(height: 4),
                   Text(
                     doctor.specialty,
-                    style: AppTextStyles.bodySmall.copyWith(color: AppColors.primary),
+                    style: AppTextStyles.bodySmall
+                        .copyWith(color: AppColors.primary),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     doctor.hospital,
-                    style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+                    style: AppTextStyles.caption
+                        .copyWith(color: AppColors.textSecondary),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -294,7 +300,9 @@ class _StatusBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: available ? AppColors.primary.withValues(alpha: 0.1) : AppColors.gray50,
+        color: available
+            ? AppColors.primary.withValues(alpha: 0.1)
+            : AppColors.gray50,
         borderRadius: BorderRadius.circular(4),
       ),
       child: Row(

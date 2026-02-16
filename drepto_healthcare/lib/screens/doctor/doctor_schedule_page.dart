@@ -21,7 +21,7 @@ class DoctorSchedulePage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Schedule', style: AppTextStyles.h2),
+                      Text('Schedule', style: AppTextStyles.h2),
                       Text('Monday, Oct 24',
                           style: AppTextStyles.bodyMedium
                               .copyWith(color: AppColors.textSecondary)),
