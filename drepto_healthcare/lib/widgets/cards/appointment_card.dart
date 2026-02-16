@@ -46,7 +46,7 @@ class AppointmentCard extends StatelessWidget {
               Container(
                 width: 60,
                 height: 60,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: AppSpacing.borderRadiusSm,
                   color: AppColors.gray100,
                   // Placeholder for image logic since model lacks imageUrl currently

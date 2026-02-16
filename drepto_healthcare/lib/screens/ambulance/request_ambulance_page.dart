@@ -15,8 +15,8 @@ class RequestAmbulancePage extends StatefulWidget {
 }
 
 class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
-  late GoogleMapController _mapController;
-  final LatLng _initialPosition = const LatLng(37.7749, -122.4194); // Default to San Francisco
+  final LatLng _initialPosition =
+      const LatLng(37.7749, -122.4194); // Default to San Francisco
 
   int _selectedType = 0;
 
@@ -98,7 +98,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                       target: _initialPosition,
                       zoom: 14.0,
                     ),
-                    onMapCreated: (controller) => _mapController = controller,
+                    onMapCreated: (controller) {},
                     myLocationEnabled: true,
                     zoomControlsEnabled: false,
                   ),

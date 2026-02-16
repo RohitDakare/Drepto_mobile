@@ -3,7 +3,6 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../widgets/inputs/app_inputs.dart';
-import '../../widgets/cards/app_cards.dart';
 import 'cart_page.dart';
 
 class PharmacyPage extends StatefulWidget {
@@ -14,13 +13,7 @@ class PharmacyPage extends StatefulWidget {
 }
 
 class _PharmacyPageState extends State<PharmacyPage> {
-  int _cartItemCount = 0;
-
-  void _addToCart() {
-    setState(() {
-      _cartItemCount++;
-    });
-  }
+  final int _cartItemCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +118,12 @@ class _PharmacyPageState extends State<PharmacyPage> {
                     color: AppColors.accent,
                   ),
                   SizedBox(width: 16),
-                   _CategoryItem(
+                  _CategoryItem(
                     icon: Icons.child_care,
                     label: 'Baby Care',
                     color: Colors.purple,
                   ),
-                   SizedBox(width: 16),
+                  SizedBox(width: 16),
                   _CategoryItem(
                     icon: Icons.clean_hands,
                     label: 'Personal Care',
@@ -162,7 +155,8 @@ class _PharmacyPageState extends State<PharmacyPage> {
               ),
               child: Text(
                 'No active offers',
-                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+                style: AppTextStyles.caption
+                    .copyWith(color: AppColors.textSecondary),
               ),
             ),
             const SizedBox(height: 32),
@@ -172,58 +166,64 @@ class _PharmacyPageState extends State<PharmacyPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Popular in Pain Relief', style: AppTextStyles.h4),
-                IconButton(icon: const Icon(Icons.arrow_forward), onPressed: () {}),
+                IconButton(
+                    icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
             ),
             const SizedBox(height: 12),
             // Placeholder for products
-             Container(
+            Container(
               height: 100,
               width: double.infinity,
               alignment: Alignment.center,
               child: Text(
                 'No products available',
-                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+                style: AppTextStyles.caption
+                    .copyWith(color: AppColors.textSecondary),
               ),
             ),
             const SizedBox(height: 24),
 
             // Vitamins & Supplements
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Vitamins & Supplements', style: AppTextStyles.h4),
-                IconButton(icon: const Icon(Icons.arrow_forward), onPressed: () {}),
+                IconButton(
+                    icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
             ),
             const SizedBox(height: 12),
-             Container(
+            Container(
               height: 100,
               width: double.infinity,
               alignment: Alignment.center,
               child: Text(
                 'No products available',
-                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+                style: AppTextStyles.caption
+                    .copyWith(color: AppColors.textSecondary),
               ),
             ),
-             const SizedBox(height: 24),
+            const SizedBox(height: 24),
 
-             // Antibiotics
-             Row(
+            // Antibiotics
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Antibiotics', style: AppTextStyles.h4),
-                IconButton(icon: const Icon(Icons.arrow_forward), onPressed: () {}),
+                IconButton(
+                    icon: const Icon(Icons.arrow_forward), onPressed: () {}),
               ],
             ),
             const SizedBox(height: 12),
-             Container(
+            Container(
               height: 100,
               width: double.infinity,
               alignment: Alignment.center,
               child: Text(
                 'No products available',
-                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+                style: AppTextStyles.caption
+                    .copyWith(color: AppColors.textSecondary),
               ),
             ),
           ],
@@ -262,91 +262,6 @@ class _CategoryItem extends StatelessWidget {
           style: AppTextStyles.caption.copyWith(fontWeight: FontWeight.w600),
         ),
       ],
-    );
-  }
-}
-
-class _OfferBanner extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String description;
-  final String code;
-  final List<Color> gradient;
-
-  const _OfferBanner({
-    required this.title,
-    required this.subtitle,
-    required this.description,
-    required this.code,
-    required this.gradient,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: gradient),
-        borderRadius: AppSpacing.borderRadiusMd,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: AppTextStyles.overline.copyWith(
-              color: Colors.white.withValues(alpha: 0.8),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            subtitle,
-            style: AppTextStyles.h5.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          Text(
-            description,
-            style: AppTextStyles.caption.copyWith(
-              color: Colors.white.withValues(alpha: 0.9),
-            ),
-          ),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.2),
-              borderRadius: AppSpacing.borderRadiusFull,
-            ),
-            child: Text(
-              code,
-              style: AppTextStyles.labelSmall.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ViewAllButton extends StatelessWidget {
-  const _ViewAllButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {},
-      child: Text(
-        'View All',
-        style: AppTextStyles.labelMedium.copyWith(
-          color: AppColors.primary,
-        ),
-      ),
     );
   }
 }

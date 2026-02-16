@@ -45,21 +45,21 @@ class AppTextField extends StatelessWidget {
             prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: AppColors.primary) : null,
             filled: true,
             fillColor: AppColors.surfaceLight,
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: const BorderSide(color: AppColors.borderLight),
+              borderSide: BorderSide(color: AppColors.borderLight),
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: const BorderSide(color: AppColors.borderLight),
+              borderSide: BorderSide(color: AppColors.borderLight),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: const BorderSide(color: AppColors.primary, width: 2),
+              borderSide: BorderSide(color: AppColors.primary, width: 2),
             ),
-            errorBorder: OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
               borderRadius: AppSpacing.borderRadiusMd,
-              borderSide: const BorderSide(color: AppColors.error),
+              borderSide: BorderSide(color: AppColors.error),
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           ),

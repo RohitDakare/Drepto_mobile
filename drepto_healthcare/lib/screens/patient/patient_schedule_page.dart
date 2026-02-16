@@ -79,7 +79,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.event_busy, size: 64, color: AppColors.gray400),
+                      const Icon(Icons.event_busy, size: 64, color: AppColors.gray400),
                       const SizedBox(height: 16),
                       Text(
                         'No appointments yet',

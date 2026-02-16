@@ -19,10 +19,7 @@ class DoctorDetailsPage extends StatefulWidget {
 }
 
 class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
-  int _selectedDateIndex = 0;
   int _selectedTimeIndex = -1;
-
-  final List<String> _dates = ['Today, 27 Jan', 'Tomorrow, 28 Jan', 'Wed, 29 Jan'];
   late List<String> _timeSlots;
 
   @override
@@ -60,24 +57,28 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.primary.withValues(alpha: 0.1),
-                       image: const DecorationImage(
-                        image: AssetImage('assets/images/doctor_placeholder.png'), // Placeholder
+                      image: const DecorationImage(
+                        image: AssetImage(
+                            'assets/images/doctor_placeholder.png'), // Placeholder
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: const Icon(Icons.person, size: 60, color: AppColors.primary), // Fallback
+                    child: const Icon(Icons.person,
+                        size: 60, color: AppColors.primary), // Fallback
                   ),
                   const SizedBox(height: 16),
                   Text(widget.doctor.name, style: AppTextStyles.h3),
                   const SizedBox(height: 8),
                   Text(
                     widget.doctor.specialty,
-                    style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary),
+                    style: AppTextStyles.bodyMedium
+                        .copyWith(color: AppColors.textSecondary),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     widget.doctor.hospital,
-                    style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary),
+                    style: AppTextStyles.caption
+                        .copyWith(color: AppColors.textSecondary),
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -87,7 +88,8 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                       const SizedBox(width: 4),
                       Text(
                         '${widget.doctor.rating} (${widget.doctor.reviews}+ Reviews)',
-                        style: AppTextStyles.labelMedium.copyWith(fontWeight: FontWeight.w600),
+                        style: AppTextStyles.labelMedium
+                            .copyWith(fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -101,7 +103,8 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
             const SizedBox(height: 8),
             Text(
               widget.doctor.about,
-              style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary, height: 1.5),
+              style: AppTextStyles.bodyMedium
+                  .copyWith(color: AppColors.textSecondary, height: 1.5),
             ),
             const SizedBox(height: 32),
 
@@ -115,11 +118,10 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                 firstDate: DateTime.now(),
                 lastDate: DateTime.now().add(const Duration(days: 30)),
                 onDateChanged: (date) {
-                   setState(() {
-                      // Logic to update selected date index or value
-                      // For now just updating the UI state to show interaction
-                      _selectedDateIndex = date.day;
-                   });
+                  setState(() {
+                    // Logic to update selected date or value
+                    // For now just updating the UI state to show interaction
+                  });
                 },
               ),
             ),
@@ -134,18 +136,25 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                 return GestureDetector(
                   onTap: () => setState(() => _selectedTimeIndex = index),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 10),
                     decoration: BoxDecoration(
-                      color: isSelected ? AppColors.primary.withValues(alpha: 0.1) : AppColors.surfaceLight,
+                      color: isSelected
+                          ? AppColors.primary.withValues(alpha: 0.1)
+                          : AppColors.surfaceLight,
                       borderRadius: AppSpacing.borderRadiusMd,
                       border: Border.all(
-                        color: isSelected ? AppColors.primary : AppColors.borderLight,
+                        color: isSelected
+                            ? AppColors.primary
+                            : AppColors.borderLight,
                       ),
                     ),
                     child: Text(
                       _timeSlots[index],
                       style: AppTextStyles.labelMedium.copyWith(
-                        color: isSelected ? AppColors.primary : AppColors.textPrimary,
+                        color: isSelected
+                            ? AppColors.primary
+                            : AppColors.textPrimary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -157,7 +166,8 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
 
             // Actions - Video Consultation
             PrimaryButton(
-              text: 'Video Consultation (\$${widget.doctor.videoConsultationFee})',
+              text:
+                  'Video Consultation (\$${widget.doctor.videoConsultationFee})',
               onPressed: () {
                 context.pushNamed(
                   'video_call',
@@ -169,11 +179,11 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
               },
             ),
             const SizedBox(height: 16),
-            
+
             // Actions - Clinic Visit
             SecondaryButton(
               text: 'Book Clinic Visit (\$${widget.doctor.clinicVisitFee})',
-               onPressed: () {
+              onPressed: () {
                 // Determine if slot selected
                 if (_selectedTimeIndex == -1) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -181,10 +191,12 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                   );
                   return;
                 }
-                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Clinic Visit with ${widget.doctor.name} Booked!')),
-                  );
-               },
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text(
+                          'Clinic Visit with ${widget.doctor.name} Booked!')),
+                );
+              },
             ),
           ],
         ),

@@ -39,7 +39,7 @@ class AdminService {
     for (var order in orders) {
       activity.add(AdminActivityItem(
         title: 'Order Placed',
-        description: 'Order #${order.id.substring(0, 8)} - \₹${order.total}',
+        description: 'Order #${order.id.substring(0, 8)} - ₹${order.total}',
         timestamp: order.date,
         type: ActivityType.order,
         relatedId: order.id,

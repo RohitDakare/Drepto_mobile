@@ -81,7 +81,7 @@ class _AdminDashboardState extends State<AdminDashboard>
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Admin Dashboard', style: AppTextStyles.h2),
+                        const Text('Admin Dashboard', style: AppTextStyles.h2),
                         Text('Operations Center',
                             style: AppTextStyles.bodyMedium
                                 .copyWith(color: AppColors.textSecondary)),
@@ -194,7 +194,7 @@ class _AdminDashboardState extends State<AdminDashboard>
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _MiniStat(label: 'Pharmacy', value: '${_userStats['pharmacy']}'),
-              _MiniStat(
+              const _MiniStat(
                   label: 'Drivers',
                   value: '4'), // Mock for now or add to UserRole
               _MiniStat(label: 'Orders', value: '${logisticsActivity.length}'),
@@ -248,7 +248,7 @@ class _AdminDashboardState extends State<AdminDashboard>
             leading: CircleAvatar(child: Text(user.name[0])),
             title: Text(user.name),
             subtitle: Text(user.roleDisplayName),
-            trailing: Icon(Icons.chevron_right),
+            trailing: const Icon(Icons.chevron_right),
           );
         },
       ),
@@ -297,7 +297,7 @@ class _ActivityListTile extends StatelessWidget {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: AppColors.borderLight),
+        side: const BorderSide(color: AppColors.borderLight),
       ),
       child: ListTile(
         leading: CircleAvatar(
@@ -364,7 +364,7 @@ class _StatsCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(icon, color: color),
-              Text(trend, style: TextStyle(color: Colors.green, fontSize: 12)),
+              Text(trend, style: const TextStyle(color: Colors.green, fontSize: 12)),
             ],
           ),
           const Spacer(),

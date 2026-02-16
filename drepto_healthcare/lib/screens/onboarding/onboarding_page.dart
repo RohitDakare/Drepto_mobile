@@ -166,7 +166,7 @@ class _OnboardingContent extends StatelessWidget {
                 width: double.infinity,
                 height: 280,
                 margin: const EdgeInsets.only(bottom: 40),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.transparent, // Changed to transparent for image
                   borderRadius: AppSpacing.borderRadiusLg,
                   // Shadow removed/optional depending on design

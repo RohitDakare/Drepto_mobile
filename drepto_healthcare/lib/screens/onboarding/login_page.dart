@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../core/providers/auth_provider.dart';
 import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/buttons/app_buttons.dart';
@@ -23,7 +22,6 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  UserRole _selectedRole = UserRole.patient;
   bool _isLoading = false;
 
   void _handleLogin() async {
@@ -31,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() => _isLoading = true);
 
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      
+
       final success = await authProvider.login(
         _emailController.text.trim(),
         _passwordController.text,
@@ -87,17 +85,17 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 48.h),
 
                   // Logo
-                    Container(
-                      height: 80.h,
-                      alignment: Alignment.center,
-                      child: Hero(
-                        tag: 'app_logo',
-                        child: Image.asset(
-                          'assets/images/logo_full.png',
-                          fit: BoxFit.contain,
-                        ),
+                  Container(
+                    height: 80.h,
+                    alignment: Alignment.center,
+                    child: Hero(
+                      tag: 'app_logo',
+                      child: Image.asset(
+                        'assets/images/logo_full.png',
+                        fit: BoxFit.contain,
                       ),
                     ),
+                  ),
                   SizedBox(height: 24.h),
 
                   // Title and subtitle removed

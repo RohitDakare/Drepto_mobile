@@ -6,7 +6,6 @@ import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/providers/auth_provider.dart';
 import '../../widgets/buttons/app_buttons.dart';
-import '../onboarding/login_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

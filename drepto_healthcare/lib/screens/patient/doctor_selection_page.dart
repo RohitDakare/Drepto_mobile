@@ -194,10 +194,10 @@ class _DoctorCard extends StatelessWidget {
             Container(
               width: 80,
               height: 80,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: AppSpacing.borderRadiusMd,
                 color: AppColors.gray50,
-                 image: const DecorationImage(
+                 image: DecorationImage(
                   image: AssetImage('assets/images/doctor_placeholder.png'), // Placeholder
                   fit: BoxFit.cover,
                 ),
@@ -253,14 +253,14 @@ class _DoctorCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
-                  Row(
+                  const Row(
                     children: [
                       _StatusBadge(
                         label: 'Video',
                         available: true,
                         icon: Icons.videocam,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       _StatusBadge(
                         label: 'Clinic',
                         available: true,

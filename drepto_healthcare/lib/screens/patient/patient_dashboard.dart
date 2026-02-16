@@ -14,11 +14,9 @@ import 'patient_schedule_page.dart';
 import '../../widgets/navigation/bottom_nav_bars.dart';
 import '../profile/profile_page.dart';
 
-import '../../widgets/container/glass_container.dart';
 import '../chat/ai_assistant_page.dart';
 import '../../models/appointment.dart';
 import '../../core/services/appointment_service.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class PatientDashboard extends StatefulWidget {
@@ -101,7 +99,7 @@ class _PatientHomePage extends StatelessWidget {
                         final greeting = user != null
                             ? GreetingHelper.getPersonalizedGreeting(user.name)
                             : GreetingHelper.getTimeBasedGreeting();
-                        
+
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -145,11 +143,12 @@ class _PatientHomePage extends StatelessWidget {
                 onTap: () {
                   // Navigate to search page
                 },
-              ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.1, curve: Curves.easeOut),
-              ),
+              )
+                  .animate()
+                  .fadeIn(duration: 600.ms)
+                  .slideX(begin: -0.1, curve: Curves.easeOut),
             ),
-
-
+          ),
 
           // Services Section
           SliverToBoxAdapter(
@@ -161,7 +160,9 @@ class _PatientHomePage extends StatelessWidget {
                   const Text('Our Services', style: AppTextStyles.h4),
                   const SizedBox(height: 12),
                   GridView.count(
-                    crossAxisCount: (MediaQuery.of(context).size.width / 180).floor().clamp(2, 4),
+                    crossAxisCount: (MediaQuery.of(context).size.width / 180)
+                        .floor()
+                        .clamp(2, 4),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     mainAxisSpacing: 12,
@@ -230,7 +231,9 @@ class _PatientHomePage extends StatelessWidget {
                           context.pushNamed('health_records');
                         },
                       ),
-                    ].animate(interval: 100.ms).fadeIn(duration: 400.ms).scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack),
+                    ].animate(interval: 100.ms).fadeIn(duration: 400.ms).scale(
+                        begin: const Offset(0.8, 0.8),
+                        curve: Curves.easeOutBack),
                   ),
                 ],
               ),
@@ -269,13 +272,14 @@ class _PatientHomePage extends StatelessWidget {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
                       }
-                      
+
                       if (snapshot.hasError) {
-                        return Center(child: Text('Error loading appointments'));
+                        return const Center(
+                            child: Text('Error loading appointments'));
                       }
-                      
+
                       final appointments = snapshot.data ?? [];
-                      
+
                       if (appointments.isEmpty) {
                         return Container(
                           width: double.infinity,
@@ -294,13 +298,19 @@ class _PatientHomePage extends StatelessWidget {
                           ),
                         );
                       }
-                      
+
                       return Column(
-                        children: appointments.take(3).map((appointment) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: AppointmentCard(appointment: appointment),
-                        )).toList()
-                        .animate(interval: 200.ms).fadeIn(duration: 500.ms).slideX(begin: 0.2, curve: Curves.easeOut),
+                        children: appointments
+                            .take(3)
+                            .map((appointment) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                  child:
+                                      AppointmentCard(appointment: appointment),
+                                ))
+                            .toList()
+                            .animate(interval: 200.ms)
+                            .fadeIn(duration: 500.ms)
+                            .slideX(begin: 0.2, curve: Curves.easeOut),
                       );
                     },
                   ),
@@ -344,118 +354,3 @@ class _PatientHomePage extends StatelessWidget {
     );
   }
 }
-
-class _MessagesPage extends StatelessWidget {
-  const _MessagesPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Messages', style: AppTextStyles.h2),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: AppSpacing.borderRadiusFull,
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.smart_toy, color: Colors.white),
-                    onPressed: () {
-                      context.pushNamed('ai_assistant');
-                    },
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Chat with doctors and get support',
-              style: AppTextStyles.bodyMedium.copyWith(
-                color: AppColors.textSecondary,
-              ),
-            ),
-            const SizedBox(height: 24),
-            // AI Assistant card
-            GestureDetector(
-              onTap: () {
-                context.pushNamed('ai_assistant');
-              },
-              child: GlassContainer(
-                borderRadius: AppSpacing.borderRadiusLg,
-                color: AppColors.primary,
-                opacity: 0.85,
-                blur: 15,
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.2),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.auto_awesome, color: Colors.white),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'AI Health Assistant',
-                            style: AppTextStyles.bodyMedium.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Ask me anything about your health',
-                            style: AppTextStyles.labelSmall.copyWith(
-                              color: Colors.white.withValues(alpha: 0.9),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.chat_bubble_outline,
-                      size: 80,
-                      color: AppColors.gray300,
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'No messages yet',
-                      style: AppTextStyles.bodyMedium.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
