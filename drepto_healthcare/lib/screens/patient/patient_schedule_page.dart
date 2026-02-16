@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../../models/appointment.dart';
-import '../../widgets/cards/appointment_card.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/models/appointment.dart';
+import 'package:drepto_healthcare/widgets/cards/appointment_card.dart';
 
 class PatientSchedulePage extends StatefulWidget {
   const PatientSchedulePage({super.key});
@@ -146,3 +146,4 @@ class _StatusTab extends StatelessWidget {
     );
   }
 }
+

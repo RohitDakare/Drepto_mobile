@@ -98,3 +98,4 @@ class AppSpacing {
   // App bar height
   static double get appBarHeight => 56.0.h;
 }
+

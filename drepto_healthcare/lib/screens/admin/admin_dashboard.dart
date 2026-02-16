@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../../core/services/auth_service.dart';
-import '../../core/services/admin_service.dart';
-import '../../models/user_model.dart';
-import '../../widgets/container/glass_container.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/core/services/auth_service.dart';
+import 'package:drepto_healthcare/core/services/admin_service.dart';
+import 'package:drepto_healthcare/models/user_model.dart';
+import 'package:drepto_healthcare/widgets/container/glass_container.dart';
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -376,3 +376,4 @@ class _StatsCard extends StatelessWidget {
     );
   }
 }
+

@@ -23,12 +23,21 @@ dependencies:
   crypto: ^3.0.3
   intl: ^0.19.0
   flutter_animate: ^4.5.2
+  flutter_dotenv: ^6.0.0
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.10.0
+  get_it: ^9.2.0
+  injectable: ^2.7.1+4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.13.1
+  build_runner: ^2.11.1
+  freezed: ^3.2.5
+  json_serializable: ^6.12.0
+  injectable_generator: ^2.12.0
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -47,6 +56,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icon/
+    - .env
 
   # Fonts - Temporarily commented out until Inter font files are added
   # Download Inter from https://fonts.google.com/specimen/Inter

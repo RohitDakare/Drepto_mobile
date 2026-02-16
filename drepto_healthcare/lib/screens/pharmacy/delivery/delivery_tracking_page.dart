@@ -296,3 +296,4 @@ class _DriverInfoCard extends StatelessWidget {
     );
   }
 }
+

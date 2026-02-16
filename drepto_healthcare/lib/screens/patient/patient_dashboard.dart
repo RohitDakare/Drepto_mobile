@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../../core/providers/auth_provider.dart';
-import '../../core/utils/greeting_helper.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/core/providers/auth_provider.dart';
+import 'package:drepto_healthcare/core/utils/greeting_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../widgets/cards/app_cards.dart';
-import '../../widgets/inputs/app_inputs.dart';
-import '../../widgets/cards/appointment_card.dart';
+import 'package:drepto_healthcare/widgets/cards/app_cards.dart';
+import 'package:drepto_healthcare/widgets/inputs/app_inputs.dart';
+import 'package:drepto_healthcare/widgets/cards/appointment_card.dart';
 import 'patient_schedule_page.dart';
-import '../../widgets/navigation/bottom_nav_bars.dart';
+import 'package:drepto_healthcare/widgets/navigation/bottom_nav_bars.dart';
 import '../profile/profile_page.dart';
 
 import '../chat/ai_assistant_page.dart';
-import '../../models/appointment.dart';
-import '../../core/services/appointment_service.dart';
+import 'package:drepto_healthcare/models/appointment.dart';
+import 'package:drepto_healthcare/core/services/appointment_service.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class PatientDashboard extends StatefulWidget {
@@ -353,3 +353,4 @@ class _PatientHomePage extends StatelessWidget {
     );
   }
 }
+

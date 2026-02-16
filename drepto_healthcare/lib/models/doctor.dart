@@ -1,33 +1,29 @@
-class Doctor {
-  final String id;
-  final String name;
-  final String specialty;
-  final String hospital;
-  final double rating;
-  final int reviews;
-  final int patients;
-  final String about;
-  final String imageUrl;
-  final List<String> availableSlots;
-  final double videoConsultationFee;
-  final double clinicVisitFee;
-  final bool isOnline;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const Doctor({
-    required this.id,
-    required this.name,
-    required this.specialty,
-    required this.hospital,
-    required this.rating,
-    required this.reviews,
-    required this.patients,
-    required this.about,
-    required this.imageUrl,
-    required this.availableSlots,
-    required this.videoConsultationFee,
-    required this.clinicVisitFee,
-    this.isOnline = false,
-  });
+part 'doctor.freezed.dart';
+part 'doctor.g.dart';
+
+@freezed
+abstract class Doctor with _$Doctor {
+  const Doctor._();
+
+  const factory Doctor({
+    required String id,
+    required String name,
+    required String specialty,
+    required String hospital,
+    required double rating,
+    required int reviews,
+    required int patients,
+    required String about,
+    required String imageUrl,
+    required List<String> availableSlots,
+    required double videoConsultationFee,
+    required double clinicVisitFee,
+    @Default(false) bool isOnline,
+  }) = _Doctor;
+
+  factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 
   // Returns empty list - in production, this would fetch from backend API
   static List<Doctor> getMockDoctors() {

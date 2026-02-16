@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../../widgets/navigation/bottom_nav_bars.dart';
-import '../../widgets/buttons/app_buttons.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/widgets/navigation/bottom_nav_bars.dart';
+import 'package:drepto_healthcare/widgets/buttons/app_buttons.dart';
 import 'nurse_agenda_page.dart';
 import 'nurse_patients_page.dart';
 import 'nurse_chat_page.dart';
@@ -435,3 +435,4 @@ class _TaskCard extends StatelessWidget {
     );
   }
 }
+

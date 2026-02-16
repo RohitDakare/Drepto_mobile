@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../../widgets/inputs/app_inputs.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/widgets/inputs/app_inputs.dart';
 
 class DoctorPatientsPage extends StatelessWidget {
   const DoctorPatientsPage({super.key});
@@ -128,3 +128,4 @@ class _PatientListItem extends StatelessWidget {
     );
   }
 }
+

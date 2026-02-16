@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../../core/providers/auth_provider.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/core/providers/auth_provider.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../widgets/buttons/app_buttons.dart';
-import '../../widgets/inputs/app_inputs.dart';
+import 'package:drepto_healthcare/widgets/buttons/app_buttons.dart';
+import 'package:drepto_healthcare/widgets/inputs/app_inputs.dart';
 
 enum UserRole { patient, doctor, nurse, pharmacy }
 
@@ -245,3 +245,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+

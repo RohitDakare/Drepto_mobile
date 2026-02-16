@@ -96,3 +96,4 @@ class AppointmentService {
     return List.from(_appointments);
   }
 }
+

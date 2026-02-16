@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
 
 class SkeletonLoader extends StatefulWidget {
   final double width;
@@ -81,3 +81,4 @@ class _SkeletonLoaderState extends State<SkeletonLoader>
     );
   }
 }
+

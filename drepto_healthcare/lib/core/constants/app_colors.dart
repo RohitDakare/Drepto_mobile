@@ -72,3 +72,4 @@ class AppColors {
   static Color shadowColor = Colors.black.withValues(alpha: 0.1);
   static Color shadowColorDark = Colors.black.withValues(alpha: 0.25);
 }
+

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
-import '../../core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
 import '../patient/patient_dashboard.dart';
 
 class AmbulanceTrackingPage extends StatelessWidget {
@@ -429,3 +429,4 @@ class _ChecklistItem extends StatelessWidget {
     );
   }
 }
+

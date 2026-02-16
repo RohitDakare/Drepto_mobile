@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
 
 class DocumentViewerPage extends StatelessWidget {
   final String title;
@@ -40,3 +40,4 @@ class DocumentViewerPage extends StatelessWidget {
     );
   }
 }
+

@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'core/providers/auth_provider.dart';
-import 'core/theme/app_theme.dart';
-import 'router/app_router.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:drepto_healthcare/core/injection.dart';
+import 'package:drepto_healthcare/core/providers/auth_provider.dart';
+import 'package:drepto_healthcare/core/theme/app_theme.dart';
+import 'package:drepto_healthcare/router/app_router.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize dependencies (GetIt + Injectable)
+  configureDependencies();
+
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
 
   // Set system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(
@@ -25,8 +33,8 @@ void main() {
     DeviceOrientation.portraitDown,
   ]);
 
-  // Create AuthProvider and check initial status
-  final authProvider = AuthProvider();
+  // Check initial status
+  final authProvider = getIt<AuthProvider>();
   authProvider.checkAuthStatus(); // Securely restore session if exists
 
   runApp(
@@ -65,3 +73,4 @@ class DreptoHealthcareApp extends StatelessWidget {
     );
   }
 }
+

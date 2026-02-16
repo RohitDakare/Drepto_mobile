@@ -1,4 +1,7 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'appointment.freezed.dart';
+part 'appointment.g.dart';
 
 enum AppointmentStatus {
   upcoming,
@@ -11,30 +14,25 @@ enum AppointmentType {
   inPerson,
 }
 
-class Appointment {
-  final String id;
-  final String doctorId;
-  final String doctorName;
-  final String specialty;
-  final String hospitalName;
-  final DateTime dateTime;
-  final AppointmentType type;
-  final AppointmentStatus status;
-  final String? zoomLink;
-  final String? location;
+@freezed
+abstract class Appointment with _$Appointment {
+  const Appointment._();
 
-  const Appointment({
-    required this.id,
-    required this.doctorId,
-    required this.doctorName,
-    required this.specialty,
-    required this.hospitalName,
-    required this.dateTime,
-    required this.type,
-    this.status = AppointmentStatus.upcoming,
-    this.zoomLink,
-    this.location,
-  });
+  const factory Appointment({
+    required String id,
+    required String doctorId,
+    required String doctorName,
+    required String specialty,
+    required String hospitalName,
+    required DateTime dateTime,
+    required AppointmentType type,
+    @Default(AppointmentStatus.upcoming) AppointmentStatus status,
+    String? zoomLink,
+    String? location,
+  }) = _Appointment;
+
+  factory Appointment.fromJson(Map<String, dynamic> json) =>
+      _$AppointmentFromJson(json);
 
   // Mock data generator
   static List<Appointment> getMockAppointments() {
@@ -62,7 +60,7 @@ class Appointment {
       ),
       Appointment(
         id: '3',
-        doctorId: '4', 
+        doctorId: '4',
         doctorName: 'Dr. Michael Brown',
         specialty: 'Neurologist',
         hospitalName: 'Brain & Spine Institute',

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../../core/providers/auth_provider.dart';
-import '../../widgets/buttons/app_buttons.dart';
-import '../../widgets/inputs/app_text_field.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/core/providers/auth_provider.dart';
+import 'package:drepto_healthcare/widgets/buttons/app_buttons.dart';
+import 'package:drepto_healthcare/widgets/inputs/app_text_field.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({super.key});
@@ -149,3 +149,4 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     );
   }
 }
+

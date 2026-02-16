@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../core/providers/auth_provider.dart';
-import '../models/doctor.dart';
+import 'package:drepto_healthcare/core/providers/auth_provider.dart';
+import 'package:drepto_healthcare/models/doctor.dart';
 import '../screens/onboarding/onboarding_page.dart';
 import '../screens/onboarding/login_page.dart';
 import '../screens/patient/patient_dashboard.dart';
@@ -222,3 +222,4 @@ class AppRouter {
     router = createRouter(authProvider);
   }
 }
+

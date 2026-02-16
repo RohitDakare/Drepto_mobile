@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../services/secure_storage_service.dart';
 
 class ApiService {
   static final Dio _dio = Dio(
     BaseOptions(
-      // CRITICAL: Always use HTTPS in production
-      baseUrl:
-          'https://api.dreptohealthcare.com', // Placeholder for actual secure domain
+      baseUrl: dotenv.get('BASE_URL'),
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       headers: {

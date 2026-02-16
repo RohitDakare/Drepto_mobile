@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_spacing.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../../widgets/inputs/app_inputs.dart'; // Assuming AppSearchField exists here
-import '../../models/doctor.dart';
+import 'package:drepto_healthcare/core/constants/app_colors.dart';
+import 'package:drepto_healthcare/core/constants/app_spacing.dart';
+import 'package:drepto_healthcare/core/constants/app_text_styles.dart';
+import 'package:drepto_healthcare/widgets/inputs/app_inputs.dart'; // Assuming AppSearchField exists here
+import 'package:drepto_healthcare/models/doctor.dart';
 
 class DoctorSelectionPage extends StatefulWidget {
   const DoctorSelectionPage({super.key});
@@ -326,3 +326,4 @@ class _StatusBadge extends StatelessWidget {
     );
   }
 }
+

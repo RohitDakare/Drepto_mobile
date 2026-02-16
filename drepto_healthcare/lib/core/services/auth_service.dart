@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
-import '../../models/user_model.dart';
+import 'package:drepto_healthcare/models/user_model.dart';
 import 'secure_storage_service.dart';
 
 class AuthException implements Exception {
@@ -385,3 +385,4 @@ class AuthService {
     };
   }
 }
+

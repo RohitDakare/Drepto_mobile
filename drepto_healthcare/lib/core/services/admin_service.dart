@@ -70,3 +70,4 @@ class AdminActivityItem {
     required this.relatedId,
   });
 }
+
