@@ -17,9 +17,12 @@ abstract class UserModel with _$UserModel {
   const factory UserModel({
     required String id,
     required String email,
-    required String name,
+    required String firstName,
+    required String lastName,
     required UserRole role,
-    String? phoneNumber,
+    int? age,
+    String? gender,
+    int? mobileNumber, // From backend DTO
     String? profileImageUrl,
     DateTime? dateOfBirth,
     String? address,
@@ -28,13 +31,22 @@ abstract class UserModel with _$UserModel {
     required DateTime createdAt,
     DateTime? lastLoginAt,
     // Health stats
-    String? weight, // in kg
-    String? height, // in cm
-    String? bloodType, // e.g., "O+", "A-"
+    String? weight,
+    String? height,
+    String? bloodType,
   }) = _UserModel;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    // Create a copy to avoid mutating the original map
+    final Map<String, dynamic> data = Map<String, dynamic>.from(json);
+    if (data['role'] is String) {
+      data['role'] = (data['role'] as String).toLowerCase();
+    }
+    return _$UserModelFromJson(data);
+  }
+
+  String get name => '$firstName $lastName';
+  String get phoneNumber => mobileNumber?.toString() ?? '';
 
   String get roleDisplayName {
     switch (role) {

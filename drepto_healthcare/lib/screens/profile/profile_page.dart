@@ -52,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                     },
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 16),
-                      padding: const EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         gradient: AppColors.primaryGradient,
                         borderRadius: AppSpacing.borderRadiusXl,
@@ -67,8 +67,8 @@ class ProfilePage extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
-                            width: 72,
-                            height: 72,
+                            width: 64,
+                            height: 64,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
@@ -79,7 +79,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                             child: const Icon(
                               Icons.person,
-                              size: 40,
+                              size: 32,
                               color: Colors.white,
                             ),
                           ),
@@ -91,25 +91,30 @@ class ProfilePage extends StatelessWidget {
                                 Text(
                                   user?.name ?? 'Guest User',
                                   style: const TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
                                   user?.email ?? 'No email',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 13,
                                     color: Colors.white.withValues(alpha: 0.8),
                                   ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                if (user?.phoneNumber != null) ...[
+                                if (user?.phoneNumber != null &&
+                                    user!.phoneNumber.isNotEmpty) ...[
                                   const SizedBox(height: 2),
                                   Text(
-                                    user!.phoneNumber!,
+                                    user.phoneNumber,
                                     style: TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 12,
                                       color:
                                           Colors.white.withValues(alpha: 0.7),
                                     ),
@@ -169,7 +174,7 @@ class ProfilePage extends StatelessWidget {
                             color: AppColors.primary,
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: _HealthStatCard(
                             label: 'Height',
@@ -179,7 +184,7 @@ class ProfilePage extends StatelessWidget {
                             color: AppColors.accent,
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: _HealthStatCard(
                             label: 'Blood',
@@ -290,7 +295,7 @@ class _HealthStatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.surfaceLight,
         borderRadius: AppSpacing.borderRadiusMd,
@@ -307,14 +312,14 @@ class _HealthStatCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
               color: color.withValues(alpha: 0.1),
               borderRadius: AppSpacing.borderRadiusSm,
             ),
-            child: Icon(icon, size: 20, color: color),
+            child: Icon(icon, size: 18, color: color),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
           Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
@@ -324,7 +329,10 @@ class _HealthStatCard extends StatelessWidget {
                 style: AppTextStyles.h4.copyWith(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               if (unit.isNotEmpty) ...[
                 const SizedBox(width: 2),
@@ -343,7 +351,10 @@ class _HealthStatCard extends StatelessWidget {
             style: AppTextStyles.caption.copyWith(
               color: AppColors.textSecondary,
               fontWeight: FontWeight.w500,
+              fontSize: 10,
             ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
@@ -429,4 +440,3 @@ class _SettingsItem extends StatelessWidget {
     );
   }
 }
-

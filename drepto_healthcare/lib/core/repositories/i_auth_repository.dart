@@ -2,16 +2,20 @@ import 'package:drepto_healthcare/models/user_model.dart';
 
 abstract class IAuthRepository {
   Future<Map<String, dynamic>> login({
-    required String email,
+    String? email,
+    int? mobileNumber,
     required String password,
   });
 
   Future<Map<String, dynamic>> register({
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
-    required String name,
+    required int age,
+    required int mobileNumber,
+    required String gender,
     required UserRole role,
-    String? phoneNumber,
   });
 
   Future<void> logout();

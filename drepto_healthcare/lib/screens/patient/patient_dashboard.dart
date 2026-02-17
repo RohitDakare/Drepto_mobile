@@ -8,7 +8,6 @@ import 'package:drepto_healthcare/core/providers/auth_provider.dart';
 import 'package:drepto_healthcare/core/utils/greeting_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:drepto_healthcare/widgets/cards/app_cards.dart';
-import 'package:drepto_healthcare/widgets/inputs/app_inputs.dart';
 import 'package:drepto_healthcare/widgets/cards/appointment_card.dart';
 import 'patient_schedule_page.dart';
 import 'package:drepto_healthcare/widgets/navigation/bottom_nav_bars.dart';
@@ -134,22 +133,6 @@ class _PatientHomePage extends StatelessWidget {
             ),
           ),
 
-          // Search Bar
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: AppSearchField(
-                hint: 'Search medicines, doctors, or tests',
-                onTap: () {
-                  // Navigate to search page
-                },
-              )
-                  .animate()
-                  .fadeIn(duration: 600.ms)
-                  .slideX(begin: -0.1, curve: Curves.easeOut),
-            ),
-          ),
-
           // Services Section
           SliverToBoxAdapter(
             child: Padding(
@@ -167,7 +150,7 @@ class _PatientHomePage extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
-                    childAspectRatio: 1.3,
+                    childAspectRatio: 0.85,
                     children: [
                       ServiceCard(
                         title: 'Doctor',
@@ -353,4 +336,3 @@ class _PatientHomePage extends StatelessWidget {
     );
   }
 }
-

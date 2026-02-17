@@ -25,7 +25,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
   @override
   void initState() {
     super.initState();
-    _timeSlots = widget.doctor.availableSlots;
+    _timeSlots = widget.doctor.availableSlots ?? [];
   }
 
   @override
@@ -76,7 +76,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    widget.doctor.hospital,
+                    widget.doctor.hospital ?? '',
                     style: AppTextStyles.caption
                         .copyWith(color: AppColors.textSecondary),
                   ),
@@ -102,7 +102,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
             Text('About Doctor', style: AppTextStyles.h4),
             const SizedBox(height: 8),
             Text(
-              widget.doctor.about,
+              widget.doctor.about ?? '',
               style: AppTextStyles.bodyMedium
                   .copyWith(color: AppColors.textSecondary, height: 1.5),
             ),
@@ -204,4 +204,3 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
     );
   }
 }
-

@@ -41,19 +41,24 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Login with email and password
-  Future<bool> login(String email, String password) async {
+  /// Login with email or mobile number
+  Future<bool> login({
+    String? email,
+    int? mobileNumber,
+    required String password,
+  }) async {
     try {
       _errorMessage = null;
       notifyListeners();
 
       final result = await _authRepository.login(
         email: email,
+        mobileNumber: mobileNumber,
         password: password,
       );
 
       _token = result['token'] as String;
-      _currentUser = result['user'] as UserModel;
+      _currentUser = UserModel.fromJson(result['user'] as Map<String, dynamic>);
       _status = AuthStatus.authenticated;
       _errorMessage = null;
 
@@ -67,28 +72,34 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  /// Register a new user
+  /// Register a new user (Patient)
   Future<bool> register({
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
-    required String name,
+    required int age,
+    required int mobileNumber,
+    required String gender,
     required UserRole role,
-    String? phoneNumber,
   }) async {
     try {
       _errorMessage = null;
       notifyListeners();
 
       final result = await _authRepository.register(
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: password,
-        name: name,
+        age: age,
+        mobileNumber: mobileNumber,
+        gender: gender,
         role: role,
-        phoneNumber: phoneNumber,
       );
 
       _token = result['token'] as String;
-      _currentUser = result['user'] as UserModel;
+      _currentUser = UserModel.fromJson(result['user'] as Map<String, dynamic>);
       _status = AuthStatus.authenticated;
       _errorMessage = null;
 

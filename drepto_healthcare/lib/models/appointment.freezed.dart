@@ -14,14 +14,28 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$Appointment {
-  String get id;
-  String get doctorId;
-  String get doctorName;
-  String get specialty;
-  String get hospitalName;
-  DateTime get dateTime;
-  AppointmentType get type;
-  AppointmentStatus get status;
+  String get appointmentId;
+  String get status;
+  String? get userId;
+  String? get patientName;
+  String? get address;
+  String? get mobileNumber;
+  String? get symptoms;
+  String? get date;
+  String? get time;
+  String? get nurseId;
+  String? get nurseName;
+  String? get nurseSpecialization;
+  String? get paymentMethod;
+  String? get transactionId;
+  double? get amount; // Doctor specific fields if needed
+  String? get doctorId;
+  String? get doctorName;
+  String? get specialty;
+  String?
+      get hospitalName; // Original fields for backward compatibility or general use
+  DateTime? get dateTime;
+  AppointmentType? get type;
   String? get zoomLink;
   String? get location;
 
@@ -40,7 +54,29 @@ mixin _$Appointment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Appointment &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.appointmentId, appointmentId) ||
+                other.appointmentId == appointmentId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.patientName, patientName) ||
+                other.patientName == patientName) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.mobileNumber, mobileNumber) ||
+                other.mobileNumber == mobileNumber) &&
+            (identical(other.symptoms, symptoms) ||
+                other.symptoms == symptoms) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.nurseId, nurseId) || other.nurseId == nurseId) &&
+            (identical(other.nurseName, nurseName) ||
+                other.nurseName == nurseName) &&
+            (identical(other.nurseSpecialization, nurseSpecialization) ||
+                other.nurseSpecialization == nurseSpecialization) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.doctorId, doctorId) ||
                 other.doctorId == doctorId) &&
             (identical(other.doctorName, doctorName) ||
@@ -52,7 +88,6 @@ mixin _$Appointment {
             (identical(other.dateTime, dateTime) ||
                 other.dateTime == dateTime) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.zoomLink, zoomLink) ||
                 other.zoomLink == zoomLink) &&
             (identical(other.location, location) ||
@@ -61,12 +96,36 @@ mixin _$Appointment {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, doctorId, doctorName,
-      specialty, hospitalName, dateTime, type, status, zoomLink, location);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        appointmentId,
+        status,
+        userId,
+        patientName,
+        address,
+        mobileNumber,
+        symptoms,
+        date,
+        time,
+        nurseId,
+        nurseName,
+        nurseSpecialization,
+        paymentMethod,
+        transactionId,
+        amount,
+        doctorId,
+        doctorName,
+        specialty,
+        hospitalName,
+        dateTime,
+        type,
+        zoomLink,
+        location
+      ]);
 
   @override
   String toString() {
-    return 'Appointment(id: $id, doctorId: $doctorId, doctorName: $doctorName, specialty: $specialty, hospitalName: $hospitalName, dateTime: $dateTime, type: $type, status: $status, zoomLink: $zoomLink, location: $location)';
+    return 'Appointment(appointmentId: $appointmentId, status: $status, userId: $userId, patientName: $patientName, address: $address, mobileNumber: $mobileNumber, symptoms: $symptoms, date: $date, time: $time, nurseId: $nurseId, nurseName: $nurseName, nurseSpecialization: $nurseSpecialization, paymentMethod: $paymentMethod, transactionId: $transactionId, amount: $amount, doctorId: $doctorId, doctorName: $doctorName, specialty: $specialty, hospitalName: $hospitalName, dateTime: $dateTime, type: $type, zoomLink: $zoomLink, location: $location)';
   }
 }
 
@@ -77,14 +136,27 @@ abstract mixin class $AppointmentCopyWith<$Res> {
       _$AppointmentCopyWithImpl;
   @useResult
   $Res call(
-      {String id,
-      String doctorId,
-      String doctorName,
-      String specialty,
-      String hospitalName,
-      DateTime dateTime,
-      AppointmentType type,
-      AppointmentStatus status,
+      {String appointmentId,
+      String status,
+      String? userId,
+      String? patientName,
+      String? address,
+      String? mobileNumber,
+      String? symptoms,
+      String? date,
+      String? time,
+      String? nurseId,
+      String? nurseName,
+      String? nurseSpecialization,
+      String? paymentMethod,
+      String? transactionId,
+      double? amount,
+      String? doctorId,
+      String? doctorName,
+      String? specialty,
+      String? hospitalName,
+      DateTime? dateTime,
+      AppointmentType? type,
       String? zoomLink,
       String? location});
 }
@@ -101,50 +173,115 @@ class _$AppointmentCopyWithImpl<$Res> implements $AppointmentCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? doctorId = null,
-    Object? doctorName = null,
-    Object? specialty = null,
-    Object? hospitalName = null,
-    Object? dateTime = null,
-    Object? type = null,
+    Object? appointmentId = null,
     Object? status = null,
+    Object? userId = freezed,
+    Object? patientName = freezed,
+    Object? address = freezed,
+    Object? mobileNumber = freezed,
+    Object? symptoms = freezed,
+    Object? date = freezed,
+    Object? time = freezed,
+    Object? nurseId = freezed,
+    Object? nurseName = freezed,
+    Object? nurseSpecialization = freezed,
+    Object? paymentMethod = freezed,
+    Object? transactionId = freezed,
+    Object? amount = freezed,
+    Object? doctorId = freezed,
+    Object? doctorName = freezed,
+    Object? specialty = freezed,
+    Object? hospitalName = freezed,
+    Object? dateTime = freezed,
+    Object? type = freezed,
     Object? zoomLink = freezed,
     Object? location = freezed,
   }) {
     return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
+      appointmentId: null == appointmentId
+          ? _self.appointmentId
+          : appointmentId // ignore: cast_nullable_to_non_nullable
               as String,
-      doctorId: null == doctorId
-          ? _self.doctorId
-          : doctorId // ignore: cast_nullable_to_non_nullable
-              as String,
-      doctorName: null == doctorName
-          ? _self.doctorName
-          : doctorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialty: null == specialty
-          ? _self.specialty
-          : specialty // ignore: cast_nullable_to_non_nullable
-              as String,
-      hospitalName: null == hospitalName
-          ? _self.hospitalName
-          : hospitalName // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateTime: null == dateTime
-          ? _self.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as AppointmentType,
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AppointmentStatus,
+              as String,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientName: freezed == patientName
+          ? _self.patientName
+          : patientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _self.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _self.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      symptoms: freezed == symptoms
+          ? _self.symptoms
+          : symptoms // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      time: freezed == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nurseId: freezed == nurseId
+          ? _self.nurseId
+          : nurseId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nurseName: freezed == nurseName
+          ? _self.nurseName
+          : nurseName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nurseSpecialization: freezed == nurseSpecialization
+          ? _self.nurseSpecialization
+          : nurseSpecialization // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentMethod: freezed == paymentMethod
+          ? _self.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionId: freezed == transactionId
+          ? _self.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      amount: freezed == amount
+          ? _self.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      doctorId: freezed == doctorId
+          ? _self.doctorId
+          : doctorId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorName: freezed == doctorName
+          ? _self.doctorName
+          : doctorName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      specialty: freezed == specialty
+          ? _self.specialty
+          : specialty // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hospitalName: freezed == hospitalName
+          ? _self.hospitalName
+          : hospitalName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateTime: freezed == dateTime
+          ? _self.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as AppointmentType?,
       zoomLink: freezed == zoomLink
           ? _self.zoomLink
           : zoomLink // ignore: cast_nullable_to_non_nullable
@@ -251,14 +388,27 @@ extension AppointmentPatterns on Appointment {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            String id,
-            String doctorId,
-            String doctorName,
-            String specialty,
-            String hospitalName,
-            DateTime dateTime,
-            AppointmentType type,
-            AppointmentStatus status,
+            String appointmentId,
+            String status,
+            String? userId,
+            String? patientName,
+            String? address,
+            String? mobileNumber,
+            String? symptoms,
+            String? date,
+            String? time,
+            String? nurseId,
+            String? nurseName,
+            String? nurseSpecialization,
+            String? paymentMethod,
+            String? transactionId,
+            double? amount,
+            String? doctorId,
+            String? doctorName,
+            String? specialty,
+            String? hospitalName,
+            DateTime? dateTime,
+            AppointmentType? type,
             String? zoomLink,
             String? location)?
         $default, {
@@ -268,14 +418,27 @@ extension AppointmentPatterns on Appointment {
     switch (_that) {
       case _Appointment() when $default != null:
         return $default(
-            _that.id,
+            _that.appointmentId,
+            _that.status,
+            _that.userId,
+            _that.patientName,
+            _that.address,
+            _that.mobileNumber,
+            _that.symptoms,
+            _that.date,
+            _that.time,
+            _that.nurseId,
+            _that.nurseName,
+            _that.nurseSpecialization,
+            _that.paymentMethod,
+            _that.transactionId,
+            _that.amount,
             _that.doctorId,
             _that.doctorName,
             _that.specialty,
             _that.hospitalName,
             _that.dateTime,
             _that.type,
-            _that.status,
             _that.zoomLink,
             _that.location);
       case _:
@@ -299,14 +462,27 @@ extension AppointmentPatterns on Appointment {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            String id,
-            String doctorId,
-            String doctorName,
-            String specialty,
-            String hospitalName,
-            DateTime dateTime,
-            AppointmentType type,
-            AppointmentStatus status,
+            String appointmentId,
+            String status,
+            String? userId,
+            String? patientName,
+            String? address,
+            String? mobileNumber,
+            String? symptoms,
+            String? date,
+            String? time,
+            String? nurseId,
+            String? nurseName,
+            String? nurseSpecialization,
+            String? paymentMethod,
+            String? transactionId,
+            double? amount,
+            String? doctorId,
+            String? doctorName,
+            String? specialty,
+            String? hospitalName,
+            DateTime? dateTime,
+            AppointmentType? type,
             String? zoomLink,
             String? location)
         $default,
@@ -315,14 +491,27 @@ extension AppointmentPatterns on Appointment {
     switch (_that) {
       case _Appointment():
         return $default(
-            _that.id,
+            _that.appointmentId,
+            _that.status,
+            _that.userId,
+            _that.patientName,
+            _that.address,
+            _that.mobileNumber,
+            _that.symptoms,
+            _that.date,
+            _that.time,
+            _that.nurseId,
+            _that.nurseName,
+            _that.nurseSpecialization,
+            _that.paymentMethod,
+            _that.transactionId,
+            _that.amount,
             _that.doctorId,
             _that.doctorName,
             _that.specialty,
             _that.hospitalName,
             _that.dateTime,
             _that.type,
-            _that.status,
             _that.zoomLink,
             _that.location);
       case _:
@@ -345,14 +534,27 @@ extension AppointmentPatterns on Appointment {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            String id,
-            String doctorId,
-            String doctorName,
-            String specialty,
-            String hospitalName,
-            DateTime dateTime,
-            AppointmentType type,
-            AppointmentStatus status,
+            String appointmentId,
+            String status,
+            String? userId,
+            String? patientName,
+            String? address,
+            String? mobileNumber,
+            String? symptoms,
+            String? date,
+            String? time,
+            String? nurseId,
+            String? nurseName,
+            String? nurseSpecialization,
+            String? paymentMethod,
+            String? transactionId,
+            double? amount,
+            String? doctorId,
+            String? doctorName,
+            String? specialty,
+            String? hospitalName,
+            DateTime? dateTime,
+            AppointmentType? type,
             String? zoomLink,
             String? location)?
         $default,
@@ -361,14 +563,27 @@ extension AppointmentPatterns on Appointment {
     switch (_that) {
       case _Appointment() when $default != null:
         return $default(
-            _that.id,
+            _that.appointmentId,
+            _that.status,
+            _that.userId,
+            _that.patientName,
+            _that.address,
+            _that.mobileNumber,
+            _that.symptoms,
+            _that.date,
+            _that.time,
+            _that.nurseId,
+            _that.nurseName,
+            _that.nurseSpecialization,
+            _that.paymentMethod,
+            _that.transactionId,
+            _that.amount,
             _that.doctorId,
             _that.doctorName,
             _that.specialty,
             _that.hospitalName,
             _that.dateTime,
             _that.type,
-            _that.status,
             _that.zoomLink,
             _that.location);
       case _:
@@ -381,14 +596,27 @@ extension AppointmentPatterns on Appointment {
 @JsonSerializable()
 class _Appointment extends Appointment {
   const _Appointment(
-      {required this.id,
-      required this.doctorId,
-      required this.doctorName,
-      required this.specialty,
-      required this.hospitalName,
-      required this.dateTime,
-      required this.type,
-      this.status = AppointmentStatus.upcoming,
+      {required this.appointmentId,
+      required this.status,
+      this.userId,
+      this.patientName,
+      this.address,
+      this.mobileNumber,
+      this.symptoms,
+      this.date,
+      this.time,
+      this.nurseId,
+      this.nurseName,
+      this.nurseSpecialization,
+      this.paymentMethod,
+      this.transactionId,
+      this.amount,
+      this.doctorId,
+      this.doctorName,
+      this.specialty,
+      this.hospitalName,
+      this.dateTime,
+      this.type,
       this.zoomLink,
       this.location})
       : super._();
@@ -396,22 +624,49 @@ class _Appointment extends Appointment {
       _$AppointmentFromJson(json);
 
   @override
-  final String id;
+  final String appointmentId;
   @override
-  final String doctorId;
+  final String status;
   @override
-  final String doctorName;
+  final String? userId;
   @override
-  final String specialty;
+  final String? patientName;
   @override
-  final String hospitalName;
+  final String? address;
   @override
-  final DateTime dateTime;
+  final String? mobileNumber;
   @override
-  final AppointmentType type;
+  final String? symptoms;
   @override
-  @JsonKey()
-  final AppointmentStatus status;
+  final String? date;
+  @override
+  final String? time;
+  @override
+  final String? nurseId;
+  @override
+  final String? nurseName;
+  @override
+  final String? nurseSpecialization;
+  @override
+  final String? paymentMethod;
+  @override
+  final String? transactionId;
+  @override
+  final double? amount;
+// Doctor specific fields if needed
+  @override
+  final String? doctorId;
+  @override
+  final String? doctorName;
+  @override
+  final String? specialty;
+  @override
+  final String? hospitalName;
+// Original fields for backward compatibility or general use
+  @override
+  final DateTime? dateTime;
+  @override
+  final AppointmentType? type;
   @override
   final String? zoomLink;
   @override
@@ -437,7 +692,29 @@ class _Appointment extends Appointment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Appointment &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.appointmentId, appointmentId) ||
+                other.appointmentId == appointmentId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.patientName, patientName) ||
+                other.patientName == patientName) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.mobileNumber, mobileNumber) ||
+                other.mobileNumber == mobileNumber) &&
+            (identical(other.symptoms, symptoms) ||
+                other.symptoms == symptoms) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.nurseId, nurseId) || other.nurseId == nurseId) &&
+            (identical(other.nurseName, nurseName) ||
+                other.nurseName == nurseName) &&
+            (identical(other.nurseSpecialization, nurseSpecialization) ||
+                other.nurseSpecialization == nurseSpecialization) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.doctorId, doctorId) ||
                 other.doctorId == doctorId) &&
             (identical(other.doctorName, doctorName) ||
@@ -449,7 +726,6 @@ class _Appointment extends Appointment {
             (identical(other.dateTime, dateTime) ||
                 other.dateTime == dateTime) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.zoomLink, zoomLink) ||
                 other.zoomLink == zoomLink) &&
             (identical(other.location, location) ||
@@ -458,12 +734,36 @@ class _Appointment extends Appointment {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, doctorId, doctorName,
-      specialty, hospitalName, dateTime, type, status, zoomLink, location);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        appointmentId,
+        status,
+        userId,
+        patientName,
+        address,
+        mobileNumber,
+        symptoms,
+        date,
+        time,
+        nurseId,
+        nurseName,
+        nurseSpecialization,
+        paymentMethod,
+        transactionId,
+        amount,
+        doctorId,
+        doctorName,
+        specialty,
+        hospitalName,
+        dateTime,
+        type,
+        zoomLink,
+        location
+      ]);
 
   @override
   String toString() {
-    return 'Appointment(id: $id, doctorId: $doctorId, doctorName: $doctorName, specialty: $specialty, hospitalName: $hospitalName, dateTime: $dateTime, type: $type, status: $status, zoomLink: $zoomLink, location: $location)';
+    return 'Appointment(appointmentId: $appointmentId, status: $status, userId: $userId, patientName: $patientName, address: $address, mobileNumber: $mobileNumber, symptoms: $symptoms, date: $date, time: $time, nurseId: $nurseId, nurseName: $nurseName, nurseSpecialization: $nurseSpecialization, paymentMethod: $paymentMethod, transactionId: $transactionId, amount: $amount, doctorId: $doctorId, doctorName: $doctorName, specialty: $specialty, hospitalName: $hospitalName, dateTime: $dateTime, type: $type, zoomLink: $zoomLink, location: $location)';
   }
 }
 
@@ -476,14 +776,27 @@ abstract mixin class _$AppointmentCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String doctorId,
-      String doctorName,
-      String specialty,
-      String hospitalName,
-      DateTime dateTime,
-      AppointmentType type,
-      AppointmentStatus status,
+      {String appointmentId,
+      String status,
+      String? userId,
+      String? patientName,
+      String? address,
+      String? mobileNumber,
+      String? symptoms,
+      String? date,
+      String? time,
+      String? nurseId,
+      String? nurseName,
+      String? nurseSpecialization,
+      String? paymentMethod,
+      String? transactionId,
+      double? amount,
+      String? doctorId,
+      String? doctorName,
+      String? specialty,
+      String? hospitalName,
+      DateTime? dateTime,
+      AppointmentType? type,
       String? zoomLink,
       String? location});
 }
@@ -500,50 +813,115 @@ class __$AppointmentCopyWithImpl<$Res> implements _$AppointmentCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? id = null,
-    Object? doctorId = null,
-    Object? doctorName = null,
-    Object? specialty = null,
-    Object? hospitalName = null,
-    Object? dateTime = null,
-    Object? type = null,
+    Object? appointmentId = null,
     Object? status = null,
+    Object? userId = freezed,
+    Object? patientName = freezed,
+    Object? address = freezed,
+    Object? mobileNumber = freezed,
+    Object? symptoms = freezed,
+    Object? date = freezed,
+    Object? time = freezed,
+    Object? nurseId = freezed,
+    Object? nurseName = freezed,
+    Object? nurseSpecialization = freezed,
+    Object? paymentMethod = freezed,
+    Object? transactionId = freezed,
+    Object? amount = freezed,
+    Object? doctorId = freezed,
+    Object? doctorName = freezed,
+    Object? specialty = freezed,
+    Object? hospitalName = freezed,
+    Object? dateTime = freezed,
+    Object? type = freezed,
     Object? zoomLink = freezed,
     Object? location = freezed,
   }) {
     return _then(_Appointment(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
+      appointmentId: null == appointmentId
+          ? _self.appointmentId
+          : appointmentId // ignore: cast_nullable_to_non_nullable
               as String,
-      doctorId: null == doctorId
-          ? _self.doctorId
-          : doctorId // ignore: cast_nullable_to_non_nullable
-              as String,
-      doctorName: null == doctorName
-          ? _self.doctorName
-          : doctorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialty: null == specialty
-          ? _self.specialty
-          : specialty // ignore: cast_nullable_to_non_nullable
-              as String,
-      hospitalName: null == hospitalName
-          ? _self.hospitalName
-          : hospitalName // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateTime: null == dateTime
-          ? _self.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as AppointmentType,
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AppointmentStatus,
+              as String,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patientName: freezed == patientName
+          ? _self.patientName
+          : patientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _self.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _self.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      symptoms: freezed == symptoms
+          ? _self.symptoms
+          : symptoms // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      time: freezed == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nurseId: freezed == nurseId
+          ? _self.nurseId
+          : nurseId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nurseName: freezed == nurseName
+          ? _self.nurseName
+          : nurseName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nurseSpecialization: freezed == nurseSpecialization
+          ? _self.nurseSpecialization
+          : nurseSpecialization // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentMethod: freezed == paymentMethod
+          ? _self.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionId: freezed == transactionId
+          ? _self.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      amount: freezed == amount
+          ? _self.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      doctorId: freezed == doctorId
+          ? _self.doctorId
+          : doctorId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      doctorName: freezed == doctorName
+          ? _self.doctorName
+          : doctorName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      specialty: freezed == specialty
+          ? _self.specialty
+          : specialty // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hospitalName: freezed == hospitalName
+          ? _self.hospitalName
+          : hospitalName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateTime: freezed == dateTime
+          ? _self.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as AppointmentType?,
       zoomLink: freezed == zoomLink
           ? _self.zoomLink
           : zoomLink // ignore: cast_nullable_to_non_nullable

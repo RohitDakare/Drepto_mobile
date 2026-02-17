@@ -19,14 +19,29 @@ abstract class Appointment with _$Appointment {
   const Appointment._();
 
   const factory Appointment({
-    required String id,
-    required String doctorId,
-    required String doctorName,
-    required String specialty,
-    required String hospitalName,
-    required DateTime dateTime,
-    required AppointmentType type,
-    @Default(AppointmentStatus.upcoming) AppointmentStatus status,
+    required String appointmentId,
+    required String status,
+    String? userId,
+    String? patientName,
+    String? address,
+    String? mobileNumber,
+    String? symptoms,
+    String? date,
+    String? time,
+    String? nurseId,
+    String? nurseName,
+    String? nurseSpecialization,
+    String? paymentMethod,
+    String? transactionId,
+    double? amount,
+    // Doctor specific fields if needed
+    String? doctorId,
+    String? doctorName,
+    String? specialty,
+    String? hospitalName,
+    // Original fields for backward compatibility or general use
+    DateTime? dateTime,
+    AppointmentType? type,
     String? zoomLink,
     String? location,
   }) = _Appointment;
@@ -34,40 +49,9 @@ abstract class Appointment with _$Appointment {
   factory Appointment.fromJson(Map<String, dynamic> json) =>
       _$AppointmentFromJson(json);
 
-  // Mock data generator
+  String get id => appointmentId;
+
   static List<Appointment> getMockAppointments() {
-    final now = DateTime.now();
-    return [
-      Appointment(
-        id: '1',
-        doctorId: '1',
-        doctorName: 'Dr. Sarah Smith',
-        specialty: 'Cardiologist',
-        hospitalName: 'City Heart Center',
-        dateTime: now.add(const Duration(days: 1, hours: 2)), // Tomorrow
-        type: AppointmentType.online,
-        zoomLink: 'https://zoom.us/j/123456789',
-      ),
-      Appointment(
-        id: '2',
-        doctorId: '2',
-        doctorName: 'Dr. James Wilson',
-        specialty: 'Dentist',
-        hospitalName: 'Smile Dental Clinic',
-        dateTime: now.add(const Duration(days: 3, hours: 5)), // In 3 days
-        type: AppointmentType.inPerson,
-        location: '123 Medical Lane, Health City',
-      ),
-      Appointment(
-        id: '3',
-        doctorId: '4',
-        doctorName: 'Dr. Michael Brown',
-        specialty: 'Neurologist',
-        hospitalName: 'Brain & Spine Institute',
-        dateTime: now.add(const Duration(days: 5, hours: 1)), // In 5 days
-        type: AppointmentType.online,
-        zoomLink: 'https://zoom.us/j/987654321',
-      ),
-    ];
+    return [];
   }
 }

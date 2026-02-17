@@ -37,7 +37,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
       if (user != null) {
         _nameController.text = user.name;
-        _phoneController.text = user.phoneNumber ?? '';
+        _phoneController.text = user.phoneNumber;
         _addressController.text = user.address ?? '';
         _weightController.text = user.weight ?? '';
         _heightController.text = user.height ?? '';
@@ -350,4 +350,3 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 }
-

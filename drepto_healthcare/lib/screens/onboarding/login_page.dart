@@ -31,8 +31,8 @@ class _LoginPageState extends State<LoginPage> {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
       final success = await authProvider.login(
-        _emailController.text.trim(),
-        _passwordController.text,
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
       );
 
       if (mounted) {
@@ -245,4 +245,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-

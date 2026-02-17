@@ -9,9 +9,12 @@ part of 'user_model.dart';
 _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
       id: json['id'] as String,
       email: json['email'] as String,
-      name: json['name'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
       role: $enumDecode(_$UserRoleEnumMap, json['role']),
-      phoneNumber: json['phoneNumber'] as String?,
+      age: (json['age'] as num?)?.toInt(),
+      gender: json['gender'] as String?,
+      mobileNumber: (json['mobileNumber'] as num?)?.toInt(),
       profileImageUrl: json['profileImageUrl'] as String?,
       dateOfBirth: json['dateOfBirth'] == null
           ? null
@@ -32,9 +35,12 @@ Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
-      'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'role': _$UserRoleEnumMap[instance.role]!,
-      'phoneNumber': instance.phoneNumber,
+      'age': instance.age,
+      'gender': instance.gender,
+      'mobileNumber': instance.mobileNumber,
       'profileImageUrl': instance.profileImageUrl,
       'dateOfBirth': instance.dateOfBirth?.toIso8601String(),
       'address': instance.address,

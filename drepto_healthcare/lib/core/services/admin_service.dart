@@ -26,9 +26,9 @@ class AdminService {
     final appointments = await AppointmentService.getAllAppointments();
     for (var apt in appointments) {
       activity.add(AdminActivityItem(
-        title: 'Appointment ${apt.status.name}',
+        title: 'Appointment ${apt.status}',
         description: '${apt.doctorName} with Patient',
-        timestamp: apt.dateTime,
+        timestamp: apt.dateTime ?? DateTime.now(),
         type: ActivityType.appointment,
         relatedId: apt.id,
       ));
@@ -70,4 +70,3 @@ class AdminActivityItem {
     required this.relatedId,
   });
 }
-

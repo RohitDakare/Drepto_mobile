@@ -9,27 +9,31 @@ part of 'doctor.dart';
 _Doctor _$DoctorFromJson(Map<String, dynamic> json) => _Doctor(
       id: json['id'] as String,
       name: json['name'] as String,
-      specialty: json['specialty'] as String,
-      hospital: json['hospital'] as String,
+      specialization: json['specialization'] as String,
+      experienceYears: (json['experienceYears'] as num).toInt(),
       rating: (json['rating'] as num).toDouble(),
-      reviews: (json['reviews'] as num).toInt(),
-      patients: (json['patients'] as num).toInt(),
-      about: json['about'] as String,
-      imageUrl: json['imageUrl'] as String,
-      availableSlots: (json['availableSlots'] as List<dynamic>)
-          .map((e) => e as String)
+      nextAvailable: json['nextAvailable'] as String,
+      hospital: json['hospital'] as String?,
+      reviews: (json['reviews'] as num?)?.toInt(),
+      patients: (json['patients'] as num?)?.toInt(),
+      about: json['about'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      availableSlots: (json['availableSlots'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
-      videoConsultationFee: (json['videoConsultationFee'] as num).toDouble(),
-      clinicVisitFee: (json['clinicVisitFee'] as num).toDouble(),
+      videoConsultationFee: (json['videoConsultationFee'] as num?)?.toDouble(),
+      clinicVisitFee: (json['clinicVisitFee'] as num?)?.toDouble(),
       isOnline: json['isOnline'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$DoctorToJson(_Doctor instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'specialty': instance.specialty,
-      'hospital': instance.hospital,
+      'specialization': instance.specialization,
+      'experienceYears': instance.experienceYears,
       'rating': instance.rating,
+      'nextAvailable': instance.nextAvailable,
+      'hospital': instance.hospital,
       'reviews': instance.reviews,
       'patients': instance.patients,
       'about': instance.about,

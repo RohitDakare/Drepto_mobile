@@ -32,7 +32,7 @@ class _DoctorSelectionPageState extends State<DoctorSelectionPage> {
   @override
   void initState() {
     super.initState();
-    _allDoctors = Doctor.getMockDoctors();
+    _allDoctors = [];
     _filteredDoctors = _allDoctors;
   }
 
@@ -252,7 +252,7 @@ class _DoctorCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    doctor.hospital,
+                    doctor.hospital ?? '',
                     style: AppTextStyles.caption
                         .copyWith(color: AppColors.textSecondary),
                     maxLines: 1,
@@ -326,4 +326,3 @@ class _StatusBadge extends StatelessWidget {
     );
   }
 }
-

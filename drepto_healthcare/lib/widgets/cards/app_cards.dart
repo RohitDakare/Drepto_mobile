@@ -49,7 +49,7 @@ class ServiceCard extends StatelessWidget {
           onTap: onTap,
           borderRadius: AppSpacing.borderRadiusMd,
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -70,12 +70,14 @@ class ServiceCard extends StatelessWidget {
                     size: 24,
                   ),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Text(
                   title,
                   style: AppTextStyles.labelLarge.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -86,6 +88,8 @@ class ServiceCard extends StatelessWidget {
                         : AppColors.textSecondary,
                     fontWeight: isEmergency ? FontWeight.w600 : FontWeight.w400,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -385,4 +389,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-

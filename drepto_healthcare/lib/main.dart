@@ -5,6 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:drepto_healthcare/core/injection.dart';
 import 'package:drepto_healthcare/core/providers/auth_provider.dart';
+import 'package:drepto_healthcare/core/providers/nurse_provider.dart';
+import 'package:drepto_healthcare/core/providers/doctor_provider.dart';
+import 'package:drepto_healthcare/core/providers/appointment_provider.dart';
+import 'package:drepto_healthcare/core/providers/pharmacy_provider.dart';
+import 'package:drepto_healthcare/core/providers/lab_provider.dart';
+import 'package:drepto_healthcare/core/providers/payment_provider.dart';
 import 'package:drepto_healthcare/core/theme/app_theme.dart';
 import 'package:drepto_healthcare/router/app_router.dart';
 
@@ -41,6 +47,12 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: authProvider),
+        ChangeNotifierProvider(create: (_) => getIt<NurseProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<DoctorProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<AppointmentProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<PharmacyProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<LabProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<PaymentProvider>()),
       ],
       child: const DreptoHealthcareApp(),
     ),
@@ -73,4 +85,3 @@ class DreptoHealthcareApp extends StatelessWidget {
     );
   }
 }
-

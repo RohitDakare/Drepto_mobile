@@ -17,12 +17,14 @@ class AppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isUpcoming = appointment.status == AppointmentStatus.upcoming;
+    final isUpcoming = appointment.status == AppointmentStatus.upcoming.name;
     final isVideo = appointment.type == AppointmentType.online;
 
     // Format date and time
-    final dateStr = DateFormat('MMM d, yyyy').format(appointment.dateTime);
-    final timeStr = DateFormat('h:mm a').format(appointment.dateTime);
+    final dateStr = DateFormat('MMM d, yyyy')
+        .format(appointment.dateTime ?? DateTime.now());
+    final timeStr =
+        DateFormat('h:mm a').format(appointment.dateTime ?? DateTime.now());
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -60,12 +62,12 @@ class AppointmentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      appointment.doctorName,
+                      appointment.doctorName ?? '',
                       style: AppTextStyles.labelLarge
                           .copyWith(fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      appointment.specialty,
+                      appointment.specialty ?? '',
                       style: AppTextStyles.bodyMedium
                           .copyWith(color: AppColors.textSecondary),
                     ),
@@ -130,15 +132,11 @@ class AppointmentCard extends StatelessWidget {
     );
   }
 
-  String _getStatusText(AppointmentStatus status) {
-    switch (status) {
-      case AppointmentStatus.upcoming:
-        return 'Upcoming';
-      case AppointmentStatus.completed:
-        return 'Completed';
-      case AppointmentStatus.cancelled:
-        return 'Cancelled';
-    }
+  String _getStatusText(String status) {
+    if (status == AppointmentStatus.upcoming.name) return 'Upcoming';
+    if (status == AppointmentStatus.completed.name) return 'Completed';
+    if (status == AppointmentStatus.cancelled.name) return 'Cancelled';
+    return status;
   }
 }
 
@@ -162,4 +160,3 @@ class _InfoItem extends StatelessWidget {
     );
   }
 }
-

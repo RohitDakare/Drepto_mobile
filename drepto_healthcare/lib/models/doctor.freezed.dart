@@ -16,16 +16,18 @@ T _$identity<T>(T value) => value;
 mixin _$Doctor {
   String get id;
   String get name;
-  String get specialty;
-  String get hospital;
+  String get specialization;
+  int get experienceYears;
   double get rating;
-  int get reviews;
-  int get patients;
-  String get about;
-  String get imageUrl;
-  List<String> get availableSlots;
-  double get videoConsultationFee;
-  double get clinicVisitFee;
+  String get nextAvailable;
+  String? get hospital;
+  int? get reviews;
+  int? get patients;
+  String? get about;
+  String? get imageUrl;
+  List<String>? get availableSlots;
+  double? get videoConsultationFee;
+  double? get clinicVisitFee;
   bool get isOnline;
 
   /// Create a copy of Doctor
@@ -45,11 +47,15 @@ mixin _$Doctor {
             other is Doctor &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.specialty, specialty) ||
-                other.specialty == specialty) &&
+            (identical(other.specialization, specialization) ||
+                other.specialization == specialization) &&
+            (identical(other.experienceYears, experienceYears) ||
+                other.experienceYears == experienceYears) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.nextAvailable, nextAvailable) ||
+                other.nextAvailable == nextAvailable) &&
             (identical(other.hospital, hospital) ||
                 other.hospital == hospital) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.reviews, reviews) || other.reviews == reviews) &&
             (identical(other.patients, patients) ||
                 other.patients == patients) &&
@@ -72,9 +78,11 @@ mixin _$Doctor {
       runtimeType,
       id,
       name,
-      specialty,
-      hospital,
+      specialization,
+      experienceYears,
       rating,
+      nextAvailable,
+      hospital,
       reviews,
       patients,
       about,
@@ -86,7 +94,7 @@ mixin _$Doctor {
 
   @override
   String toString() {
-    return 'Doctor(id: $id, name: $name, specialty: $specialty, hospital: $hospital, rating: $rating, reviews: $reviews, patients: $patients, about: $about, imageUrl: $imageUrl, availableSlots: $availableSlots, videoConsultationFee: $videoConsultationFee, clinicVisitFee: $clinicVisitFee, isOnline: $isOnline)';
+    return 'Doctor(id: $id, name: $name, specialization: $specialization, experienceYears: $experienceYears, rating: $rating, nextAvailable: $nextAvailable, hospital: $hospital, reviews: $reviews, patients: $patients, about: $about, imageUrl: $imageUrl, availableSlots: $availableSlots, videoConsultationFee: $videoConsultationFee, clinicVisitFee: $clinicVisitFee, isOnline: $isOnline)';
   }
 }
 
@@ -98,16 +106,18 @@ abstract mixin class $DoctorCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String specialty,
-      String hospital,
+      String specialization,
+      int experienceYears,
       double rating,
-      int reviews,
-      int patients,
-      String about,
-      String imageUrl,
-      List<String> availableSlots,
-      double videoConsultationFee,
-      double clinicVisitFee,
+      String nextAvailable,
+      String? hospital,
+      int? reviews,
+      int? patients,
+      String? about,
+      String? imageUrl,
+      List<String>? availableSlots,
+      double? videoConsultationFee,
+      double? clinicVisitFee,
       bool isOnline});
 }
 
@@ -125,16 +135,18 @@ class _$DoctorCopyWithImpl<$Res> implements $DoctorCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? specialty = null,
-    Object? hospital = null,
+    Object? specialization = null,
+    Object? experienceYears = null,
     Object? rating = null,
-    Object? reviews = null,
-    Object? patients = null,
-    Object? about = null,
-    Object? imageUrl = null,
-    Object? availableSlots = null,
-    Object? videoConsultationFee = null,
-    Object? clinicVisitFee = null,
+    Object? nextAvailable = null,
+    Object? hospital = freezed,
+    Object? reviews = freezed,
+    Object? patients = freezed,
+    Object? about = freezed,
+    Object? imageUrl = freezed,
+    Object? availableSlots = freezed,
+    Object? videoConsultationFee = freezed,
+    Object? clinicVisitFee = freezed,
     Object? isOnline = null,
   }) {
     return _then(_self.copyWith(
@@ -146,46 +158,54 @@ class _$DoctorCopyWithImpl<$Res> implements $DoctorCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      specialty: null == specialty
-          ? _self.specialty
-          : specialty // ignore: cast_nullable_to_non_nullable
+      specialization: null == specialization
+          ? _self.specialization
+          : specialization // ignore: cast_nullable_to_non_nullable
               as String,
-      hospital: null == hospital
-          ? _self.hospital
-          : hospital // ignore: cast_nullable_to_non_nullable
-              as String,
+      experienceYears: null == experienceYears
+          ? _self.experienceYears
+          : experienceYears // ignore: cast_nullable_to_non_nullable
+              as int,
       rating: null == rating
           ? _self.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
-      reviews: null == reviews
+      nextAvailable: null == nextAvailable
+          ? _self.nextAvailable
+          : nextAvailable // ignore: cast_nullable_to_non_nullable
+              as String,
+      hospital: freezed == hospital
+          ? _self.hospital
+          : hospital // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reviews: freezed == reviews
           ? _self.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
-              as int,
-      patients: null == patients
+              as int?,
+      patients: freezed == patients
           ? _self.patients
           : patients // ignore: cast_nullable_to_non_nullable
-              as int,
-      about: null == about
+              as int?,
+      about: freezed == about
           ? _self.about
           : about // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageUrl: null == imageUrl
+              as String?,
+      imageUrl: freezed == imageUrl
           ? _self.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      availableSlots: null == availableSlots
+              as String?,
+      availableSlots: freezed == availableSlots
           ? _self.availableSlots
           : availableSlots // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      videoConsultationFee: null == videoConsultationFee
+              as List<String>?,
+      videoConsultationFee: freezed == videoConsultationFee
           ? _self.videoConsultationFee
           : videoConsultationFee // ignore: cast_nullable_to_non_nullable
-              as double,
-      clinicVisitFee: null == clinicVisitFee
+              as double?,
+      clinicVisitFee: freezed == clinicVisitFee
           ? _self.clinicVisitFee
           : clinicVisitFee // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       isOnline: null == isOnline
           ? _self.isOnline
           : isOnline // ignore: cast_nullable_to_non_nullable
@@ -290,16 +310,18 @@ extension DoctorPatterns on Doctor {
     TResult Function(
             String id,
             String name,
-            String specialty,
-            String hospital,
+            String specialization,
+            int experienceYears,
             double rating,
-            int reviews,
-            int patients,
-            String about,
-            String imageUrl,
-            List<String> availableSlots,
-            double videoConsultationFee,
-            double clinicVisitFee,
+            String nextAvailable,
+            String? hospital,
+            int? reviews,
+            int? patients,
+            String? about,
+            String? imageUrl,
+            List<String>? availableSlots,
+            double? videoConsultationFee,
+            double? clinicVisitFee,
             bool isOnline)?
         $default, {
     required TResult orElse(),
@@ -310,9 +332,11 @@ extension DoctorPatterns on Doctor {
         return $default(
             _that.id,
             _that.name,
-            _that.specialty,
-            _that.hospital,
+            _that.specialization,
+            _that.experienceYears,
             _that.rating,
+            _that.nextAvailable,
+            _that.hospital,
             _that.reviews,
             _that.patients,
             _that.about,
@@ -344,16 +368,18 @@ extension DoctorPatterns on Doctor {
     TResult Function(
             String id,
             String name,
-            String specialty,
-            String hospital,
+            String specialization,
+            int experienceYears,
             double rating,
-            int reviews,
-            int patients,
-            String about,
-            String imageUrl,
-            List<String> availableSlots,
-            double videoConsultationFee,
-            double clinicVisitFee,
+            String nextAvailable,
+            String? hospital,
+            int? reviews,
+            int? patients,
+            String? about,
+            String? imageUrl,
+            List<String>? availableSlots,
+            double? videoConsultationFee,
+            double? clinicVisitFee,
             bool isOnline)
         $default,
   ) {
@@ -363,9 +389,11 @@ extension DoctorPatterns on Doctor {
         return $default(
             _that.id,
             _that.name,
-            _that.specialty,
-            _that.hospital,
+            _that.specialization,
+            _that.experienceYears,
             _that.rating,
+            _that.nextAvailable,
+            _that.hospital,
             _that.reviews,
             _that.patients,
             _that.about,
@@ -396,16 +424,18 @@ extension DoctorPatterns on Doctor {
     TResult? Function(
             String id,
             String name,
-            String specialty,
-            String hospital,
+            String specialization,
+            int experienceYears,
             double rating,
-            int reviews,
-            int patients,
-            String about,
-            String imageUrl,
-            List<String> availableSlots,
-            double videoConsultationFee,
-            double clinicVisitFee,
+            String nextAvailable,
+            String? hospital,
+            int? reviews,
+            int? patients,
+            String? about,
+            String? imageUrl,
+            List<String>? availableSlots,
+            double? videoConsultationFee,
+            double? clinicVisitFee,
             bool isOnline)?
         $default,
   ) {
@@ -415,9 +445,11 @@ extension DoctorPatterns on Doctor {
         return $default(
             _that.id,
             _that.name,
-            _that.specialty,
-            _that.hospital,
+            _that.specialization,
+            _that.experienceYears,
             _that.rating,
+            _that.nextAvailable,
+            _that.hospital,
             _that.reviews,
             _that.patients,
             _that.about,
@@ -438,16 +470,18 @@ class _Doctor extends Doctor {
   const _Doctor(
       {required this.id,
       required this.name,
-      required this.specialty,
-      required this.hospital,
+      required this.specialization,
+      required this.experienceYears,
       required this.rating,
-      required this.reviews,
-      required this.patients,
-      required this.about,
-      required this.imageUrl,
-      required final List<String> availableSlots,
-      required this.videoConsultationFee,
-      required this.clinicVisitFee,
+      required this.nextAvailable,
+      this.hospital,
+      this.reviews,
+      this.patients,
+      this.about,
+      this.imageUrl,
+      final List<String>? availableSlots,
+      this.videoConsultationFee,
+      this.clinicVisitFee,
       this.isOnline = false})
       : _availableSlots = availableSlots,
         super._();
@@ -458,31 +492,37 @@ class _Doctor extends Doctor {
   @override
   final String name;
   @override
-  final String specialty;
+  final String specialization;
   @override
-  final String hospital;
+  final int experienceYears;
   @override
   final double rating;
   @override
-  final int reviews;
+  final String nextAvailable;
   @override
-  final int patients;
+  final String? hospital;
   @override
-  final String about;
+  final int? reviews;
   @override
-  final String imageUrl;
-  final List<String> _availableSlots;
+  final int? patients;
   @override
-  List<String> get availableSlots {
+  final String? about;
+  @override
+  final String? imageUrl;
+  final List<String>? _availableSlots;
+  @override
+  List<String>? get availableSlots {
+    final value = _availableSlots;
+    if (value == null) return null;
     if (_availableSlots is EqualUnmodifiableListView) return _availableSlots;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_availableSlots);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final double videoConsultationFee;
+  final double? videoConsultationFee;
   @override
-  final double clinicVisitFee;
+  final double? clinicVisitFee;
   @override
   @JsonKey()
   final bool isOnline;
@@ -509,11 +549,15 @@ class _Doctor extends Doctor {
             other is _Doctor &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.specialty, specialty) ||
-                other.specialty == specialty) &&
+            (identical(other.specialization, specialization) ||
+                other.specialization == specialization) &&
+            (identical(other.experienceYears, experienceYears) ||
+                other.experienceYears == experienceYears) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.nextAvailable, nextAvailable) ||
+                other.nextAvailable == nextAvailable) &&
             (identical(other.hospital, hospital) ||
                 other.hospital == hospital) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.reviews, reviews) || other.reviews == reviews) &&
             (identical(other.patients, patients) ||
                 other.patients == patients) &&
@@ -536,9 +580,11 @@ class _Doctor extends Doctor {
       runtimeType,
       id,
       name,
-      specialty,
-      hospital,
+      specialization,
+      experienceYears,
       rating,
+      nextAvailable,
+      hospital,
       reviews,
       patients,
       about,
@@ -550,7 +596,7 @@ class _Doctor extends Doctor {
 
   @override
   String toString() {
-    return 'Doctor(id: $id, name: $name, specialty: $specialty, hospital: $hospital, rating: $rating, reviews: $reviews, patients: $patients, about: $about, imageUrl: $imageUrl, availableSlots: $availableSlots, videoConsultationFee: $videoConsultationFee, clinicVisitFee: $clinicVisitFee, isOnline: $isOnline)';
+    return 'Doctor(id: $id, name: $name, specialization: $specialization, experienceYears: $experienceYears, rating: $rating, nextAvailable: $nextAvailable, hospital: $hospital, reviews: $reviews, patients: $patients, about: $about, imageUrl: $imageUrl, availableSlots: $availableSlots, videoConsultationFee: $videoConsultationFee, clinicVisitFee: $clinicVisitFee, isOnline: $isOnline)';
   }
 }
 
@@ -563,16 +609,18 @@ abstract mixin class _$DoctorCopyWith<$Res> implements $DoctorCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String specialty,
-      String hospital,
+      String specialization,
+      int experienceYears,
       double rating,
-      int reviews,
-      int patients,
-      String about,
-      String imageUrl,
-      List<String> availableSlots,
-      double videoConsultationFee,
-      double clinicVisitFee,
+      String nextAvailable,
+      String? hospital,
+      int? reviews,
+      int? patients,
+      String? about,
+      String? imageUrl,
+      List<String>? availableSlots,
+      double? videoConsultationFee,
+      double? clinicVisitFee,
       bool isOnline});
 }
 
@@ -590,16 +638,18 @@ class __$DoctorCopyWithImpl<$Res> implements _$DoctorCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? specialty = null,
-    Object? hospital = null,
+    Object? specialization = null,
+    Object? experienceYears = null,
     Object? rating = null,
-    Object? reviews = null,
-    Object? patients = null,
-    Object? about = null,
-    Object? imageUrl = null,
-    Object? availableSlots = null,
-    Object? videoConsultationFee = null,
-    Object? clinicVisitFee = null,
+    Object? nextAvailable = null,
+    Object? hospital = freezed,
+    Object? reviews = freezed,
+    Object? patients = freezed,
+    Object? about = freezed,
+    Object? imageUrl = freezed,
+    Object? availableSlots = freezed,
+    Object? videoConsultationFee = freezed,
+    Object? clinicVisitFee = freezed,
     Object? isOnline = null,
   }) {
     return _then(_Doctor(
@@ -611,46 +661,54 @@ class __$DoctorCopyWithImpl<$Res> implements _$DoctorCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      specialty: null == specialty
-          ? _self.specialty
-          : specialty // ignore: cast_nullable_to_non_nullable
+      specialization: null == specialization
+          ? _self.specialization
+          : specialization // ignore: cast_nullable_to_non_nullable
               as String,
-      hospital: null == hospital
-          ? _self.hospital
-          : hospital // ignore: cast_nullable_to_non_nullable
-              as String,
+      experienceYears: null == experienceYears
+          ? _self.experienceYears
+          : experienceYears // ignore: cast_nullable_to_non_nullable
+              as int,
       rating: null == rating
           ? _self.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
-      reviews: null == reviews
+      nextAvailable: null == nextAvailable
+          ? _self.nextAvailable
+          : nextAvailable // ignore: cast_nullable_to_non_nullable
+              as String,
+      hospital: freezed == hospital
+          ? _self.hospital
+          : hospital // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reviews: freezed == reviews
           ? _self.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
-              as int,
-      patients: null == patients
+              as int?,
+      patients: freezed == patients
           ? _self.patients
           : patients // ignore: cast_nullable_to_non_nullable
-              as int,
-      about: null == about
+              as int?,
+      about: freezed == about
           ? _self.about
           : about // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageUrl: null == imageUrl
+              as String?,
+      imageUrl: freezed == imageUrl
           ? _self.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      availableSlots: null == availableSlots
+              as String?,
+      availableSlots: freezed == availableSlots
           ? _self._availableSlots
           : availableSlots // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      videoConsultationFee: null == videoConsultationFee
+              as List<String>?,
+      videoConsultationFee: freezed == videoConsultationFee
           ? _self.videoConsultationFee
           : videoConsultationFee // ignore: cast_nullable_to_non_nullable
-              as double,
-      clinicVisitFee: null == clinicVisitFee
+              as double?,
+      clinicVisitFee: freezed == clinicVisitFee
           ? _self.clinicVisitFee
           : clinicVisitFee // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       isOnline: null == isOnline
           ? _self.isOnline
           : isOnline // ignore: cast_nullable_to_non_nullable

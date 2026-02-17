@@ -255,6 +255,7 @@ class _NavItem extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
@@ -275,5 +276,3 @@ class _NavItem extends StatelessWidget {
     );
   }
 }
-
-

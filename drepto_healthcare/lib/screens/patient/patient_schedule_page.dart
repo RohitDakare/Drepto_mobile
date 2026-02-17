@@ -13,20 +13,20 @@ class PatientSchedulePage extends StatefulWidget {
 }
 
 class _PatientSchedulePageState extends State<PatientSchedulePage> {
-  // Use mock data from the model for now
-  final List<Appointment> _appointments = Appointment.getMockAppointments();
+  // Use empty list initially
+  final List<Appointment> _appointments = [];
   int _selectedTab = 0;
   final List<String> _tabs = ['Upcoming', 'Completed', 'Cancelled'];
 
   List<Appointment> get _filteredAppointments {
     final status = _tabs[_selectedTab].toLowerCase();
     return _appointments.where((apt) {
-      if (status == 'upcoming') return apt.status == AppointmentStatus.upcoming;
+      if (status == 'upcoming') return apt.status == AppointmentStatus.upcoming.name;
       if (status == 'completed') {
-        return apt.status == AppointmentStatus.completed;
+        return apt.status == AppointmentStatus.completed.name;
       }
       if (status == 'cancelled') {
-        return apt.status == AppointmentStatus.cancelled;
+        return apt.status == AppointmentStatus.cancelled.name;
       }
       return true;
     }).toList();

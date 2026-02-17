@@ -107,57 +107,69 @@ flutter pub get
 flutter run
 ```
 
-## 📂 Project Structure
+## 📂 Project Structure & File Reference
 
-```
-lib/
-├── core/
-│   ├── constants/
-│   │   ├── app_colors.dart
-│   │   ├── app_text_styles.dart
-│   │   └── app_spacing.dart
-│   └── theme/
-│       └── app_theme.dart
-├── widgets/
-│   ├── buttons/
-│   │   └── app_buttons.dart
-│   ├── inputs/
-│   │   └── app_inputs.dart
-│   ├── cards/
-│   │   └── app_cards.dart
-│   └── navigation/
-│       └── bottom_nav_bars.dart
-├── screens/
-│   ├── onboarding/
-│   │   ├── onboarding_page.dart
-│   │   └── login_page.dart
-│   ├── registration/
-│   │   ├── registration_step1_page.dart
-│   │   └── registration_step2_page.dart
-│   ├── patient/
-│   │   └── patient_dashboard.dart
-│   ├── doctor/
-│   │   └── doctor_dashboard.dart
-│   ├── nurse/
-│   │   └── nurse_dashboard.dart
-│   ├── pharmacy/
-│   │   ├── pharmacy_page.dart
-│   │   ├── cart_page.dart
-│   │   ├── checkout_page.dart
-│   │   └── order_success_page.dart
-│   ├── lab/
-│   │   └── lab_tests_page.dart
-│   ├── health_records/
-│   │   └── health_records_page.dart
-│   ├── ambulance/
-│   │   ├── request_ambulance_page.dart
-│   │   └── ambulance_tracking_page.dart
-│   ├── chat/
-│   │   └── ai_assistant_page.dart
-│   └── profile/
-│       └── profile_page.dart
-└── main.dart
-```
+### 🏗️ Core Architecture (lib/core/)
+- **[injection.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/injection.dart)**: Configuration for dependency injection using GetIt.
+- **[network/api_service.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/network/api_service.dart)**: Centralized HTTP client and error handling.
+- **[theme/app_theme.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/theme/app_theme.dart)**: Global application styling and Material 3 theme.
+- **[utils/greeting_helper.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/utils/greeting_helper.dart)**: Helper for dynamic time-based user greetings.
+- **[services/secure_storage_service.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/services/secure_storage_service.dart)**: Secure encryption for persistent storage of sensitive data.
+
+#### 🎨 Design Constants
+- **[constants/app_colors.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/constants/app_colors.dart)**: Central registry for all application colors.
+- **[constants/app_spacing.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/constants/app_spacing.dart)**: Standardized layout dimensions and spacing tokens.
+- **[constants/app_text_styles.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/constants/app_text_styles.dart)**: Definition of all typography styles.
+
+#### 🔄 State Management (Providers)
+- **[providers/auth_provider.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/providers/auth_provider.dart)**: Manages global authentication and user session state.
+- **[providers/appointment_provider.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/providers/appointment_provider.dart)**: Handles state for all medical booking operations.
+- **[providers/doctor_provider.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/providers/doctor_provider.dart)**: Manages listings and details of healthcare providers.
+- **[providers/pharmacy_provider.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/providers/pharmacy_provider.dart)**: Logic for cart management and product browsing.
+
+#### 📦 Data Layer (Repositories & Services)
+- **[repositories/i_auth_repository.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/repositories/i_auth_repository.dart)**: Interface for authentication data operations.
+- **[repositories/auth_repository.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/repositories/auth_repository.dart)**: API-linked implementation of authentication logic.
+- **[services/auth_service.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/services/auth_service.dart)**: Higher-level business logic for secure user sessions.
+- **[repositories/appointment_repository.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/repositories/appointment_repository.dart)**: Handles data fetching for medical appointments.
+- **[services/appointment_service.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/core/services/appointment_service.dart)**: Manages the scheduling and lifecycle of consultations.
+
+### 📊 Data Models (lib/models/)
+- **[user_model.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/models/user_model.dart)**: Unified model for Patients, Doctors, and Administrators.
+- **[appointment.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/models/appointment.dart)**: Encapsulates all data related to a medical consultation.
+- **[doctor.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/models/doctor.dart)**: Detailed model for professional healthcare profiles.
+- **[product.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/models/product.dart)**: Model representing medicines and health products.
+- **`*.freezed.dart` / `*.g.dart`**: Auto-generated files for immutability and JSON serialization.
+
+### 🖼️ UI Screens (lib/screens/)
+#### 🔑 Authentication & Entry
+- **[onboarding/splash_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/onboarding/splash_page.dart)**: Initial brand loading screen.
+- **[onboarding/onboarding_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/onboarding/onboarding_page.dart)**: Welcome and feature walkthrough screens.
+- **[onboarding/login_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/onboarding/login_page.dart)**: Secure user login interface.
+- **[onboarding/registration_step1_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/onboarding/registration_step1_page.dart)**: Initial registration step for profile setup.
+
+#### 🏥 Medical & Appointments
+- **[patient/patient_dashboard.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/patient/patient_dashboard.dart)**: Hub for patient health services.
+- **[patient/doctor_selection_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/patient/doctor_selection_page.dart)**: Directory for finding and selecting doctors.
+- **[doctor/doctor_details_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/doctor/doctor_details_page.dart)**: Comprehensive profile view for individual doctors.
+- **[patient/patient_schedule_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/patient/patient_schedule_page.dart)**: List of upcoming and historical appointments.
+
+#### 💊 Pharmacy & Logistics
+- **[pharmacy/pharmacy_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/pharmacy/pharmacy_page.dart)**: Digital storefront for medical supplies.
+- **[pharmacy/cart_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/pharmacy/cart_page.dart)**: Shopping basket management.
+- **[ambulance/request_ambulance_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/ambulance/request_ambulance_page.dart)**: Rapid interface for emergency transport requests.
+
+#### 👤 Profile & Help
+- **[profile/profile_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/profile/profile_page.dart)**: User account and health statistics overview.
+- **[chat/ai_assistant_page.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/screens/chat/ai_assistant_page.dart)**: Interface for help from the AI health assistant.
+
+### 🧩 Shared Widgets (lib/widgets/)
+- **[cards/appointment_card.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/widgets/cards/appointment_card.dart)**: Reusable card for displaying appointment details.
+- **[inputs/app_inputs.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/widgets/inputs/app_inputs.dart)**: Suite of custom text and search fields.
+- **[navigation/bottom_nav_bars.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/widgets/navigation/bottom_nav_bars.dart)**: Context-aware navigation bars for different user roles.
+
+### 🏁 App Entry
+- **[main.dart](file:///c:/Users/naikw/OneDrive/Desktop/Drepto%20Mobile%20App/Drepto_mobile/drepto_healthcare/lib/main.dart)**: Root of the application, initializes providers and routes.
 
 ## 🔧 Configuration
 

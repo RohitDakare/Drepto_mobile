@@ -16,9 +16,12 @@ T _$identity<T>(T value) => value;
 mixin _$UserModel {
   String get id;
   String get email;
-  String get name;
+  String get firstName;
+  String get lastName;
   UserRole get role;
-  String? get phoneNumber;
+  int? get age;
+  String? get gender;
+  int? get mobileNumber; // From backend DTO
   String? get profileImageUrl;
   DateTime? get dateOfBirth;
   String? get address;
@@ -26,8 +29,8 @@ mixin _$UserModel {
   bool get isPhoneVerified;
   DateTime get createdAt;
   DateTime? get lastLoginAt; // Health stats
-  String? get weight; // in kg
-  String? get height; // in cm
+  String? get weight;
+  String? get height;
   String? get bloodType;
 
   /// Create a copy of UserModel
@@ -47,10 +50,15 @@ mixin _$UserModel {
             other is UserModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.role, role) || other.role == role) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
+            (identical(other.age, age) || other.age == age) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.mobileNumber, mobileNumber) ||
+                other.mobileNumber == mobileNumber) &&
             (identical(other.profileImageUrl, profileImageUrl) ||
                 other.profileImageUrl == profileImageUrl) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
@@ -76,9 +84,12 @@ mixin _$UserModel {
       runtimeType,
       id,
       email,
-      name,
+      firstName,
+      lastName,
       role,
-      phoneNumber,
+      age,
+      gender,
+      mobileNumber,
       profileImageUrl,
       dateOfBirth,
       address,
@@ -92,7 +103,7 @@ mixin _$UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, email: $email, name: $name, role: $role, phoneNumber: $phoneNumber, profileImageUrl: $profileImageUrl, dateOfBirth: $dateOfBirth, address: $address, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, createdAt: $createdAt, lastLoginAt: $lastLoginAt, weight: $weight, height: $height, bloodType: $bloodType)';
+    return 'UserModel(id: $id, email: $email, firstName: $firstName, lastName: $lastName, role: $role, age: $age, gender: $gender, mobileNumber: $mobileNumber, profileImageUrl: $profileImageUrl, dateOfBirth: $dateOfBirth, address: $address, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, createdAt: $createdAt, lastLoginAt: $lastLoginAt, weight: $weight, height: $height, bloodType: $bloodType)';
   }
 }
 
@@ -104,9 +115,12 @@ abstract mixin class $UserModelCopyWith<$Res> {
   $Res call(
       {String id,
       String email,
-      String name,
+      String firstName,
+      String lastName,
       UserRole role,
-      String? phoneNumber,
+      int? age,
+      String? gender,
+      int? mobileNumber,
       String? profileImageUrl,
       DateTime? dateOfBirth,
       String? address,
@@ -133,9 +147,12 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? name = null,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? role = null,
-    Object? phoneNumber = freezed,
+    Object? age = freezed,
+    Object? gender = freezed,
+    Object? mobileNumber = freezed,
     Object? profileImageUrl = freezed,
     Object? dateOfBirth = freezed,
     Object? address = freezed,
@@ -156,18 +173,30 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       role: null == role
           ? _self.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      age: freezed == age
+          ? _self.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int?,
+      gender: freezed == gender
+          ? _self.gender
+          : gender // ignore: cast_nullable_to_non_nullable
               as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _self.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
       profileImageUrl: freezed == profileImageUrl
           ? _self.profileImageUrl
           : profileImageUrl // ignore: cast_nullable_to_non_nullable
@@ -308,9 +337,12 @@ extension UserModelPatterns on UserModel {
     TResult Function(
             String id,
             String email,
-            String name,
+            String firstName,
+            String lastName,
             UserRole role,
-            String? phoneNumber,
+            int? age,
+            String? gender,
+            int? mobileNumber,
             String? profileImageUrl,
             DateTime? dateOfBirth,
             String? address,
@@ -330,9 +362,12 @@ extension UserModelPatterns on UserModel {
         return $default(
             _that.id,
             _that.email,
-            _that.name,
+            _that.firstName,
+            _that.lastName,
             _that.role,
-            _that.phoneNumber,
+            _that.age,
+            _that.gender,
+            _that.mobileNumber,
             _that.profileImageUrl,
             _that.dateOfBirth,
             _that.address,
@@ -366,9 +401,12 @@ extension UserModelPatterns on UserModel {
     TResult Function(
             String id,
             String email,
-            String name,
+            String firstName,
+            String lastName,
             UserRole role,
-            String? phoneNumber,
+            int? age,
+            String? gender,
+            int? mobileNumber,
             String? profileImageUrl,
             DateTime? dateOfBirth,
             String? address,
@@ -387,9 +425,12 @@ extension UserModelPatterns on UserModel {
         return $default(
             _that.id,
             _that.email,
-            _that.name,
+            _that.firstName,
+            _that.lastName,
             _that.role,
-            _that.phoneNumber,
+            _that.age,
+            _that.gender,
+            _that.mobileNumber,
             _that.profileImageUrl,
             _that.dateOfBirth,
             _that.address,
@@ -422,9 +463,12 @@ extension UserModelPatterns on UserModel {
     TResult? Function(
             String id,
             String email,
-            String name,
+            String firstName,
+            String lastName,
             UserRole role,
-            String? phoneNumber,
+            int? age,
+            String? gender,
+            int? mobileNumber,
             String? profileImageUrl,
             DateTime? dateOfBirth,
             String? address,
@@ -443,9 +487,12 @@ extension UserModelPatterns on UserModel {
         return $default(
             _that.id,
             _that.email,
-            _that.name,
+            _that.firstName,
+            _that.lastName,
             _that.role,
-            _that.phoneNumber,
+            _that.age,
+            _that.gender,
+            _that.mobileNumber,
             _that.profileImageUrl,
             _that.dateOfBirth,
             _that.address,
@@ -468,9 +515,12 @@ class _UserModel extends UserModel {
   const _UserModel(
       {required this.id,
       required this.email,
-      required this.name,
+      required this.firstName,
+      required this.lastName,
       required this.role,
-      this.phoneNumber,
+      this.age,
+      this.gender,
+      this.mobileNumber,
       this.profileImageUrl,
       this.dateOfBirth,
       this.address,
@@ -490,11 +540,18 @@ class _UserModel extends UserModel {
   @override
   final String email;
   @override
-  final String name;
+  final String firstName;
+  @override
+  final String lastName;
   @override
   final UserRole role;
   @override
-  final String? phoneNumber;
+  final int? age;
+  @override
+  final String? gender;
+  @override
+  final int? mobileNumber;
+// From backend DTO
   @override
   final String? profileImageUrl;
   @override
@@ -514,10 +571,8 @@ class _UserModel extends UserModel {
 // Health stats
   @override
   final String? weight;
-// in kg
   @override
   final String? height;
-// in cm
   @override
   final String? bloodType;
 
@@ -543,10 +598,15 @@ class _UserModel extends UserModel {
             other is _UserModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.role, role) || other.role == role) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
+            (identical(other.age, age) || other.age == age) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.mobileNumber, mobileNumber) ||
+                other.mobileNumber == mobileNumber) &&
             (identical(other.profileImageUrl, profileImageUrl) ||
                 other.profileImageUrl == profileImageUrl) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
@@ -572,9 +632,12 @@ class _UserModel extends UserModel {
       runtimeType,
       id,
       email,
-      name,
+      firstName,
+      lastName,
       role,
-      phoneNumber,
+      age,
+      gender,
+      mobileNumber,
       profileImageUrl,
       dateOfBirth,
       address,
@@ -588,7 +651,7 @@ class _UserModel extends UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, email: $email, name: $name, role: $role, phoneNumber: $phoneNumber, profileImageUrl: $profileImageUrl, dateOfBirth: $dateOfBirth, address: $address, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, createdAt: $createdAt, lastLoginAt: $lastLoginAt, weight: $weight, height: $height, bloodType: $bloodType)';
+    return 'UserModel(id: $id, email: $email, firstName: $firstName, lastName: $lastName, role: $role, age: $age, gender: $gender, mobileNumber: $mobileNumber, profileImageUrl: $profileImageUrl, dateOfBirth: $dateOfBirth, address: $address, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, createdAt: $createdAt, lastLoginAt: $lastLoginAt, weight: $weight, height: $height, bloodType: $bloodType)';
   }
 }
 
@@ -603,9 +666,12 @@ abstract mixin class _$UserModelCopyWith<$Res>
   $Res call(
       {String id,
       String email,
-      String name,
+      String firstName,
+      String lastName,
       UserRole role,
-      String? phoneNumber,
+      int? age,
+      String? gender,
+      int? mobileNumber,
       String? profileImageUrl,
       DateTime? dateOfBirth,
       String? address,
@@ -632,9 +698,12 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? name = null,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? role = null,
-    Object? phoneNumber = freezed,
+    Object? age = freezed,
+    Object? gender = freezed,
+    Object? mobileNumber = freezed,
     Object? profileImageUrl = freezed,
     Object? dateOfBirth = freezed,
     Object? address = freezed,
@@ -655,18 +724,30 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       role: null == role
           ? _self.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      age: freezed == age
+          ? _self.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int?,
+      gender: freezed == gender
+          ? _self.gender
+          : gender // ignore: cast_nullable_to_non_nullable
               as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _self.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
       profileImageUrl: freezed == profileImageUrl
           ? _self.profileImageUrl
           : profileImageUrl // ignore: cast_nullable_to_non_nullable

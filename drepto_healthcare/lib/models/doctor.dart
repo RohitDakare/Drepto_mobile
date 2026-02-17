@@ -10,23 +10,22 @@ abstract class Doctor with _$Doctor {
   const factory Doctor({
     required String id,
     required String name,
-    required String specialty,
-    required String hospital,
+    required String specialization,
+    required int experienceYears,
     required double rating,
-    required int reviews,
-    required int patients,
-    required String about,
-    required String imageUrl,
-    required List<String> availableSlots,
-    required double videoConsultationFee,
-    required double clinicVisitFee,
+    required String nextAvailable,
+    String? hospital,
+    int? reviews,
+    int? patients,
+    String? about,
+    String? imageUrl,
+    List<String>? availableSlots,
+    double? videoConsultationFee,
+    double? clinicVisitFee,
     @Default(false) bool isOnline,
   }) = _Doctor;
 
   factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 
-  // Returns empty list - in production, this would fetch from backend API
-  static List<Doctor> getMockDoctors() {
-    return [];
-  }
+  String get specialty => specialization;
 }
